@@ -1,0 +1,13 @@
+const path = require("path");
+const { spawn } = require("child_process");
+const SCRIPTS = require("../config/scripts");
+
+const BINARY = path.resolve("index.js");
+
+describe("scripts", () => {
+  test("start script", () => {
+    spawn("node", [BINARY, SCRIPTS.START], {
+      stdio: "inherit"
+    });
+  });
+});

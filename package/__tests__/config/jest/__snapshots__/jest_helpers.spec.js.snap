@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`extendJestConfig with build (development) script 1`] = `
+Object {
+  "collectCoverage": false,
+  "moduleNameMapper": Object {
+    "\\\\.(css|less|scss|sss|styl)$": "<rootDir>/node_modules/identity-obj-proxy",
+    "\\\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/node_modules/react-build/config/jest/fileMock.js",
+  },
+  "setupFiles": Array [
+    "<rootDir>/node_modules/react-build/config/enzyme/enzyme_setup.js",
+  ],
+  "setupFilesAfterEnv": Array [
+    "<rootDir>/node_modules/react-build/config/jest/jest_setup.js",
+  ],
+  "snapshotSerializers": Array [
+    "enzyme-to-json/serializer",
+  ],
+  "testMatch": Array [
+    "<rootDir>/tests/**/*.{spec,test}.{js,jsx,ts,tsx}",
+  ],
+}
+`;
+
+exports[`extendJestConfig with build:production script 1`] = `
+Object {
+  "collectCoverage": false,
+  "moduleNameMapper": Object {
+    "\\\\.(css|less|scss|sss|styl)$": "<rootDir>/node_modules/identity-obj-proxy",
+    "\\\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/node_modules/react-build/config/jest/fileMock.js",
+  },
+  "setupFiles": Array [
+    "<rootDir>/node_modules/react-build/config/enzyme/enzyme_setup.js",
+  ],
+  "setupFilesAfterEnv": Array [
+    "<rootDir>/node_modules/react-build/config/jest/jest_setup.js",
+  ],
+  "snapshotSerializers": Array [
+    "enzyme-to-json/serializer",
+  ],
+  "testMatch": Array [
+    "<rootDir>/tests/**/*.{spec,test}.{js,jsx,ts,tsx}",
+  ],
+}
+`;

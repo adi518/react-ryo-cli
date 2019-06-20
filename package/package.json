@@ -1,0 +1,59 @@
+{
+  "name": "react-build",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "bin": "./index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kenshoo/react-build"
+  },
+  "scripts": {
+    "push": "yalc publish --push --changed",
+    "unpublish": "yalc installations clean %npm_package_name%",
+    "watch": "watch \"npm run push\" -s ./ --ignoreDirectoryPattern /node_modules/",
+    "lint": "eslint ./",
+    "eslint": "./node_modules/.bin/eslint --init",
+    "test": "jest"
+  },
+  "dependencies": {
+    "@craco/craco": "^5.2.1",
+    "babel-plugin-lodash": "^3.3.4",
+    "chalk": "^2.4.2",
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.14.0",
+    "enzyme-to-json": "^3.3.5",
+    "identity-obj-proxy": "^3.0.0",
+    "jest-styled-components": "^6.3.3",
+    "lodash": "^4.17.11",
+    "node-sass": "^4.12.0",
+    "react-scripts": "^3.0.0",
+    "react-test-renderer": "^16.8.6",
+    "source-map-explorer": "^2.0.1"
+  },
+  "devDependencies": {
+    "eslint": "^6.0.1",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-config-prettier": "^6.0.0",
+    "eslint-plugin-import": "^2.18.0",
+    "watch": "^1.0.2"
+  },
+  "eslintConfig": {
+    "extends": [
+      "eslint-config-airbnb-base",
+      "prettier"
+    ],
+    "rules": {
+      "quotes": 0,
+      "comma-dangle": 0,
+      "arrow-parens": 0,
+      "linebreak-style": 0,
+      "no-param-reassign": 0
+    },
+    "env": {
+      "es6": true,
+      "node": true,
+      "jest": true
+    }
+  }
+}

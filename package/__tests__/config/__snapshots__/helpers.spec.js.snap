@@ -1,0 +1,108 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Args class should add Craco arguments 1`] = `
+Array [
+  "./node_modules/@craco/craco/bin/craco.js",
+  "foo",
+  "--config",
+  "./node_modules/react-build/config/craco/craco.config.js",
+]
+`;
+
+exports[`Args class should append Craco configuration arguments 1`] = `
+Array [
+  "foo",
+  "--config",
+  "./node_modules/react-build/config/craco/craco.config.js",
+]
+`;
+
+exports[`Args class should prepend Craco binary argument 1`] = `
+Array [
+  "./node_modules/@craco/craco/bin/craco.js",
+  "foo",
+]
+`;
+
+exports[`normalizeScript build 1`] = `
+Array [
+  "./node_modules/@craco/craco/bin/craco.js",
+  "build",
+  "--config",
+  "./node_modules/react-build/config/craco/craco.config.js",
+]
+`;
+
+exports[`normalizeScript build:package 1`] = `
+Array [
+  "./node_modules/@craco/craco/bin/craco.js",
+  "build",
+  "--config",
+  "./node_modules/react-build/config/craco/craco.config.js",
+]
+`;
+
+exports[`normalizeScript build:package:production 1`] = `
+Array [
+  "./node_modules/@craco/craco/bin/craco.js",
+  "build",
+  "--config",
+  "./node_modules/react-build/config/craco/craco.config.js",
+]
+`;
+
+exports[`normalizeScript build:production 1`] = `
+Array [
+  "./node_modules/@craco/craco/bin/craco.js",
+  "build",
+  "--config",
+  "./node_modules/react-build/config/craco/craco.config.js",
+]
+`;
+
+exports[`normalizeScript build:stats 1`] = `
+Array [
+  "./node_modules/source-map-explorer/dist/cli.js",
+  "out/static/js/*.js",
+]
+`;
+
+exports[`normalizeScript eject 1`] = `"eject"`;
+
+exports[`normalizeScript test 1`] = `
+Array [
+  "./node_modules/@craco/craco/bin/craco.js",
+  "test",
+  "--config",
+  "./node_modules/react-build/config/craco/craco.config.js",
+]
+`;
+
+exports[`normalizeScript test:production 1`] = `
+Array [
+  "./node_modules/@craco/craco/bin/craco.js",
+  "test",
+  "--watchAll=false",
+  "--config",
+  "./node_modules/react-build/config/craco/craco.config.js",
+]
+`;
+
+exports[`normalizeScript test:update 1`] = `
+Array [
+  "./node_modules/@craco/craco/bin/craco.js",
+  "test",
+  "--updateSnapshot",
+  "--config",
+  "./node_modules/react-build/config/craco/craco.config.js",
+]
+`;
+
+exports[`normalizeScript test:watch 1`] = `
+Array [
+  "./node_modules/@craco/craco/bin/craco.js",
+  "test",
+  "--config",
+  "./node_modules/react-build/config/craco/craco.config.js",
+]
+`;

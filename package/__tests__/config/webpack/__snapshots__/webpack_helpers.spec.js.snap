@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`extendWebpack getOutputPath 1`] = `"D:\\\\Projects\\\\react-build\\\\package\\\\out"`;
+
+exports[`extendWebpack with build (development) script 1`] = `
+Object {
+  "extendeWebpackConfig": Object {
+    "devtool": "eval-source-map",
+    "mode": "development",
+    "output": Object {
+      "path": "D:\\\\Projects\\\\react-build\\\\package\\\\out",
+    },
+  },
+  "extendedPaths": Object {
+    "appBuild": "D:\\\\Projects\\\\react-build\\\\package\\\\out",
+  },
+}
+`;
+
+exports[`extendWebpack with build:production script 1`] = `
+Object {
+  "extendeWebpackConfig": Object {
+    "output": Object {
+      "path": "D:\\\\Projects\\\\react-build\\\\package\\\\out",
+    },
+  },
+  "extendedPaths": Object {
+    "appBuild": "D:\\\\Projects\\\\react-build\\\\package\\\\out",
+  },
+}
+`;

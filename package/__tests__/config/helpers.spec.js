@@ -1,4 +1,4 @@
-const SCRIPTS = require("../../config/scripts.js");
+const { SCRIPTS } = require("../../config/scripts.js");
 const { preflight, normalizeScript, Args } = require("../../config/helpers.js");
 
 console.log = () => {}; // eslint-disable-line

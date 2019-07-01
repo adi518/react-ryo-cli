@@ -6,7 +6,7 @@ const getOutputPath = () => path.join(process.cwd(), "out");
 const extendWebpack = ({
   webpackConfig: webpackConfigSource,
   paths: pathsSource,
-  env = {}
+  env = { development: false }
 }) => {
   const paths = cloneDeep(pathsSource);
   const webpackConfig = cloneDeep(webpackConfigSource);
@@ -20,7 +20,7 @@ const extendWebpack = ({
   }
   webpackConfig.output.path = getOutputPath();
   paths.appBuild = getOutputPath();
-  return { extendeWebpackConfig: webpackConfig, extendedPaths: paths };
+  return { extendedWebpackConfig: webpackConfig, extendedPaths: paths };
 };
 
 const extendCssLoaderOptions = cssLoaderOptions => {

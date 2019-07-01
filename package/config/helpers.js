@@ -1,5 +1,5 @@
 const chalk = require("chalk");
-const SCRIPTS = require("./scripts");
+const { SCRIPTS } = require("./scripts");
 const pjson = require("../package.json");
 
 const CRACO_BIN_PATH = "./node_modules/@craco/craco/bin/craco.js";

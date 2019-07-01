@@ -1,6 +1,5 @@
 const { cloneDeep } = require("lodash");
 
-const SCRIPTS = require("../../../config/scripts.js");
 const { extendJestConfig } = require("../../../config/jest/jest_helpers");
 
 const commonMockArgs = {
@@ -16,7 +15,9 @@ const commonMockArgs = {
 
 describe("extendJestConfig", () => {
   test("with build (development) script", () => {
-    const mockArgs = { ...cloneDeep(commonMockArgs), script: SCRIPTS.BUILD };
+    const mockArgs = {
+      ...cloneDeep(commonMockArgs)
+    };
     const result = extendJestConfig(mockArgs);
 
     expect(result).toMatchSnapshot();
@@ -25,7 +26,7 @@ describe("extendJestConfig", () => {
   test("with build:production script", () => {
     const mockArgs = {
       ...cloneDeep(commonMockArgs),
-      script: SCRIPTS.BUILD_PRODUCTION
+      env: { production: true }
     };
     const result = extendJestConfig(mockArgs);
 

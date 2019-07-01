@@ -1,6 +1,6 @@
 // `build:production` is an alias of `build`.
 
-module.exports = {
+const SCRIPTS = {
   START: "start",
   BUILD: "build",
   BUILD_STATS: "build:stats",
@@ -12,4 +12,16 @@ module.exports = {
   TEST_UPDATE: "test:update",
   TEST_PRODUCTION: "test:production",
   EJECT: "eject"
+};
+
+const BUILD_SCRIPTS = [
+  SCRIPTS.BUILD_STATS,
+  SCRIPTS.BUILD_PACKAGE,
+  SCRIPTS.BUILD_PRODUCTION,
+  SCRIPTS.BUILD_PACKAGE_PRODUCTION
+];
+
+module.exports = {
+  SCRIPTS,
+  BUILD_SCRIPTS
 };

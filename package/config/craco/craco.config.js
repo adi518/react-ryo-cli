@@ -8,15 +8,17 @@
 
 const { merge } = require("lodash");
 
-const SCRIPTS = require("../scripts");
+const { SCRIPTS, BUILD_SCRIPTS } = require("../scripts");
 const { extendJestConfig } = require("../jest/jest_helpers");
 const {
   extendWebpack,
   extendCssLoaderOptions
 } = require("../webpack/webpack_helpers");
 
-const argv = Array.from(process.argv);
-const script = JSON.parse(argv[argv.length - 1]).parentArgv[2];
+const parentArgv = JSON.parse(process.env.PARENT_ARGV);
+const script = parentArgv[parentArgv.length - 1];
+
+const isBuildScript = _script => BUILD_SCRIPTS.includes(_script);
 
 module.exports = {
   devServer: {
@@ -27,12 +29,14 @@ module.exports = {
       loaderOptions: extendCssLoaderOptions
     }
   },
-  babel: {
-    // Transform Lodash imports to tree-shaking
-    // compatible syntax with babel-plugin-lodash.
-    // See: https://www.azavea.com/blog/2019/03/07/lessons-on-tree-shaking-lodash/
-    plugins: ["lodash"]
-  },
+  ...(isBuildScript(script) && {
+    babel: {
+      // Transform Lodash imports to tree-shaking
+      // compatible syntax with babel-plugin-lodash.
+      // See: https://www.azavea.com/blog/2019/03/07/lessons-on-tree-shaking-lodash/
+      plugins: ["lodash"]
+    }
+  }),
   webpack: {
     configure: (webpackConfig, { paths }) => {
       const { extendedWebpackConfig, extendedPaths } = extendWebpack({
@@ -40,12 +44,19 @@ module.exports = {
         paths,
         env: { development: script === SCRIPTS.BUILD }
       });
-      merge(paths, extendedPaths);
       merge(webpackConfig, extendedWebpackConfig);
+      merge(paths, extendedPaths);
       return webpackConfig;
     }
   },
   jest: {
-    configure: jestConfig => extendJestConfig({ jestConfig, script })
+    configure: jestConfig => {
+      const { extendedJestConfig } = extendJestConfig({
+        jestConfig,
+        env: { production: script === SCRIPTS.BUILD_PRODUCTION }
+      });
+      merge(jestConfig, extendedJestConfig);
+      return jestConfig;
+    }
   }
 };

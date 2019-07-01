@@ -1,6 +1,5 @@
 const { cloneDeep } = require("lodash");
 
-const SCRIPTS = require("../../../config/scripts.js");
 const {
   getOutputPath,
   extendWebpack
@@ -19,15 +18,12 @@ describe("extendWebpack", () => {
     };
     const result = extendWebpack(mockArgs);
 
-    expect(result.extendedWebpackConfig === mockArgs.webpackConfig);
-    expect(result.paths === mockArgs.paths);
     expect(result).toMatchSnapshot();
   });
 
   test("with build:production script", () => {
     const mockArgs = {
-      ...cloneDeep(commonMockArgs),
-      script: SCRIPTS.BUILD_PRODUCTION
+      ...cloneDeep(commonMockArgs)
     };
     const result = extendWebpack(mockArgs);
 

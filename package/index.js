@@ -18,14 +18,13 @@ const { preflight, normalizeScript } = require("./config/helpers");
 const rawScript = process.argv[2];
 const scriptArgs = [].concat(normalizeScript({ rawScript }));
 const restArgs = [...process.argv].slice(3);
-const args = [
-  ...scriptArgs,
-  ...restArgs,
-  JSON.stringify({ parentArgv: process.argv })
-];
+const args = [...scriptArgs, ...restArgs];
 
 if (preflight({ script: rawScript })) {
-  const runScript = spawn("node", args, { stdio: "inherit" });
+  const runScript = spawn("node", args, {
+    stdio: "inherit",
+    env: { PARENT_ARGV: JSON.stringify(process.argv) }
+  });
 
   runScript.on("error", error => process.exit(error));
   runScript.on("close", data => process.exit(data));

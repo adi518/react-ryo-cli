@@ -1,6 +1,6 @@
 const path = require("path");
 const { spawn } = require("child_process");
-const SCRIPTS = require("../config/scripts");
+const { SCRIPTS } = require("../config/scripts");
 
 const BINARY = path.resolve("index.js");
 

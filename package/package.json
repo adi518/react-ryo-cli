@@ -9,7 +9,7 @@
     "url": "https://github.com/kenshoo/react-build"
   },
   "scripts": {
-    "push": "yalc publish --push --changed",
+    "push": "yalc publish --push",
     "unpublish": "yalc installations clean %npm_package_name%",
     "watch": "watch \"npm run push\" -s ./ --ignoreDirectoryPattern /node_modules/",
     "lint": "eslint ./",

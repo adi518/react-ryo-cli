@@ -1,36 +1,72 @@
 const path = require("path");
-const { cloneDeep } = require("lodash");
+const { merge, cloneDeep } = require("lodash");
 
-const getOutputPath = () => path.join(process.cwd(), "out");
+const {
+  APP_BUILD_SCRIPTS,
+  PACKAGE_BUILD_SCRIPTS,
+  DEVELOPMENT_BUILD_SCRIPTS
+} = require("../scripts");
+const { getLibraryName } = require("../helpers");
+
+/* eslint-disable no-underscore-dangle */
+const _getOutputPath = ({ cwd = process.cwd(), dir = "out" } = {}) =>
+  path.join(cwd, dir);
+
+const BABEL_POLYFILL_PATH =
+  "./node_modules/react-build/config/babel/babel_polyfill.js";
 
 const extendWebpack = ({
-  webpackConfig: webpackConfigSource,
+  script,
   paths: pathsSource,
-  env = { development: false }
+  getOutputPath = _getOutputPath,
+  webpackConfig: webpackConfigSource
 }) => {
   const paths = cloneDeep(pathsSource);
-  const webpackConfig = cloneDeep(webpackConfigSource);
+  const webpackConfigDefaults = { entry: [], output: {}, externals: {} };
+  const webpackConfig = merge({}, webpackConfigDefaults, cloneDeep(webpackConfigSource)); // prettier-ignore
   // CRA does not provide a "development" build,
-  // so we convert their "build" command,
+  // so we map their "build" command,
   // which builds an optimized production build,
   // to an unoptimized development build.
-  if (env.development) {
+  if (DEVELOPMENT_BUILD_SCRIPTS.includes(script)) {
     webpackConfig.mode = "development";
     webpackConfig.devtool = "eval-source-map";
   }
-  webpackConfig.output.path = getOutputPath();
-  paths.appBuild = getOutputPath();
+
+  if (APP_BUILD_SCRIPTS.includes(script)) {
+    paths.appBuild = getOutputPath();
+    webpackConfig.output.path = getOutputPath();
+    webpackConfig.entry.unshift(BABEL_POLYFILL_PATH);
+  }
+
+  // Probably not needed anymore as we can delegate
+  // this to `nwb` or similar packages.
+  if (PACKAGE_BUILD_SCRIPTS.includes(script)) {
+    webpackConfig.output.path = getOutputPath({ dir: "dist" });
+    webpackConfig.output.library = getLibraryName();
+    webpackConfig.output.libraryTarget = "umd";
+    webpackConfig.externals["react"] = "react";
+    webpackConfig.externals["react-dom"] = "react-dom";
+    webpackConfig.externals["styled-components"] = "styled-components";
+  }
+
   return { extendedWebpackConfig: webpackConfig, extendedPaths: paths };
 };
 
-const extendCssLoaderOptions = cssLoaderOptions => {
-  cssLoaderOptions.modules = true;
-  cssLoaderOptions.localIdentName = "kn-[name]__[local]___[hash:base64:5]"; // prettier-ignore
+const getCssLoaderOptions = () => ({
+  modules: true,
+  localIdentName: "kn-[name]__[local]___[hash:base64:5]"
+});
+
+const extendCssLoaderOptions = (cssLoaderOptionsSource = {}) => {
+  const cssLoaderOptions = cloneDeep(cssLoaderOptionsSource);
+  merge(cssLoaderOptions, getCssLoaderOptions());
   return cssLoaderOptions;
 };
 
 module.exports = {
-  getOutputPath,
   extendWebpack,
-  extendCssLoaderOptions
+  getCssLoaderOptions,
+  extendCssLoaderOptions,
+  getOutputPath: _getOutputPath
 };

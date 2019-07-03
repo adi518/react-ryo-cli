@@ -10,7 +10,11 @@
 // https://github.com/ben-eb/caniuse-lite/issues/27#issuecomment-503023016
 
 const { spawn } = require("child_process");
-const { preflight, normalizeScript } = require("./config/helpers");
+const {
+  preflight,
+  logSignature,
+  normalizeScript
+} = require("./config/helpers");
 
 // Normalize our scripts to be react-scripts compatible,
 // e.g.: `test:production` will be mapped to `test`, and a coverage
@@ -26,6 +30,9 @@ if (preflight({ script: rawScript })) {
     env: { PARENT_ARGV: JSON.stringify(process.argv) }
   });
 
-  runScript.on("error", error => process.exit(error));
-  runScript.on("close", data => process.exit(data));
+  runScript.on("error", err => process.exit(err));
+  runScript.on("close", code => {
+    logSignature();
+    process.exit(code);
+  });
 }

@@ -35,19 +35,19 @@ Array [
 
 exports[`normalizeScript build:package 1`] = `
 Array [
-  "./node_modules/@craco/craco/bin/craco.js",
-  "build",
+  "./node_modules/nwb/lib/bin/nwb.js",
+  "build-react-component",
   "--config",
-  "./node_modules/react-build/config/craco/craco.config.js",
+  "./node_modules/react-build/config/nwb/nwb.config.js",
 ]
 `;
 
 exports[`normalizeScript build:package:production 1`] = `
 Array [
-  "./node_modules/@craco/craco/bin/craco.js",
-  "build",
+  "./node_modules/nwb/lib/bin/nwb.js",
+  "build-react-component",
   "--config",
-  "./node_modules/react-build/config/craco/craco.config.js",
+  "./node_modules/react-build/config/nwb/nwb.config.js",
 ]
 `;
 
@@ -82,7 +82,8 @@ exports[`normalizeScript test:production 1`] = `
 Array [
   "./node_modules/@craco/craco/bin/craco.js",
   "test",
-  "--watchAll=false",
+  "--ci",
+  "--collectCoverage",
   "--config",
   "./node_modules/react-build/config/craco/craco.config.js",
 ]

@@ -1,17 +1,73 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`extendWebpack getOutputPath 1`] = `"D:\\\\Projects\\\\react-build\\\\package\\\\out"`;
+exports[`extendWebpack extendCssLoaderOptions 1`] = `
+Object {
+  "localIdentName": "kn-[name]__[local]___[hash:base64:5]",
+  "modules": true,
+}
+`;
+
+exports[`extendWebpack getOutputPath 1`] = `"/app/out"`;
 
 exports[`extendWebpack with build (development) script 1`] = `
 Object {
   "extendedPaths": Object {
-    "appBuild": "D:\\\\Projects\\\\react-build\\\\package\\\\out",
+    "appBuild": "/app/out",
   },
   "extendedWebpackConfig": Object {
     "devtool": "eval-source-map",
+    "entry": Array [
+      "./node_modules/react-build/config/babel/babel_polyfill.js",
+      "index.js",
+    ],
+    "externals": Object {},
     "mode": "development",
     "output": Object {
-      "path": "D:\\\\Projects\\\\react-build\\\\package\\\\out",
+      "path": "/app/out",
+    },
+  },
+}
+`;
+
+exports[`extendWebpack with build:package script 1`] = `
+Object {
+  "extendedPaths": Object {},
+  "extendedWebpackConfig": Object {
+    "devtool": "eval-source-map",
+    "entry": Array [
+      "index.js",
+    ],
+    "externals": Object {
+      "react": "react",
+      "react-dom": "react-dom",
+      "styled-components": "styled-components",
+    },
+    "mode": "development",
+    "output": Object {
+      "library": "react-core",
+      "libraryTarget": "umd",
+      "path": "/app/out",
+    },
+  },
+}
+`;
+
+exports[`extendWebpack with build:package:production script 1`] = `
+Object {
+  "extendedPaths": Object {},
+  "extendedWebpackConfig": Object {
+    "entry": Array [
+      "index.js",
+    ],
+    "externals": Object {
+      "react": "react",
+      "react-dom": "react-dom",
+      "styled-components": "styled-components",
+    },
+    "output": Object {
+      "library": "react-core",
+      "libraryTarget": "umd",
+      "path": "/app/out",
     },
   },
 }
@@ -20,11 +76,16 @@ Object {
 exports[`extendWebpack with build:production script 1`] = `
 Object {
   "extendedPaths": Object {
-    "appBuild": "D:\\\\Projects\\\\react-build\\\\package\\\\out",
+    "appBuild": "/app/out",
   },
   "extendedWebpackConfig": Object {
+    "entry": Array [
+      "./node_modules/react-build/config/babel/babel_polyfill.js",
+      "index.js",
+    ],
+    "externals": Object {},
     "output": Object {
-      "path": "D:\\\\Projects\\\\react-build\\\\package\\\\out",
+      "path": "/app/out",
     },
   },
 }

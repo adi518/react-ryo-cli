@@ -8,7 +8,7 @@
 
 const { merge } = require("lodash");
 
-const { SCRIPTS, BUILD_SCRIPTS } = require("../scripts");
+const { BUILD_SCRIPTS } = require("../scripts");
 const { extendJestConfig } = require("../jest/jest_helpers");
 const {
   extendWebpack,
@@ -16,7 +16,7 @@ const {
 } = require("../webpack/webpack_helpers");
 
 const parentArgv = JSON.parse(process.env.PARENT_ARGV);
-const script = parentArgv[parentArgv.length - 1];
+const script = parentArgv[2];
 
 const isBuildScript = _script => BUILD_SCRIPTS.includes(_script);
 
@@ -40,23 +40,16 @@ module.exports = {
   webpack: {
     configure: (webpackConfig, { paths }) => {
       const { extendedWebpackConfig, extendedPaths } = extendWebpack({
-        webpackConfig,
+        script,
         paths,
-        env: { development: script === SCRIPTS.BUILD }
+        webpackConfig
       });
-      merge(webpackConfig, extendedWebpackConfig);
       merge(paths, extendedPaths);
-      return webpackConfig;
+      return extendedWebpackConfig;
     }
   },
   jest: {
-    configure: jestConfig => {
-      const { extendedJestConfig } = extendJestConfig({
-        jestConfig,
-        env: { production: script === SCRIPTS.BUILD_PRODUCTION }
-      });
-      merge(jestConfig, extendedJestConfig);
-      return jestConfig;
-    }
+    configure: jestConfig =>
+      extendJestConfig({ script, jestConfig }).extendedJestConfig
   }
 };

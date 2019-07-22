@@ -17,6 +17,7 @@ const BABEL_POLYFILL_PATH =
 
 const extendWebpack = ({
   script,
+  argv = {},
   paths: pathsSource,
   getOutputPath = _getOutputPath,
   webpackConfig: webpackConfigSource
@@ -43,7 +44,7 @@ const extendWebpack = ({
   // this to `nwb` or similar packages.
   if (PACKAGE_BUILD_SCRIPTS.includes(script)) {
     webpackConfig.output.path = getOutputPath({ dir: "dist" });
-    webpackConfig.output.library = getLibraryName();
+    webpackConfig.output.library = getLibraryName({ name: argv.name });
     webpackConfig.output.libraryTarget = "umd";
     webpackConfig.externals["react"] = "react";
     webpackConfig.externals["react-dom"] = "react-dom";

@@ -1,13 +1,14 @@
 {
-  "name": "package",
+  "name": "component",
   "version": "1.0.0",
   "main": "dist/index.js",
   "license": "MIT",
   "scripts": {
     "postinstall": "yalc add react-build && yarn --ignore-scripts",
-    "build": "react-build build:package",
+    "build": "react-build build:package --name=%npm_package_name%",
     "build:production": "react-build build:package:production",
-    "test": "react-build test"
+    "test": "react-build test",
+    "test:update": "react-build test -u"
   },
   "dependencies": {
     "react-build": "file:.yalc/react-build"

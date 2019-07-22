@@ -1,5 +1,10 @@
 const { SCRIPTS } = require("../../config/scripts.js");
-const { preflight, normalizeScript, Args } = require("../../config/helpers.js");
+const {
+  Args,
+  preflight,
+  getLibraryName,
+  normalizeScript
+} = require("../../config/helpers.js");
 
 console.log = () => {}; // eslint-disable-line
 console.error = () => {}; // eslint-disable-line
@@ -18,6 +23,12 @@ describe("preflight", () => {
       .every(result => result);
 
     expect(results).toBe(true);
+  });
+});
+
+describe("getLibraryName", () => {
+  it("should return in pascal case", () => {
+    expect(getLibraryName({ name: "foo-bar" })).toMatchSnapshot();
   });
 });
 

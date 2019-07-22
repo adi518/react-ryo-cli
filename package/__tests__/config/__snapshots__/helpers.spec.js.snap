@@ -5,7 +5,7 @@ Array [
   "./node_modules/@craco/craco/bin/craco.js",
   "foo",
   "--config",
-  "./node_modules/react-build/config/craco/craco.config.js",
+  "config\\\\craco\\\\craco.config.js",
 ]
 `;
 
@@ -13,7 +13,7 @@ exports[`Args class should append Craco configuration arguments 1`] = `
 Array [
   "foo",
   "--config",
-  "./node_modules/react-build/config/craco/craco.config.js",
+  "config\\\\craco\\\\craco.config.js",
 ]
 `;
 
@@ -24,30 +24,32 @@ Array [
 ]
 `;
 
+exports[`getLibraryName should return in pascal case 1`] = `"FooBar"`;
+
 exports[`normalizeScript build 1`] = `
 Array [
   "./node_modules/@craco/craco/bin/craco.js",
   "build",
   "--config",
-  "./node_modules/react-build/config/craco/craco.config.js",
+  "config\\\\craco\\\\craco.config.js",
 ]
 `;
 
 exports[`normalizeScript build:package 1`] = `
 Array [
-  "./node_modules/nwb/lib/bin/nwb.js",
-  "build-react-component",
+  "./node_modules/@craco/craco/bin/craco.js",
+  "build",
   "--config",
-  "./node_modules/react-build/config/nwb/nwb.config.js",
+  "config\\\\craco\\\\craco.config.js",
 ]
 `;
 
 exports[`normalizeScript build:package:production 1`] = `
 Array [
-  "./node_modules/nwb/lib/bin/nwb.js",
-  "build-react-component",
+  "./node_modules/@craco/craco/bin/craco.js",
+  "build",
   "--config",
-  "./node_modules/react-build/config/nwb/nwb.config.js",
+  "config\\\\craco\\\\craco.config.js",
 ]
 `;
 
@@ -56,7 +58,7 @@ Array [
   "./node_modules/@craco/craco/bin/craco.js",
   "build",
   "--config",
-  "./node_modules/react-build/config/craco/craco.config.js",
+  "config\\\\craco\\\\craco.config.js",
 ]
 `;
 
@@ -74,7 +76,7 @@ Array [
   "./node_modules/@craco/craco/bin/craco.js",
   "test",
   "--config",
-  "./node_modules/react-build/config/craco/craco.config.js",
+  "config\\\\craco\\\\craco.config.js",
 ]
 `;
 
@@ -85,7 +87,7 @@ Array [
   "--ci",
   "--collectCoverage",
   "--config",
-  "./node_modules/react-build/config/craco/craco.config.js",
+  "config\\\\craco\\\\craco.config.js",
 ]
 `;
 
@@ -95,7 +97,7 @@ Array [
   "test",
   "--updateSnapshot",
   "--config",
-  "./node_modules/react-build/config/craco/craco.config.js",
+  "config\\\\craco\\\\craco.config.js",
 ]
 `;
 
@@ -104,6 +106,6 @@ Array [
   "./node_modules/@craco/craco/bin/craco.js",
   "test",
   "--config",
-  "./node_modules/react-build/config/craco/craco.config.js",
+  "config\\\\craco\\\\craco.config.js",
 ]
 `;

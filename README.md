@@ -6,7 +6,7 @@ A React-Build version 3 candidate, based on [CRA](https://github.com/facebook/cr
 
 - Fully customizable.
 - Scalable, more future-proof.
-- Supports industry standards adherence.
+- Supports adherence to industry standards.
 - Uses `nwb` behind the scenes for building components.
 - Uses `create-react-app` behind the scenes for building applications.
 - Abstracts away intricate configuration, which helps avoiding configuration pitfalls.

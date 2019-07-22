@@ -7,6 +7,7 @@
 // https://github.com/kenshoo/react-core/blob/d5cfb38e334d2bf07ad27be49d68f4b3a76f65b4/.storybook/webpack.config.js
 
 const { merge } = require("lodash");
+const minimist = require("minimist");
 
 const { BUILD_SCRIPTS } = require("../scripts");
 const { extendJestConfig } = require("../jest/jest_helpers");
@@ -15,10 +16,19 @@ const {
   extendCssLoaderOptions
 } = require("../webpack/webpack_helpers");
 
-const parentArgv = JSON.parse(process.env.PARENT_ARGV);
-const script = parentArgv[2];
+const parentArgv = minimist(JSON.parse(process.env.PARENT_ARGV).slice(2));
+const script = parentArgv._[0];
 
 const isBuildScript = _script => BUILD_SCRIPTS.includes(_script);
+
+const inspectPlugin = ({ webpackConfig }) => {
+  if (parentArgv.inspect) {
+    console.log(JSON.stringify(webpackConfig, null, 4));
+    process.exit();
+  }
+
+  return webpackConfig;
+};
 
 module.exports = {
   devServer: {
@@ -40,6 +50,7 @@ module.exports = {
   webpack: {
     configure: (webpackConfig, { paths }) => {
       const { extendedWebpackConfig, extendedPaths } = extendWebpack({
+        argv: parentArgv,
         script,
         paths,
         webpackConfig
@@ -51,5 +62,12 @@ module.exports = {
   jest: {
     configure: jestConfig =>
       extendJestConfig({ script, jestConfig }).extendedJestConfig
-  }
+  },
+  plugins: [
+    {
+      plugin: {
+        overrideWebpackConfig: inspectPlugin
+      }
+    }
+  ]
 };

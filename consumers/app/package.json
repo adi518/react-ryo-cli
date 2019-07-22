@@ -1,5 +1,5 @@
 {
-  "name": "react-build-consumer",
+  "name": "app",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -16,6 +16,8 @@
     "test": "react-build test",
     "test:production": "react-build test:production",
     "eject": "react-build eject",
+    "inspect": "react-build build --inspect",
+    "inspect:output": "react-build build --inspect > output.json",
     "foo": "react-build foo"
   },
   "eslintConfig": {

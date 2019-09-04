@@ -19,6 +19,8 @@
   },
   "dependencies": {
     "@craco/craco": "^5.2.1",
+    "@neutrinojs/react": "^8.3.0",
+    "@neutrinojs/react-components": "^8.3.0",
     "babel-plugin-lodash": "^3.3.4",
     "chalk": "^2.4.2",
     "core-js": "^3.1.4",
@@ -31,6 +33,7 @@
     "jest-styled-components": "^6.3.3",
     "lodash": "^4.17.11",
     "minimist": "^1.2.0",
+    "neutrino": "^8.3.0",
     "node-sass": "^4.12.0",
     "pascal-case": "^2.0.1",
     "react-scripts": "^3.0.0",

@@ -55,8 +55,9 @@ const extendWebpack = ({
 };
 
 const getCssLoaderOptions = () => ({
-  modules: true,
-  localIdentName: "kn-[name]__[local]___[hash:base64:5]"
+  modules: {
+    localIdentName: "kn-[name]__[local]___[hash:base64:5]"
+  }
 });
 
 const extendCssLoaderOptions = (cssLoaderOptionsSource = {}) => {

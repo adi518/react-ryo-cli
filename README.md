@@ -1,6 +1,6 @@
-# React Build RC3
+# React Ryo CLI
 
-A React-Build version 3 candidate, based on [CRA](https://github.com/facebook/create-react-app), [Craco](https://github.com/sharegate/craco), and [nwb](https://github.com/insin/nwb). Using the aforementioned third-parties, we are able to abstract away the intricacies of cross-industry build tools and their configurations, yet keep a "roll-your-own" approach to apply fine-grain changes to suit our specific needs.
+React Ryo CLI is a roll-your-own version of the famous CRA ("create-react-app") CLI, where you can reconfigure internal configurations, such as Webpack and Jest. This package is based on [CRA](https://github.com/facebook/create-react-app), [Craco](https://github.com/sharegate/craco), and [nwb](https://github.com/insin/nwb). Using the aforementioned third-parties, we are able to abstract away the intricacies of cross-industry build tools and their configurations, yet keep a "roll-your-own" approach to apply fine-grain changes to suit our specific needs.
 
 ## Features
 

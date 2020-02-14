@@ -2,8 +2,9 @@
 
 exports[`extendWebpack extendCssLoaderOptions 1`] = `
 Object {
-  "localIdentName": "kn-[name]__[local]___[hash:base64:5]",
-  "modules": true,
+  "modules": Object {
+    "localIdentName": "kn-[name]__[local]___[hash:base64:5]",
+  },
 }
 `;
 

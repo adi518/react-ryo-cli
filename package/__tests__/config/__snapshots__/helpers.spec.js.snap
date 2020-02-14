@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Args class should add Craco arguments 1`] = `
+exports[`CracoArgs class should add Craco arguments 1`] = `
 Array [
   "./node_modules/@craco/craco/bin/craco.js",
   "foo",
@@ -9,7 +9,7 @@ Array [
 ]
 `;
 
-exports[`Args class should append Craco configuration arguments 1`] = `
+exports[`CracoArgs class should append Craco configuration arguments 1`] = `
 Array [
   "foo",
   "--config",
@@ -17,7 +17,7 @@ Array [
 ]
 `;
 
-exports[`Args class should prepend Craco binary argument 1`] = `
+exports[`CracoArgs class should prepend Craco binary argument 1`] = `
 Array [
   "./node_modules/@craco/craco/bin/craco.js",
   "foo",

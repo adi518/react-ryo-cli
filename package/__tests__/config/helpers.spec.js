@@ -1,6 +1,6 @@
-const { SCRIPTS } = require("../../config/scripts.js");
+const { CracoArgs } = require("../../config/args.class");
+const { SCRIPTS } = require("../../config/scripts");
 const {
-  Args,
   preflight,
   getLibraryName,
   normalizeScript
@@ -32,17 +32,17 @@ describe("getLibraryName", () => {
   });
 });
 
-describe("Args class", () => {
+describe("CracoArgs class", () => {
   it("should prepend Craco binary argument", () => {
-    expect(new Args("foo").prependCracoBin()).toMatchSnapshot();
+    expect(new CracoArgs("foo").prependBin()).toMatchSnapshot();
   });
 
   it("should append Craco configuration arguments", () => {
-    expect(new Args("foo").appendCracoConfig()).toMatchSnapshot();
+    expect(new CracoArgs("foo").appendConfig()).toMatchSnapshot();
   });
 
   it("should add Craco arguments", () => {
-    expect(new Args("foo").addCraco()).toMatchSnapshot();
+    expect(new CracoArgs("foo").add()).toMatchSnapshot();
   });
 });
 

@@ -1,9 +1,9 @@
-const { CracoArgs } = require("../../config/args.class");
 const { SCRIPTS } = require("../../config/scripts");
 const {
   preflight,
   getLibraryName,
-  normalizeScript
+  normalizeScript,
+  createCracoCliCommand
 } = require("../../config/helpers.js");
 
 console.log = () => {}; // eslint-disable-line
@@ -32,17 +32,9 @@ describe("getLibraryName", () => {
   });
 });
 
-describe("CracoArgs class", () => {
-  it("should prepend Craco binary argument", () => {
-    expect(new CracoArgs("foo").prependBin()).toMatchSnapshot();
-  });
-
-  it("should append Craco configuration arguments", () => {
-    expect(new CracoArgs("foo").appendConfig()).toMatchSnapshot();
-  });
-
+describe("cracoArgs", () => {
   it("should add Craco arguments", () => {
-    expect(new CracoArgs("foo").add()).toMatchSnapshot();
+    expect(createCracoCliCommand("foo")).toMatchSnapshot();
   });
 });
 

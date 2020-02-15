@@ -1,6 +1,6 @@
+const pkg = require("../../package.json");
+const { SCRIPTS } = require("react-ryo-cli");
 const { merge, cloneDeep } = require("lodash");
-
-const { SCRIPTS } = require("../scripts");
 
 const cloneJestConfig = jestConfig => {
   const clone = {
@@ -15,17 +15,17 @@ const cloneJestConfig = jestConfig => {
   return clone;
 };
 
-const extendJestConfig = ({ script, jestConfig: jestConfigSource }) => {
-  const jestConfig = cloneJestConfig(jestConfigSource);
+const extendJestConfig = ({ script, source }) => {
+  const jestConfig = cloneJestConfig(source);
   jestConfig.collectCoverage = script === SCRIPTS.BUILD_PRODUCTION;
   jestConfig.testMatch.push("<rootDir>/tests/**/*.{spec,test}.{js,jsx,ts,tsx}");
-  jestConfig.setupFiles.push("<rootDir>/node_modules/react-build/config/enzyme/enzyme_setup.js"); // prettier-ignore
-  jestConfig.setupFilesAfterEnv.push("<rootDir>/node_modules/react-build/config/jest/jest_setup.js"); // prettier-ignore
+  jestConfig.setupFiles.push(`<rootDir>/node_modules/${pkg.name}/config/enzyme/enzyme_setup.js`); // prettier-ignore
+  jestConfig.setupFilesAfterEnv.push(`<rootDir>/node_modules/${pkg.name}/config/jest/jest_setup.js`); // prettier-ignore
   jestConfig.moduleNameMapper["\\.(css|less|scss|sss|styl)$"] = "<rootDir>/node_modules/identity-obj-proxy"; // prettier-ignore
-  jestConfig.moduleNameMapper["\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$"] = "<rootDir>/node_modules/react-build/config/jest/fileMock.js"; // prettier-ignore
+  jestConfig.moduleNameMapper["\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$"] = `<rootDir>/node_modules/${pkg.name}/config/jest/jest_file_mock.js`; // prettier-ignore
   jestConfig.snapshotSerializers.push("enzyme-to-json/serializer");
   jestConfig.snapshotSerializers.filter(snapshotSerializer => snapshotSerializer); // prettier-ignore
-  return { extendedJestConfig: jestConfig };
+  return jestConfig;
 };
 
 module.exports = {

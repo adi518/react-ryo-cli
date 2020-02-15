@@ -14,11 +14,13 @@
     "build:production": "react-build build:production",
     "build:stats": "react-build build:stats",
     "test": "react-build test",
+    "test:watch": "react-build test:watch",
+    "test:update": "react-build test:update",
     "test:production": "react-build test:production",
     "eject": "react-build eject",
     "inspect": "react-build build --inspect",
     "inspect:output": "react-build build --inspect > output.json",
-    "foo": "react-build foo"
+    "unknown-script": "react-build unknown-script"
   },
   "eslintConfig": {
     "extends": "react-app"

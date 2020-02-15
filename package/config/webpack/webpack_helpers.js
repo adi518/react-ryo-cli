@@ -5,22 +5,25 @@ const {
   APP_BUILD_SCRIPTS,
   PACKAGE_BUILD_SCRIPTS,
   DEVELOPMENT_BUILD_SCRIPTS
-} = require("../scripts");
-const { getLibraryName } = require("../helpers");
+} = require("react-ryo-cli");
+const { getLibraryName } = require("react-ryo-cli");
 
 /* eslint-disable no-underscore-dangle */
-const _getOutputPath = ({ cwd = process.cwd(), dir = "out" } = {}) =>
+const getDefaultOutputPath = ({ cwd = process.cwd(), dir = "out" } = {}) =>
   path.join(cwd, dir);
 
-const BABEL_POLYFILL_PATH =
-  "./node_modules/react-build/config/babel/babel_polyfill.js";
+const BABEL_POLYFILL_PATH = path.join(
+  __dirname,
+  "..",
+  "babel/babel_polyfill.js"
+);
 
-const extendWebpack = ({
+const extendWebpackConfig = ({
   script,
   argv = {},
   paths: pathsSource,
-  getOutputPath = _getOutputPath,
-  webpackConfig: webpackConfigSource
+  webpackConfig: webpackConfigSource,
+  getOutputPath = getDefaultOutputPath
 }) => {
   const paths = cloneDeep(pathsSource);
   const webpackConfigDefaults = { entry: [], output: {}, externals: {} };
@@ -35,8 +38,9 @@ const extendWebpack = ({
   }
 
   if (APP_BUILD_SCRIPTS.includes(script)) {
-    paths.appBuild = getOutputPath();
-    webpackConfig.output.path = getOutputPath();
+    const outputPath = getOutputPath();
+    paths.appBuild = outputPath;
+    webpackConfig.output.path = outputPath;
     webpackConfig.entry.unshift(BABEL_POLYFILL_PATH);
   }
 
@@ -50,25 +54,10 @@ const extendWebpack = ({
     webpackConfig.externals["react-dom"] = "react-dom";
     webpackConfig.externals["styled-components"] = "styled-components";
   }
-
   return { extendedWebpackConfig: webpackConfig, extendedPaths: paths };
 };
 
-const getCssLoaderOptions = () => ({
-  modules: {
-    localIdentName: "kn-[name]__[local]___[hash:base64:5]"
-  }
-});
-
-const extendCssLoaderOptions = (cssLoaderOptionsSource = {}) => {
-  const cssLoaderOptions = cloneDeep(cssLoaderOptionsSource);
-  merge(cssLoaderOptions, getCssLoaderOptions());
-  return cssLoaderOptions;
-};
-
 module.exports = {
-  extendWebpack,
-  getCssLoaderOptions,
-  extendCssLoaderOptions,
-  getOutputPath: _getOutputPath
+  extendWebpackConfig,
+  getOutputPath: getDefaultOutputPath
 };

@@ -4,42 +4,30 @@
 // https://github.com/whitecolor/yalc
 // https://www.viget.com/articles/how-to-use-local-unpublished-node-packages-as-project-dependencies/
 
-const minimist = require("minimist");
-const { spawn } = require("child_process");
+const { spawnCli } = require("./lib/spawn");
 const {
-  preflight,
-  logSignature,
-  normalizeScript
-} = require("./config/helpers");
+  mergeDeep,
+  getScript,
+  getParentArgv,
+  getLibraryName
+} = require("./lib/helpers");
+const {
+  SCRIPTS,
+  BUILD_SCRIPTS,
+  APP_BUILD_SCRIPTS,
+  PACKAGE_BUILD_SCRIPTS,
+  DEVELOPMENT_BUILD_SCRIPTS
+} = require("./lib/scripts");
 
-// Normalize our scripts to be react-scripts compatible,
-// e.g.: `test:production` will be mapped to `test`, and a coverage
-// flag will be set to `true` for adding a coverage report in production build.
-const argv = process.argv;
-const argvSlice2 = argv.slice(2);
-const argvSlice3 = argv.slice(3);
-const args = minimist(argvSlice2);
-const rawScript = args._[0];
-const scriptArgs = [].concat(normalizeScript({ rawScript }));
-const restArgs = argvSlice3;
-const allArgs = [...scriptArgs, ...restArgs];
-
-const silentLogger = { log: () => {}, error: () => {} };
-
-if (
-  preflight({
-    script: rawScript,
-    logger: args.inspect ? silentLogger : undefined
-  })
-) {
-  const runScript = spawn("node", allArgs, {
-    stdio: "inherit",
-    env: { PARENT_ARGV: JSON.stringify(process.argv) }
-  });
-
-  runScript.on("error", err => process.exit(err));
-  runScript.on("close", code => {
-    !args.inspect && logSignature();
-    process.exit(code);
-  });
-}
+module.exports = {
+  getLibraryName,
+  getParentArgv,
+  mergeDeep,
+  spawnCli,
+  SCRIPTS,
+  getScript,
+  BUILD_SCRIPTS,
+  APP_BUILD_SCRIPTS,
+  PACKAGE_BUILD_SCRIPTS,
+  DEVELOPMENT_BUILD_SCRIPTS
+};

@@ -1,0 +1,37 @@
+:root {
+  /* generic colors */
+  $color-yellow: gold;
+  $color-white: white;
+  $color-purple: rebeccapurple;
+  $color-gray: #999999;
+  $color-pink: #ff66cc;
+  $color-green: #66ffcc;
+  $color-orange: #ff9966;
+  $color-dark-gray: #040404;
+  /* behavior colors */
+  $color-text: $color-gray;
+  $color-text-dark: $color-dark-gray;
+  $color-foreground: $color-gray;
+  $color-background: $color-yellow;
+  $color-background-dark: $color-dark-gray;
+  /* CSS variables */
+  --color-gray: #{$color-gray};
+  --color-dark-gray: #{$color-dark-gray};
+  --color-purple: #{$color-purple};
+  --color-pink: #{$color-pink};
+  --color-yellow: #{$color-yellow};
+  --color-orange: #{$color-orange};
+  --color-green: #{$color-green};
+  --color-text: #{$color-text};
+  --color-text-dark: #{$color-text-dark};
+  --color-link: #{$color-purple};
+  --color-link-hover: #{$color-white};
+  --color-foreground: #{$color-foreground};
+  --color-background: #{$color-background};
+  --color-background-dark: #{$color-background-dark};
+  --hero-background-color: #{$color-background-dark};
+  --common-transition-time: 0.5s;
+  --font-family: 'Roboto', 'Montserrat', -apple-system, BlinkMacSystemFont,
+    'Segoe UI', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
+    'Helvetica Neue', sans-serif;
+}

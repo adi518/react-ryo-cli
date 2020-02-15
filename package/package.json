@@ -1,9 +1,9 @@
 {
-  "name": "react-build",
+  "name": "react-ryo-cli",
   "version": "1.0.0",
-  "main": "index.js",
   "license": "MIT",
-  "bin": "./index.js",
+  "main": "index.js",
+  "bin": "index.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/kenshoo/react-build"
@@ -11,7 +11,7 @@
   "scripts": {
     "push": "yalc publish --push",
     "unpublish": "yalc installations clean %npm_package_name%",
-    "watch": "watch \"npm run push\" -s ./ --ignoreDirectoryPattern /node_modules/",
+    "watch": "watch \"yarn run push\" -s ./ --ignoreDirectoryPattern /node_modules/",
     "inspect": "node ./index.js build --inspect",
     "lint": "eslint ./",
     "eslint": "./node_modules/.bin/eslint --init",
@@ -40,28 +40,7 @@
   },
   "devDependencies": {
     "eslint": "^6.8.0",
-    "eslint-config-airbnb-base": "^14.0.0",
-    "eslint-config-prettier": "^6.9.0",
-    "eslint-plugin-import": "^2.20.0",
     "slash": "^3.0.0",
     "watch": "^1.0.2"
-  },
-  "eslintConfig": {
-    "extends": [
-      "eslint-config-airbnb-base",
-      "prettier"
-    ],
-    "rules": {
-      "quotes": 0,
-      "comma-dangle": 0,
-      "arrow-parens": 0,
-      "linebreak-style": 0,
-      "no-param-reassign": 0
-    },
-    "env": {
-      "es6": true,
-      "node": true,
-      "jest": true
-    }
   }
 }

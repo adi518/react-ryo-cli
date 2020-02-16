@@ -1,25 +1,25 @@
 {
   "files": {
-    "main.css": "/react-ryo-cli/static/css/main.367969de.chunk.css",
-    "main.js": "/react-ryo-cli/static/js/main.ea04cd44.chunk.js",
-    "main.js.map": "/react-ryo-cli/static/js/main.ea04cd44.chunk.js.map",
+    "main.css": "/react-ryo-cli/static/css/main.82ae258a.chunk.css",
+    "main.js": "/react-ryo-cli/static/js/main.daee04fd.chunk.js",
+    "main.js.map": "/react-ryo-cli/static/js/main.daee04fd.chunk.js.map",
     "runtime-main.js": "/react-ryo-cli/static/js/runtime-main.921ff541.js",
     "runtime-main.js.map": "/react-ryo-cli/static/js/runtime-main.921ff541.js.map",
     "static/css/2.60550d00.chunk.css": "/react-ryo-cli/static/css/2.60550d00.chunk.css",
     "static/js/2.39c8d9aa.chunk.js": "/react-ryo-cli/static/js/2.39c8d9aa.chunk.js",
     "static/js/2.39c8d9aa.chunk.js.map": "/react-ryo-cli/static/js/2.39c8d9aa.chunk.js.map",
     "index.html": "/react-ryo-cli/index.html",
-    "precache-manifest.7078ec324446dc89734c27d11778b5ea.js": "/react-ryo-cli/precache-manifest.7078ec324446dc89734c27d11778b5ea.js",
+    "precache-manifest.f53768524bdbdcfb9eb19eae8b76ce27.js": "/react-ryo-cli/precache-manifest.f53768524bdbdcfb9eb19eae8b76ce27.js",
     "service-worker.js": "/react-ryo-cli/service-worker.js",
     "static/css/2.60550d00.chunk.css.map": "/react-ryo-cli/static/css/2.60550d00.chunk.css.map",
-    "static/css/main.367969de.chunk.css.map": "/react-ryo-cli/static/css/main.367969de.chunk.css.map",
+    "static/css/main.82ae258a.chunk.css.map": "/react-ryo-cli/static/css/main.82ae258a.chunk.css.map",
     "static/js/2.39c8d9aa.chunk.js.LICENSE.txt": "/react-ryo-cli/static/js/2.39c8d9aa.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.921ff541.js",
     "static/css/2.60550d00.chunk.css",
     "static/js/2.39c8d9aa.chunk.js",
-    "static/css/main.367969de.chunk.css",
-    "static/js/main.ea04cd44.chunk.js"
+    "static/css/main.82ae258a.chunk.css",
+    "static/js/main.daee04fd.chunk.js"
   ]
 }

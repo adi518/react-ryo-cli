@@ -9,19 +9,16 @@ import Markdown from 'components/Markdown';
 
 import 'animate.css/animate.min.css';
 
-import markdownPath from '../../../../README.md';
-// const markdownPath =
-// 'https://raw.githubusercontent.com/adi518/react-ryo-cli/master/README.md';
+import readmePath from '../../../../README.md';
 
 function Root() {
   return (
     <React.Fragment>
-      {/* eslint-disable jsx-a11y/accessible-emoji */}
       <Nav />
       <HeroPage />
       <Scroll.Element name="Page-Markdown">
         <Page>
-          <Markdown pathToMarkdown={markdownPath} />
+          <Markdown pathToMarkdown={readmePath} />
         </Page>
       </Scroll.Element>
       <Footer />

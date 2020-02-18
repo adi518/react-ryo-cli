@@ -8,14 +8,15 @@
 
 // const { extendJestConfig } = require("../jest/jest_helpers");
 const path = require("path");
-const { mergeDeep } = require("react-ryo-cli");
+const allowedFiles = require("./allowed-files");
+// const { mergeDeep } = require("react-ryo-cli");
 const ModuleScopePlugin = require("react-dev-utils/ModuleScopePlugin");
 
-const getKenshooCssLoaderOptions = () => ({
-  modules: {
-    localIdentName: "kn-[name]__[local]___[hash:base64:5]"
-  }
-});
+// const getKenshooCssLoaderOptions = () => ({
+//   modules: {
+//     localIdentName: "kn-[name]__[local]___[hash:base64:5]"
+//   }
+// });
 
 module.exports = {
   // style: {
@@ -30,8 +31,8 @@ module.exports = {
       // https://stackoverflow.com/a/58321458/4106263
       webpackConfig.resolve.plugins.forEach(plugin => {
         if (plugin instanceof ModuleScopePlugin) {
-          plugin.allowedFiles.add(
-            path.join(__dirname, "../../../../", "README.md")
+          allowedFiles.forEach(file =>
+            plugin.allowedFiles.add(path.join(__dirname, file))
           );
         }
       });

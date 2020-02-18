@@ -1,7 +1,6 @@
 import React from 'react';
 
-import { SocialIcon } from './Social';
-
+import SocialIcon from './SocialIcon';
 import pkg from '../../package.json';
 
 const GitHubAnchor = props => (

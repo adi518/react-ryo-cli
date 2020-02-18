@@ -4,7 +4,7 @@ const Link = styled.a.attrs(() => ({
   rel: 'noopener noreferrer'
 }))`
   &:not(.button) {
-    color: var(--color-text);
+    color: var(--color-gray);
   }
 `;
 

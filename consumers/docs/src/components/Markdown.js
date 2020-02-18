@@ -29,7 +29,7 @@ export const StyledMarkdown = styled.div`
 
   ${({ inline }) => inline && inlineStyle}
 
-  p:first-child {
+  > p:first-child {
     display: none;
   }
 
@@ -39,6 +39,7 @@ export const StyledMarkdown = styled.div`
 
   h1,
   h2,
+  h3,
   h4 {
     border-bottom: 0.125rem solid rgba(0, 0, 0, 0.1);
   }
@@ -53,9 +54,11 @@ export const StyledMarkdown = styled.div`
   code {
     padding-left: 0.5rem;
     padding-right: 0.5rem;
+    padding-top: 0.125rem;
+    padding-bottom: 0.125rem;
     border-radius: 0.5rem;
     color: var(--color-gray);
-    background-color: var(--color-dark-gray);
+    background-color: var(--color-gray-dark);
   }
 
   pre {
@@ -68,6 +71,19 @@ export const StyledMarkdown = styled.div`
     code {
       color: unset;
       background-color: unset;
+    }
+  }
+
+  blockquote {
+    margin: 0;
+
+    p {
+      padding-left: 1rem;
+      border-left: 0.125rem solid var(--color-gray-dark);
+
+      img {
+        display: block;
+      }
     }
   }
 `;

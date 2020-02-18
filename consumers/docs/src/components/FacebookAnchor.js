@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { SocialIcon } from './Social';
+import SocialIcon from './SocialIcon';
 
 const FacebookLogo = () => (
   <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">

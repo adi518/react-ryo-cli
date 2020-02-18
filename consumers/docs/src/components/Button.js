@@ -17,7 +17,7 @@ const Button = styled.button`
   }
 
   &:hover {
-    color: var(--color-dark-gray);
+    color: var(--color-gray-dark);
     background-color: var(--color-gray);
   }
 `;

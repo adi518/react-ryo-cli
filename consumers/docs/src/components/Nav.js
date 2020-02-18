@@ -1,13 +1,12 @@
 import React from 'react';
-import styled, { css } from 'styled-components';
 import { useWindowScroll } from 'react-use';
+import styled, { css } from 'styled-components';
 
 import Title from 'components/Title';
 import Social from 'components/Social';
-import GitHubAnchor from 'components/GitHubAnchor';
-import FacebookAnchor from 'components/FacebookAnchor';
 
 export const NAV_STICKY_HEIGHT = 50.3594;
+export const NAV_STICKY_HEIGHT_NEGATIVE = -NAV_STICKY_HEIGHT;
 
 const StyledNav = styled.div`
   top: 0;
@@ -17,8 +16,8 @@ const StyledNav = styled.div`
   padding: 1rem;
   position: absolute;
   align-items: center;
-  transition: background-color var(--common-transition-time),
-    padding var(--common-transition-time);
+  transition: padding var(--common-transition-time),
+    background-color var(--common-transition-time);
 
   ${({ isSticky }) =>
     isSticky &&
@@ -26,7 +25,7 @@ const StyledNav = styled.div`
       position: fixed;
       padding-top: 0.8rem;
       padding-bottom: 0.8rem;
-      background-color: var(--color-purple);
+      background-color: var(--color-background-nav-sticky);
     `}
 `;
 
@@ -48,10 +47,7 @@ const Nav = ({ children }) => {
 const NavContainer = () => (
   <Nav>
     <Title />
-    <Social>
-      <FacebookAnchor />
-      <GitHubAnchor />
-    </Social>
+    <Social />
   </Nav>
 );
 

@@ -11,8 +11,8 @@ const StyledFooter = styled.footer`
   align-items: center;
   word-break: break-word;
   justify-content: center;
-  color: var(--color-text);
-  background-color: var(--color-background-dark);
+  color: var(--color-gray);
+  background-color: var(--color-background-footer);
 `;
 
 const StyledHeart = styled.span`

@@ -5034,6 +5034,11 @@ gh-pages@^2.2.0:
     fs-extra "^8.1.0"
     globby "^6.1.0"
 
+github-buttons@^2.3.0:
+  version "2.7.0"
+  resolved "https://registry.yarnpkg.com/github-buttons/-/github-buttons-2.7.0.tgz#ce481388a39a8ed91a8073b6d3f1802f0068d52d"
+  integrity sha512-NGW6U6ZgLVTat6E6ZobWa9lwHsrthRo8NJ8GxlOAcrfeURg0k9qTrs1gG6Vzjjxt8jg/Wd2Or7RSGjKOrT5mFA==
+
 glob-parent@^3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/glob-parent/-/glob-parent-3.1.0.tgz#9e6af6299d8d3bd2bd40430832bd113df906c5ae"
@@ -9240,9 +9245,9 @@ react-app-polyfill@^1.0.6:
     whatwg-fetch "^3.0.0"
 
 "react-build@file:.yalc/react-build":
-  version "1.0.0-b57f69f4"
+  version "1.0.0-eb31134d"
   dependencies:
-    react-ryo-cli "file:C:/Users/adisa/AppData/Local/Yarn/Cache/v4/npm-react-build-1.0.0-b57f69f4-23be1030-88fd-41f9-b87c-92fd82eb0d1e-1581987373178/node_modules/react-build/.yalc/react-ryo-cli"
+    react-ryo-cli "file:C:/Users/adisa/AppData/Local/Yarn/Cache/v4/npm-react-build-1.0.0-eb31134d-4390050a-1f10-4464-bb82-489985c8c39a-1582062486754/node_modules/react-build/.yalc/react-ryo-cli"
 
 react-dev-utils@^10.2.0:
   version "10.2.0"
@@ -9289,6 +9294,13 @@ react-error-overlay@^6.0.6:
   resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-6.0.6.tgz#ac4d9dc4c1b5c536c2c312bf66aa2b09bfa384e2"
   integrity sha512-Yzpno3enVzSrSCnnljmr4b/2KUQSMZaPuqmS26t9k4nW7uwJk6STWmH9heNjPuvqUTO3jOSPkHoKgO4+Dw7uIw==
 
+react-github-btn@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/react-github-btn/-/react-github-btn-1.1.1.tgz#d08f6da1683a7994c54163af240d88ba5efa7057"
+  integrity sha512-haORkaENCh9DD953dle49aI/WWAxGauaA2xjbBgmPPvPY0KMvRslswl6TBTiZ8u6pRhLN4k+mXfaKWYnS/o7BQ==
+  dependencies:
+    github-buttons "^2.3.0"
+
 react-is@^16.12.0, react-is@^16.7.0, react-is@^16.8.1, react-is@^16.8.4, react-is@^16.8.6, react-is@^16.9.0:
   version "16.12.0"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.12.0.tgz#2cc0fe0fba742d97fd527c42a13bec4eeb06241c"
@@ -9309,7 +9321,7 @@ react-markdown@^4.3.1:
     xtend "^4.0.1"
 
 "react-ryo-cli@file:.yalc/react-build/.yalc/react-ryo-cli":
-  version "1.0.0-454e0a77"
+  version "1.0.0-f76329dc"
   dependencies:
     "@craco/craco" "^5.6.3"
     babel-plugin-lodash "^3.3.4"

@@ -1,11 +1,20 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import pkg from '../../package.json';
 
-const StyledTitle = styled.span`
+const StyledTitle = styled.div`
   visibility: visible;
-  color: var(--color-text);
+  text-transform: capitalize;
+
+  ${({ isSticky }) =>
+    isSticky
+      ? css`
+          color: var(--color-gray-light);
+        `
+      : css`
+          color: var(--color-gray);
+        `}
 `;
 
 const Title = props => (

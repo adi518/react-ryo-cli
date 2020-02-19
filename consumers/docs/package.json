@@ -1,7 +1,11 @@
 {
   "name": "docs",
-  "version": "0.1.0",
   "private": true,
+  "version": "0.1.0",
+  "author": {
+    "name": "Adi Sahar",
+    "url": "https://github.com/adi518"
+  },
   "homepage": "https://adi518.github.io/react-ryo-cli",
   "repository": {
     "url": "https://github.com/adi518/react-ryo-cli"

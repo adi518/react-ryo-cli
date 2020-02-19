@@ -1,16 +1,24 @@
+const path = require("path");
 const { merge } = require("lodash");
 const { inspectPlugin } = require("./inspect-plugin");
 const { extendJestConfig } = require("../jest/jest_helpers");
 const { extendWebpackConfig } = require("../webpack/webpack_helpers");
+const ModuleScopePlugin = require("react-dev-utils/ModuleScopePlugin");
 const {
+  safeRequire,
+  getScriptArg,
   getParentArgv,
-  getScript,
   isBuildScript
 } = require("../../lib/helpers");
 
-const script = getScript();
 const parentArgv = getParentArgv();
-const config = require(process.env.CONFIG_PATH);
+const script = getScriptArg(parentArgv);
+const config = safeRequire(process.env.CONFIG_PATH) || {};
+const allowedFiles = safeRequire(process.env.ALLOWED_FILES_PATH) || [];
+const allowedFilesDirname =
+  process.env.ALLOWED_FILES_PATH &&
+  path.dirname(process.env.ALLOWED_FILES_PATH);
+
 const defaultConfig = {
   devServer: {
     open: false
@@ -24,6 +32,15 @@ const defaultConfig = {
         webpackConfig
       });
       merge(paths, extendedPaths);
+      // https://stackoverflow.com/q/44114436/4106263
+      // https://stackoverflow.com/a/58321458/4106263
+      extendedWebpackConfig.resolve.plugins.forEach(plugin => {
+        if (plugin instanceof ModuleScopePlugin) {
+          allowedFiles.forEach(file =>
+            plugin.allowedFiles.add(path.join(allowedFilesDirname, file))
+          );
+        }
+      });
       return extendedWebpackConfig;
     }
   },

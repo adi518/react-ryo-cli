@@ -5,6 +5,11 @@
 - [ ] Configure Crystal-Ball web server with rewrite rules that will return the correct html file.
 - [x] Handle deprecated `@babel-polyfill`.
 - [ ] Figure out whether we actually need to set `library` for Webpack. See: https://github.com/kenshoo/react-build/blob/master/README.md#buildpackage. Suggest using package name instead (via package.json), which absolves us of inconsistent boilerplate issues (developers forgetting to set `name` argument in their script, typos, etc').
-- [ ] Remove `react-scripts`.
+- [ ] Remove `react-scripts`?.
+- [ ] Impl boilerplate:
+  - npm/yarn init.
+  - Add `craco.config.js`.
+  - Add `bin` key to `package.json`.
+  - Generate `index.js` with starter snippet.
 
 \* Public path example: `https://grid.kenshoo.com/incrementality-frontend/latest/<STATIC_ASSET_FILENAME>`.

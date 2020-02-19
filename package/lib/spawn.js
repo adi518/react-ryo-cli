@@ -2,12 +2,13 @@ const path = require("path");
 const minimist = require("minimist");
 const { spawn } = require("child_process");
 
+const logSignature = require("./signature");
 const { normalizeScript } = require("./normalize");
 const {
   preflight,
-  getConfigPath,
   silentLogger,
-  logSignature
+  resolveConfigFilePath,
+  resolveAllowedFilesPath
 } = require("./helpers");
 
 const spawnCli = () => {
@@ -17,7 +18,8 @@ const spawnCli = () => {
   const [, argv1, ...restArgv] = process.argv;
   const dirname = path.dirname(argv1);
   const { _: [rawScript, ...restArgs] } = minimist(restArgv); // prettier-ignore
-  const configPath = getConfigPath(dirname);
+  const configPath = resolveConfigFilePath(dirname);
+  const allowedFilesPath = resolveAllowedFilesPath(dirname);
   const scriptArgs = normalizeScript({ rawScript, configPath });
   const allArgs = [...scriptArgs, ...restArgs];
   if (
@@ -26,18 +28,23 @@ const spawnCli = () => {
       logger: restArgs.inspect ? silentLogger : undefined
     })
   ) {
-    const runScript = spawn("node", allArgs, {
+    const script = spawn("node", allArgs, {
       stdio: "inherit",
       env: {
+        CLI_DIRNAME: dirname,
         CONFIG_PATH: configPath,
+        ALLOWED_FILES_PATH: allowedFilesPath,
         PARENT_ARGV: JSON.stringify(process.argv)
       }
     });
-    runScript.on("error", err => process.exit(err));
-    runScript.on("close", code => {
+    const onError = err => process.exit(err);
+    const onClose = code => {
       !restArgs.inspect && logSignature();
       process.exit(code);
-    });
+    };
+    script.on("error", onError);
+    script.on("close", onClose);
+    return script;
   }
 };
 

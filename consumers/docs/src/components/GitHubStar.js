@@ -16,11 +16,15 @@ const StyledGitHubStar = styled.div`
     opacity: 1;
   }
 
-  @media (max-width: 425px) {
-    position: absolute;
-    margin-top: 0;
-    left: 1rem;
-    top: 1rem;
+  // @media (max-width: 425px) {
+  //   position: absolute;
+  //   margin-top: 0;
+  //   left: 1rem;
+  //   top: 1rem;
+  // }
+
+  @media (max-width: 575.98px) {
+    display: none;
   }
 `;
 

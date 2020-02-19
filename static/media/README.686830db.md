@@ -64,15 +64,15 @@ Circumvent CRA restriction when importing files out of `src`, by defining an `al
 #### Files placement in file structure with default CRA boilerplate:
 
 ```json
-📦project
- ┣ 📂src
- ┣ 📂public
- ┣ 📜README.md
- ┣ 📜yarn.lock
- ┣ 📜.gitignore
- ┣ 📜package.json
- ┣ 📜craco.config.js <-
- ┗ 📜allowed-files.json <-
+📦 project
+ ┣ 📁 src
+ ┣ 📁 public
+ ┣ 📜 README.md
+ ┣ 📜 yarn.lock
+ ┣ 📜 .gitignore
+ ┣ 📜 package.json
+ ┣ 📜 craco.config.js <-
+ ┗ 📜 allowed-files.json <-
 ```
 
 ## Consumer Apps

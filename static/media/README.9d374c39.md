@@ -12,13 +12,13 @@ Execute the following command to create a boilerplate for your own CLI package.
 npx react-ryo-cli --init
 ```
 
-Or add to an existing package
+Or add to an existing package:
 
 ```console
 npm/yarn install react-ryo-cli
 ```
 
-### Configuration
+## Configuration
 
 Create a `craco.config.js` file at the root of your package and `react-ryo-cli` will pick it up. See Craco docs for its [configuration API](https://github.com/gsoft-inc/craco/blob/master/packages/craco/README.md#configuration-overview). Your configuration will be merged with `react-ryo-cli` default configuration. However, you can choose to opt-out by calling `spawnApi` with `{ noExtend: true }` or by calling your CLI with the `--noExtend` argument.
 
@@ -61,7 +61,7 @@ Circumvent CRA restriction when importing files out of `src`, by defining an `al
 ["../../../../README.md"]
 ```
 
-#### Files placement in file structure example (default CRA boilerplate):
+#### Files placement in file structure with default CRA boilerplate:
 
 ```json
 📦project
@@ -73,6 +73,23 @@ Circumvent CRA restriction when importing files out of `src`, by defining an `al
  ┣ 📜package.json
  ┣ 📜craco.config.js <-
  ┗ 📜allowed-files.json <-
+```
+
+## Consumer Apps
+
+Update the existing calls to `react-scripts` in the `scripts` section of your `package.json` file to use your CLI:
+
+```diff
+/* package.json */
+
+"scripts": {
+-   "start": "react-scripts start",
++   "start": "<your-cli-package> start",
+-   "build": "react-scripts build",
++   "build": "<your-cli-package> build"
+-   "test": "react-scripts test",
++   "test": "<your-cli-package> test"
+}
 ```
 
 ## API
@@ -100,7 +117,12 @@ require("react-ryo-cli").spawnCli([, options]);
 
 > ![](https://camo.githubusercontent.com/18c1d596702848aa1d67e95efd41268b1298f7ae/687474703a2f2f6269742e6c792f3275467967724c)
 
-> `signatureGradient[Array]` - Set your own gradient. See [`gradient-string`](https://github.com/bokub/gradient-string#available-built-in-gradients) API. This option takes precedence over `signatureTheme` (Default: `["rgb(102, 51, 153)", "rgb(102, 51, 153)"]`).
+> `signatureGradient[Array]` - Set your own gradient. See [`gradient-string`](https://github.com/bokub/gradient-string#available-built-in-gradients) API. This option takes precedence over `signatureTheme`.
+> Default:
+>
+> ```js
+> ["rgb(102, 51, 153)", "rgb(102, 51, 153)"];
+> ```
 
 ## Contributing
 
@@ -113,3 +135,11 @@ Feel free to submit issues and pull requests. 🙌
 ## License
 
 Project is licensed under [MIT](https://github.com/adi518/react-ryo-cli/blob/master/LICENSE).
+
+```
+
+```
+
+```
+
+```

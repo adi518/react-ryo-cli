@@ -61,7 +61,7 @@ Circumvent CRA restriction when importing files out of `src`, by defining an `al
 ["../../../../README.md"]
 ```
 
-#### Files placement in file structure with default CRA boilerplate:
+## Configuration files placement in file structure with default CRA boilerplate
 
 ```json
 📦 project
@@ -126,7 +126,7 @@ require("react-ryo-cli").spawnCli([, options]);
 
 ## Contributing
 
-Feel free to submit issues and pull requests. 🙌
+Feel free to submit issues and pull requests, but please search existing issues before starting a new one. 🙌
 
 ## Versioning
 
@@ -135,11 +135,3 @@ Feel free to submit issues and pull requests. 🙌
 ## License
 
 Project is licensed under [MIT](https://github.com/adi518/react-ryo-cli/blob/master/LICENSE).
-
-```
-
-```
-
-```
-
-```

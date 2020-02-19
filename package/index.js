@@ -1,6 +1,4 @@
-#!/usr/bin/env node
-
-// You can use Yalc, which provides a better solution than `yarn link` to develop locally:
+// Yalc provides a better solution than `yarn link` to develop locally:
 // https://github.com/whitecolor/yalc
 // https://www.viget.com/articles/how-to-use-local-unpublished-node-packages-as-project-dependencies/
 

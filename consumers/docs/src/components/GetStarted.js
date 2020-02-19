@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import * as Scroll from 'react-scroll';
 
 import Button from 'components/Button';
-// import GitHubStar from 'components/GitHubStar';
 import GitHubButton from 'components/GitHubButton';
 import { NAV_STICKY_HEIGHT_NEGATIVE } from 'components/Nav';
 
@@ -42,7 +41,6 @@ const GetStarted = () => (
       <GetStartedButton />
       <GitHubButton />
     </Buttons>
-    {/* <GitHubStar /> */}
   </StyledGetStarted>
 );
 

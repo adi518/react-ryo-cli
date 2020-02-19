@@ -5646,7 +5646,7 @@ inline-style-prefixer@^4.0.0:
     bowser "^1.7.3"
     css-in-js-utils "^2.0.0"
 
-inquirer@7.0.4, inquirer@^7.0.0:
+inquirer@7.0.4, inquirer@^7.0.0, inquirer@^7.0.4:
   version "7.0.4"
   resolved "https://registry.yarnpkg.com/inquirer/-/inquirer-7.0.4.tgz#99af5bde47153abca23f5c7fc30db247f39da703"
   integrity sha512-Bu5Td5+j11sCkqfqmUTiwv+tWisMtP0L7Q8WrqA2C/BbBhy1YTdFrvjjlrKq8oagA/tLQBski2Gcx/Sqyi2qSQ==
@@ -9245,9 +9245,9 @@ react-app-polyfill@^1.0.6:
     whatwg-fetch "^3.0.0"
 
 "react-build@file:.yalc/react-build":
-  version "1.0.0-eb31134d"
+  version "1.0.0-172422a7"
   dependencies:
-    react-ryo-cli "file:C:/Users/adisa/AppData/Local/Yarn/Cache/v4/npm-react-build-1.0.0-eb31134d-4390050a-1f10-4464-bb82-489985c8c39a-1582062486754/node_modules/react-build/.yalc/react-ryo-cli"
+    react-ryo-cli "file:C:/Users/adisa/AppData/Local/Yarn/Cache/v4/npm-react-build-1.0.0-172422a7-22cb7e07-8886-465e-83cb-f0f9b544de20-1582215294498/node_modules/react-build/.yalc/react-ryo-cli"
 
 react-dev-utils@^10.2.0:
   version "10.2.0"
@@ -9321,7 +9321,7 @@ react-markdown@^4.3.1:
     xtend "^4.0.1"
 
 "react-ryo-cli@file:.yalc/react-build/.yalc/react-ryo-cli":
-  version "1.0.0-f76329dc"
+  version "1.0.0-0a9fed20"
   dependencies:
     "@craco/craco" "^5.6.3"
     babel-plugin-lodash "^3.3.4"
@@ -9333,11 +9333,13 @@ react-markdown@^4.3.1:
     figlet "^1.2.4"
     gradient-string "^1.2.0"
     identity-obj-proxy "^3.0.0"
+    inquirer "^7.0.4"
     jest-styled-components "^7.0.0"
     lodash "^4.17.15"
     minimist "^1.2.0"
     node-sass "^4.13.1"
     pascal-case "^3.1.1"
+    react-dev-utils "^10.2.0"
     react-scripts "^3.3.0"
     react-test-renderer "^16.12.0"
     regenerator-runtime "^0.13.3"

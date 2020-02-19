@@ -87,6 +87,7 @@ typings/
 # DynamoDB Local files
 .dynamodb/
 
-# kenshoo
+# Other
+out
 .yalc
 yalc.lock

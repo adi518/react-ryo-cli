@@ -1,20 +1,30 @@
 ![React Ryo CLI](https://raw.githubusercontent.com/adi518/react-ryo-cli/master/react-ryo-cli.png)
 
-# React Ryo CLI (WIP)
+# What is React Ryo CLI? (WIP)
 
-React Ryo CLI is a roll-your-own version of the famous [CRA](https://github.com/facebook/create-react-app) ("create-react-app") `react-scripts` CLI, where you can reconfigure internal configurations, such as [Webpack](https://webpack.js.org/), [Babel](https://babeljs.io/), and [Jest](https://jestjs.io/). This package is based on [Craco](https://github.com/sharegate/craco). Using the aforementioned third-party, we are able to abstract away the intricacies of cross-industry build tools and their configurations, yet keep a "roll-your-own" approach to apply fine-grain changes to suit our specific needs. While [Vue.js](https://cli.vuejs.org/) already incorporated customizability in its CLI, CRA does not think it should, hence solutions like Craco have emerged, followed by this package.
+React Ryo CLI is a roll-your-own version of the famous [CRA](https://github.com/facebook/create-react-app) ("create-react-app") `react-scripts` CLI, where you can reconfigure internal configurations, such as [Webpack](https://webpack.js.org/), [Babel](https://babeljs.io/), and [Jest](https://jestjs.io/). This package is based on [Craco](https://github.com/sharegate/craco). Using the aforementioned third-party, we are able to abstract away the intricacies of cross-industry build tools and their configurations, yet keep a "roll-your-own" approach to apply fine-grain changes to suit our specific needs. While [Vue.js](https://cli.vuejs.org/) already incorporated customizability in its CLI, CRA does not follow the same path, hence solutions like Craco have emerged, followed by this package.
 
 ## Usage
 
 Execute the following command to create a boilerplate for your own CLI package.
 
 ```console
-npx react-ryo-cli --init
+npx react-ryo-cli init
 ```
 
-### Configuration
+Or add to an existing package:
+
+```console
+npm/yarn install react-ryo-cli
+```
+
+## Configuration
 
 Create a `craco.config.js` file at the root of your package and `react-ryo-cli` will pick it up. See Craco docs for its [configuration API](https://github.com/gsoft-inc/craco/blob/master/packages/craco/README.md#configuration-overview). Your configuration will be merged with `react-ryo-cli` default configuration. However, you can choose to opt-out by calling `spawnApi` with `{ noExtend: true }` or by calling your CLI with the `--noExtend` argument.
+
+## Who Is It For
+
+This package is mainly targeted at infrastructure teams, UI architects/leads and anyone who maintains several React applications across their organization.
 
 ## Why
 
@@ -30,11 +40,13 @@ While an internal package seems beneficial, it's a rather risky approach, becaus
 
 Combined with [Craco](https://github.com/sharegate/craco), this is what you get.
 
+- CRA 3.\* support.
 - One stop shop CLI for your React applications.
 - Scalable and more future-proof than other solutions.
 - Adherence to industry standards without the lock penalty.
 - Abstracts away intricate configurations, which helps avoiding configuration pitfalls.
 - Setups Jest and Enzyme with real-world configurations, so you can focus on writing tests only.
+- Styled-Components configuration for Jest.
 - Automatic [Lodash](https://www.azavea.com/blog/2019/03/07/lessons-on-tree-shaking-lodash/) tree shaking.
 
 ## Global Imports
@@ -42,68 +54,90 @@ Combined with [Craco](https://github.com/sharegate/craco), this is what you get.
 When testing, the following modules are imported automatically, hence you don't have to manually import them on every `.spec` file, so you can focus on writing your tests. 🎯
 
 ```js
-/* global
-React,
-Enzyme.shallow,
-Enzyme.mount,
-Enzyme.render
-*/
+/* React, Enzyme.shallow, Enzyme.mount, Enzyme.render */
 ```
 
 ## Allowed Files
 
-Circumvent CRA restriction when importing files out of `src`, by defining an `allowed-files.json` file at the root of your project. JSON should be an array of _relative_ paths. See [this](https://stackoverflow.com/questions/44114436/the-create-react-app-imports-restriction-outside-of-src-directory) Stack Overflow page and [this](https://github.com/facebook/create-react-app/issues/834) issue for more details. JSON Example:
+Circumvent CRA restriction when importing files out of `src`, by defining an `allowed-files.json` file at the root of your project. JSON should be an array of _relative_ paths. See [this](https://stackoverflow.com/questions/44114436/the-create-react-app-imports-restriction-outside-of-src-directory) Stack Overflow page and [this](https://github.com/facebook/create-react-app/issues/834) CRA issue for more details. JSON Example 👉:
 
 ```json
 ["../../../../README.md"]
 ```
 
+## Consumer Apps
+
+Update the existing calls to `react-scripts` in the `scripts` section of your `package.json` file to use your CLI:
+
+```diff
+/* package.json */
+
+"scripts": {
+-   "start": "react-scripts start",
++   "start": "<your-cli-package> start",
+-   "build": "react-scripts build",
++   "build": "<your-cli-package> build"
+-   "test": "react-scripts test",
++   "test": "<your-cli-package> test"
+}
+```
+
+### Configuration files placement in file structure with default CRA boilerplate
+
+```json
+📦 project
+ ┣ 📁 src
+ ┣ 📁 public
+ ┣ 📜 README.md
+ ┣ 📜 yarn.lock
+ ┣ 📜 .gitignore
+ ┣ 📜 package.json
+ ┣ 📜 craco.config.js <-
+ ┗ 📜 allowed-files.json <-
+```
+
 ## API
 
-### _spawnCli_ \[Function\]
+If provided CLI arguments are not enough, you can use the API to further customize your CLI package.
+
+### `spawnCli([, options])`
+
+⛔️ Notice the [shebang](<https://en.wikipedia.org/wiki/Shebang_(Unix)>), without it, your CLI entry-point will _not_ be executable.
 
 ```js
 #!/usr/bin/env node
-require("react-ryo-cli").spawnCli([, options]);
+
+require("react-ryo-cli").spawnCli();
 ```
 
-### _spawnCli Options_ \[Object\]
+### _spawnCli Options_
 
-#### `withEnzyme` \[Boolean\]
+> `outputPath[String]` - Change Webpack output path (Default: `'build'`).
 
-Toggle Enzyme support.
+> `withEnzyme[Bool]` - Toggle Enzyme support (Default: `false`).
 
-#### `withStyledComponents` \[Boolean\]
+> `withSignature[Bool]` - Toggle CLI signature (Default: `true`).
 
-Toggle Styled-Components support.
-
-#### `withSignature` \[Boolean\]
-
-Toggle CLI signature.
-
-#### `signatureTheme` \[String\]
-
-Select a predefined theme from the list of values below.
-
-![](https://camo.githubusercontent.com/18c1d596702848aa1d67e95efd41268b1298f7ae/687474703a2f2f6269742e6c792f3275467967724c)
-
-#### `signatureGradient` \[Array\]
-
-Set your own gradient. See [`gradient-string`](https://github.com/bokub/gradient-string#available-built-in-gradients) API. This option takes precedence over `signatureTheme`.
-
-### spawnCli Options
-
-> `withEnzyme[Bool]` - Toggle Enzyme support.
-
-> `withSignature[Bool]` - Toggle CLI signature.
-
-> `withStyledComponents[Bool]` - Toggle Styled-Components test support.
+> `withStyledComponents[Bool]` - Toggle Styled-Components support for Jest (Default: `false`).
 
 > `signatureTheme[String]` - Select a predefined theme from the list of values below.
 
-> ![](https://camo.githubusercontent.com/18c1d596702848aa1d67e95efd41268b1298f7ae/687474703a2f2f6269742e6c792f3275467967724c)
+> ![Gradient Themes](https://camo.githubusercontent.com/18c1d596702848aa1d67e95efd41268b1298f7ae/687474703a2f2f6269742e6c792f3275467967724c)
 
 > `signatureGradient[Array]` - Set your own gradient. See [`gradient-string`](https://github.com/bokub/gradient-string#available-built-in-gradients) API. This option takes precedence over `signatureTheme`.
+> Default:
+>
+> ```js
+> ["rgb(102, 51, 153)", "rgb(102, 51, 153)"];
+> ```
+
+## Contributing
+
+Feel free to submit issues and pull requests. Search existing issues before starting a new one. 🙌
+
+## Versioning
+
+[SemVer](http://semver.org). See [versions available](https://github.com/adi518/react-ryo-cli/releases).
 
 ## License
 

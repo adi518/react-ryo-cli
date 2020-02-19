@@ -9,7 +9,7 @@ const {
 const { getLibraryName } = require("react-ryo-cli");
 
 /* eslint-disable no-underscore-dangle */
-const getDefaultOutputPath = ({ cwd = process.cwd(), dir = "out" } = {}) =>
+const getDefaultOutputPath = ({ cwd = process.cwd(), dir = "build" } = {}) =>
   path.join(cwd, dir);
 
 const BABEL_POLYFILL_PATH = path.join(

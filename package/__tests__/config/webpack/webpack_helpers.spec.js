@@ -32,8 +32,15 @@ describe("extendWebpack", () => {
     expect(result).toMatchSnapshot();
   });
 
-  test("with build:production script", () => {
-    const mockArgs = getMockArgs({ script: SCRIPTS.BUILD_PRODUCTION });
+  test("with build script", () => {
+    const mockArgs = getMockArgs({ script: SCRIPTS.BUILD });
+    const result = extendWebpack(mockArgs);
+
+    expect(result).toMatchSnapshot();
+  });
+
+  test("with build:development script", () => {
+    const mockArgs = getMockArgs({ script: SCRIPTS.BUILD_DEVELOPMENT });
     const result = extendWebpack(mockArgs);
 
     expect(result).toMatchSnapshot();
@@ -46,8 +53,8 @@ describe("extendWebpack", () => {
     expect(result).toMatchSnapshot();
   });
 
-  test("with build:package:production script", () => {
-    const mockArgs = getMockArgs({ script: SCRIPTS.BUILD_PACKAGE_PRODUCTION });
+  test("with build:package:development script", () => {
+    const mockArgs = getMockArgs({ script: SCRIPTS.BUILD_PACKAGE_DEVELOPMENT });
     const result = extendWebpack(mockArgs);
 
     expect(result).toMatchSnapshot();

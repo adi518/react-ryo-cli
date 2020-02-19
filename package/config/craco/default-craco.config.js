@@ -1,30 +1,50 @@
+const path = require("path");
 const { merge } = require("lodash");
 const { inspectPlugin } = require("./inspect-plugin");
 const { extendJestConfig } = require("../jest/jest_helpers");
 const { extendWebpackConfig } = require("../webpack/webpack_helpers");
+const ModuleScopePlugin = require("react-dev-utils/ModuleScopePlugin");
 const {
+  safeRequire,
+  getScriptArg,
   getParentArgv,
-  getScript,
   isBuildScript
 } = require("../../lib/helpers");
 
-const script = getScript();
 const parentArgv = getParentArgv();
-const config = require(process.env.CONFIG_PATH);
+const script = getScriptArg(parentArgv);
+const config = safeRequire(process.env.CONFIG_PATH, {});
+const allowedFiles = safeRequire(process.env.ALLOWED_FILES_PATH, []);
+const allowedFilesDirname =
+  process.env.ALLOWED_FILES_PATH &&
+  path.dirname(process.env.ALLOWED_FILES_PATH);
+
 const defaultConfig = {
   devServer: {
     open: false
   },
   webpack: {
     configure: (webpackConfig, { paths }) => {
-      const { extendedWebpackConfig, extendedPaths } = extendWebpackConfig({
+      const {
+        paths: extPaths,
+        webpackConfig: extWebpackConfig
+      } = extendWebpackConfig({
         argv: parentArgv,
         script,
         paths,
         webpackConfig
       });
-      merge(paths, extendedPaths);
-      return extendedWebpackConfig;
+      merge(paths, extPaths);
+      // https://stackoverflow.com/q/44114436/4106263
+      // https://stackoverflow.com/a/58321458/4106263
+      extWebpackConfig.resolve.plugins.forEach(plugin => {
+        if (plugin instanceof ModuleScopePlugin) {
+          allowedFiles.forEach(filePath => {
+            plugin.allowedFiles.add(path.join(allowedFilesDirname, filePath));
+          });
+        }
+      });
+      return extWebpackConfig;
     }
   },
   ...(isBuildScript(script) && {
@@ -36,7 +56,7 @@ const defaultConfig = {
     }
   }),
   jest: {
-    configure: jestConfig => extendJestConfig({ source: jestConfig, script })
+    configure: jestConfig => extendJestConfig(jestConfig, { script })
   },
   plugins: [
     {
@@ -48,5 +68,7 @@ const defaultConfig = {
 };
 
 const mergedConfig = merge({}, defaultConfig, config);
+// console.log(JSON.stringify(mergedConfig, null, 2));
+// process.exit();
 
 module.exports = mergedConfig;

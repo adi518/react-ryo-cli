@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import Link from 'components/Link';
+import pkg from '../../package.json';
 
 const StyledFooter = styled.footer`
   display: flex;
@@ -46,7 +47,7 @@ const Footer = () => (
       Made with&nbsp;
       <Heart />
       {' by '}
-      <Link href="https://github.com/adi518">@adi518</Link>
+      <Link href={pkg.author.url}>{pkg.author.name}</Link>
     </div>
   </StyledFooter>
 );

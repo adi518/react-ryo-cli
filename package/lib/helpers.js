@@ -1,34 +1,35 @@
 const fs = require("fs");
 const path = require("path");
 const chalk = require("chalk");
-const figlet = require("figlet");
-const minimist = require("minimist");
-const gradient = require("gradient-string");
 const { merge } = require("lodash");
+const minimist = require("minimist");
 const { pascalCase } = require("pascal-case");
 
-const pkg = require("../package.json");
 const preflight = require("./preflight");
-const { BUILD_SCRIPTS } = require("./scripts");
+const { SCRIPTS, BUILD_SCRIPTS } = require("./scripts");
+const {
+  CRACO_BIN_PATH,
+  CRACO_CONFIG_FILENAME,
+  ALLOWED_FILES_FILENAME,
+  DEFAULT_CRACO_CONFIG_PATH,
+  DEFAULT_CRACO_CONFIG_FILENAME,
+  REACT_SCRIPTS_PRODUCTION_BUILD_MESSAGE
+} = require("./constants");
 
-const CRACO_CONFIG_FILENAME = "craco.config.js";
-const DEFAULT_CRACO_CONFIG_FILENAME = "default-craco.config.js";
-const CRACO_BIN_PATH = "./node_modules/@craco/craco/bin/craco.js";
-const DEFAULT_CRACO_CONFIG_PATH = path.join(
-  __dirname,
-  "../config/craco",
-  DEFAULT_CRACO_CONFIG_FILENAME
-);
+const resolve = filePath => path.join(__dirname, filePath);
 
-const getArgv = () => minimist(process.argv.slice(2));
+const safeRequire = (modulePath, fallback) =>
+  modulePath ? require(modulePath) : fallback;
+
+const getArgv = (argv = process.argv) => minimist(argv.slice(2));
 
 const getParentArgv = () =>
   minimist(JSON.parse(process.env.PARENT_ARGV).slice(2));
 
-const getScript = () => {
+const getScriptArg = argv => {
   const {
     _: [script]
-  } = getParentArgv();
+  } = argv;
   return script;
 };
 
@@ -43,24 +44,56 @@ const getCracoCliCommandCreator = configPath => args =>
   createCliCommand({
     args,
     prefixArgs: CRACO_BIN_PATH,
-    suffixArgs: [
-      "--config",
-      configPath ? configPath : DEFAULT_CRACO_CONFIG_PATH
-    ]
+    suffixArgs: ["--config", configPath || DEFAULT_CRACO_CONFIG_PATH]
   });
 
-const getConfigPath = dirname => {
-  const configPath = path.join(dirname, CRACO_CONFIG_FILENAME);
+const getFilePath = (
+  dirname,
+  filename,
+  { onExist = () => {}, onMiss = () => {} } = {}
+) => {
+  const filePath = path.join(dirname, filename);
   try {
-    if (fs.existsSync(configPath)) {
-      console.warn(chalk.green("Configuration file found!"));
-      return configPath;
+    if (fs.existsSync(filePath)) {
+      onExist();
+      return filePath;
     }
   } catch (err) {
-    console.warn(chalk.yellow("No configuration file found."));
+    onMiss();
     if (err) console.error(err);
     return null;
   }
+};
+
+const resolveConfigFilePath = dirname => {
+  let filePath = getFilePath(process.cwd(), CRACO_CONFIG_FILENAME, {
+    onExist: () =>
+      console.log(chalk.green(`✅, Found ${CRACO_CONFIG_FILENAME}.`))
+  });
+  if (filePath) return filePath;
+  filePath = getFilePath(dirname, CRACO_CONFIG_FILENAME, {
+    onExist: () =>
+      console.log(chalk.green(`✅, Found ${CRACO_CONFIG_FILENAME}.`))
+  });
+  if (filePath) return filePath;
+  filePath = getFilePath(process.cwd(), DEFAULT_CRACO_CONFIG_FILENAME, {
+    onExist: () =>
+      console.log(
+        chalk.green(`⚠️, Falling back to ${DEFAULT_CRACO_CONFIG_FILENAME}.`)
+      )
+  });
+  if (filePath) return filePath;
+  return null;
+};
+
+const resolveAllowedFilesPath = dirname => {
+  const onExist = () =>
+    console.log(chalk.green(`✅, Found ${ALLOWED_FILES_FILENAME}.`));
+  let filePath = getFilePath(dirname, ALLOWED_FILES_FILENAME, { onExist });
+  if (filePath) return filePath;
+  filePath = getFilePath(process.cwd(), ALLOWED_FILES_FILENAME, { onExist });
+  if (filePath) return filePath;
+  return null;
 };
 
 const mergeDeep = (...sources) => {
@@ -69,37 +102,26 @@ const mergeDeep = (...sources) => {
   return clone;
 };
 
-// https://www.rapidtables.com/code/text/ascii/ascii-space.html
-const logSignature = (
-  signature = pkg.name,
-  theme,
-  color = ["rgb(102, 51, 153)", "rgb(102, 51, 153)"]
-) => {
-  /* eslint-disable no-console */
-  if (theme && !gradient[theme])
-    return console.error(
-      `No such theme as "${theme}". See https://www.npmjs.com/package/gradient-string#available-built-in-gradients for a list of possible themes.`
-    );
-  const ascii = figlet.textSync(`\x20${signature}`, {
-    font: "Slant",
-    horizontalLayout: "default",
-    verticalLayout: "default"
-  });
-  console.log(theme ? gradient[theme](ascii) : gradient(color)(ascii));
-};
+const shouldReplaceProductionBuildMessage = (script, message) =>
+  script === SCRIPTS.BUILD_DEVELOPMENT &&
+  message.includes(REACT_SCRIPTS_PRODUCTION_BUILD_MESSAGE);
 
 const silentLogger = { log: () => {}, error: () => {} };
 
 module.exports = {
+  resolve,
   getArgv,
   preflight,
-  getScript,
   mergeDeep,
+  safeRequire,
+  getScriptArg,
   silentLogger,
-  logSignature,
   isBuildScript,
   getParentArgv,
-  getConfigPath,
   getLibraryName,
-  getCracoCliCommandCreator
+  CRACO_CONFIG_FILENAME,
+  resolveConfigFilePath,
+  resolveAllowedFilesPath,
+  getCracoCliCommandCreator,
+  shouldReplaceProductionBuildMessage
 };

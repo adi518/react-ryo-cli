@@ -43,9 +43,13 @@ describe("normalizeScript", () => {
     expect(normalizeScript({ rawScript: SCRIPTS.BUILD })).toMatchSnapshot();
   });
 
-  test("build:production", () => {
+  test("build", () => {
+    expect(normalizeScript({ rawScript: SCRIPTS.BUILD })).toMatchSnapshot();
+  });
+
+  test("build:development", () => {
     expect(
-      normalizeScript({ rawScript: SCRIPTS.BUILD_PRODUCTION })
+      normalizeScript({ rawScript: SCRIPTS.BUILD_DEVELOPMENT })
     ).toMatchSnapshot();
   });
 
@@ -55,9 +59,9 @@ describe("normalizeScript", () => {
     ).toMatchSnapshot();
   });
 
-  test("build:package:production", () => {
+  test("build:package:development", () => {
     expect(
-      normalizeScript({ rawScript: SCRIPTS.BUILD_PACKAGE_PRODUCTION })
+      normalizeScript({ rawScript: SCRIPTS.BUILD_PACKAGE_DEVELOPMENT })
     ).toMatchSnapshot();
   });
 

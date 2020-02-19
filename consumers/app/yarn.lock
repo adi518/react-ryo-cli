@@ -8765,11 +8765,6 @@ react-app-polyfill@^1.0.6:
     regenerator-runtime "^0.13.3"
     whatwg-fetch "^3.0.0"
 
-"react-build@file:.yalc/react-build":
-  version "1.0.0-1b9846b2"
-  dependencies:
-    react-ryo-cli "file:C:/Users/adisa/AppData/Local/Yarn/Cache/v4/npm-react-build-1.0.0-1b9846b2-298a45c5-e883-492d-b3e6-cd4870942760-1581717874867/node_modules/react-build/.yalc/react-ryo-cli"
-
 react-dev-utils@^10.2.0:
   version "10.2.0"
   resolved "https://registry.yarnpkg.com/react-dev-utils/-/react-dev-utils-10.2.0.tgz#b11cc48aa2be2502fb3c27a50d1dfa95cfa9dfe0"
@@ -8819,29 +8814,6 @@ react-is@^16.12.0, react-is@^16.8.1, react-is@^16.8.4, react-is@^16.8.6, react-i
   version "16.12.0"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.12.0.tgz#2cc0fe0fba742d97fd527c42a13bec4eeb06241c"
   integrity sha512-rPCkf/mWBtKc97aLL9/txD8DZdemK0vkA3JMLShjlJB3Pj3s+lpf1KaBzMfQrAmhMQB0n1cU/SUGgKKBCe837Q==
-
-"react-ryo-cli@file:.yalc/react-build/.yalc/react-ryo-cli":
-  version "1.0.0-4540a2c5"
-  dependencies:
-    "@craco/craco" "^5.6.3"
-    babel-plugin-lodash "^3.3.4"
-    chalk "^3.0.0"
-    core-js "^3.6.4"
-    enzyme "^3.11.0"
-    enzyme-adapter-react-16 "^1.15.2"
-    enzyme-to-json "^3.4.3"
-    figlet "^1.2.4"
-    gradient-string "^1.2.0"
-    identity-obj-proxy "^3.0.0"
-    jest-styled-components "^7.0.0"
-    lodash "^4.17.15"
-    minimist "^1.2.0"
-    node-sass "^4.13.1"
-    pascal-case "^3.1.1"
-    react-scripts "^3.3.0"
-    react-test-renderer "^16.12.0"
-    regenerator-runtime "^0.13.3"
-    source-map-explorer "^2.2.2"
 
 react-scripts@^3.3.0:
   version "3.4.0"

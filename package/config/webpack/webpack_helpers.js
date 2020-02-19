@@ -9,7 +9,7 @@ const {
 const { getLibraryName } = require("react-ryo-cli");
 
 /* eslint-disable no-underscore-dangle */
-const getDefaultOutputPath = ({ cwd = process.cwd(), dir = "out" } = {}) =>
+const getDefaultOutputPath = ({ cwd = process.cwd(), dir = "build" } = {}) =>
   path.join(cwd, dir);
 
 const BABEL_POLYFILL_PATH = path.join(
@@ -44,7 +44,7 @@ const extendWebpackConfig = ({
     webpackConfig.entry.unshift(BABEL_POLYFILL_PATH);
   }
 
-  // Probably not needed anymore as we can delegate
+  // probably not needed anymore as we can delegate
   // this to `nwb` or similar packages.
   if (PACKAGE_BUILD_SCRIPTS.includes(script)) {
     webpackConfig.output.path = getOutputPath({ dir: "dist" });
@@ -54,7 +54,7 @@ const extendWebpackConfig = ({
     webpackConfig.externals["react-dom"] = "react-dom";
     webpackConfig.externals["styled-components"] = "styled-components";
   }
-  return { extendedWebpackConfig: webpackConfig, extendedPaths: paths };
+  return { webpackConfig, paths };
 };
 
 module.exports = {

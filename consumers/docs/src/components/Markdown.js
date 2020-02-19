@@ -1,3 +1,6 @@
+// https://github.com/PrismJS/prism/issues/1171
+// https://github.com/PrismJS/prism/issues/1409
+
 import Prism from 'prismjs';
 import React, { useState } from 'react';
 import { useEffectOnce } from 'react-use';
@@ -5,6 +8,21 @@ import ReactMarkdown from 'react-markdown';
 import styled, { css } from 'styled-components';
 
 import 'prism-themes/themes/prism-atom-dark.css';
+import 'prismjs/plugins/line-numbers/prism-line-numbers.css';
+
+// https://github.com/rexxars/react-markdown/issues/69
+function flatten(text, child) {
+  return typeof child === 'string'
+    ? text + child
+    : React.Children.toArray(child.props.children).reduce(flatten, text);
+}
+
+function HeadingRenderer(props) {
+  var children = React.Children.toArray(props.children);
+  var text = children.reduce(flatten, '');
+  var slug = text.toLowerCase().replace(/\W/g, '-');
+  return React.createElement('h' + props.level, { id: slug }, props.children);
+}
 
 const inlineStyle = css`
   h1:first-child {
@@ -17,14 +35,14 @@ export const StyledMarkdown = styled.div`
 
   :not(pre) > code[class*='language-'],
   pre[class*='language-'] {
-    margin-top: 2rem;
+    margin-top: 1.5rem;
     border-radius: 0.5rem;
     box-shadow: 0 0 1rem rgba(0, 0, 0, 0.25);
   }
 
   code[class*='language-'],
   pre[class*='language-'] {
-    line-height: 40px;
+    line-height: 2;
   }
 
   ${({ inline }) => inline && inlineStyle}
@@ -44,7 +62,22 @@ export const StyledMarkdown = styled.div`
     border-bottom: 0.125rem solid rgba(0, 0, 0, 0.1);
   }
 
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    a {
+      &::before {
+        content: '⚡️ ';
+      }
+    }
+  }
+
   p {
+    margin-top: 1.5rem;
+
     img {
       width: 100%;
       max-width: 767.98px;
@@ -63,6 +96,7 @@ export const StyledMarkdown = styled.div`
 
   pre {
     code {
+      padding: 0;
       background-color: unset;
     }
   }
@@ -86,6 +120,67 @@ export const StyledMarkdown = styled.div`
       }
     }
   }
+
+  /* copy-to-clipboard plugin CSS */
+  .code-toolbar {
+    position: relative;
+  }
+
+  .toolbar > div {
+    position: absolute;
+  }
+
+  /* show-language */
+  .toolbar > div:nth-child(1) {
+    top: 0;
+    right: 0;
+    color: #666666;
+    margin-top: 1rem;
+    font-size: 0.6rem;
+    margin-right: 1rem;
+    letter-spacing: 0.05rem;
+    text-transform: uppercase;
+    transition: color var(--common-transition-time);
+
+    &:hover {
+      color: var(--color-gray);
+    }
+  }
+
+  /* copy-to-clipboard */
+  .toolbar > div:nth-child(2) {
+    right: 0;
+    bottom: 0;
+    margin-right: 1rem;
+    margin-bottom: 0.825rem;
+
+    button {
+      padding: 0;
+      display: block;
+      border-width: 0;
+      font-size: 0.6rem;
+      color: var(--color-gray);
+      letter-spacing: 0.05rem;
+      text-transform: uppercase;
+      background-color: transparent;
+    }
+  }
+
+  /* alternative */
+  // .toolbar-item button {
+  //   padding: 0;
+  //   font-size: 0;
+  //   border-width: 0;
+  //   transform-style: preserve-3d;
+  //   background-color: transparent;
+
+  //   &::before {
+  //     content: '📋';
+  //     display: block;
+  //     font-size: initial;
+  //     transform: translateZ(-1px);
+  //   }
+  // }
 `;
 
 const Markdown = ({ pathToMarkdown, inline }) => {
@@ -102,7 +197,10 @@ const Markdown = ({ pathToMarkdown, inline }) => {
 
   return (
     <StyledMarkdown inline={inline}>
-      <ReactMarkdown source={markdown} />
+      <ReactMarkdown
+        source={markdown}
+        renderers={{ heading: HeadingRenderer }}
+      />
     </StyledMarkdown>
   );
 };

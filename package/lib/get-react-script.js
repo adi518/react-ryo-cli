@@ -1,34 +1,35 @@
 const { SCRIPTS } = require("./scripts");
+const { BUILD_DIRNAME } = require("./constants");
 const { getCracoCliCommandCreator } = require("./helpers");
 
-const normalizeScript = ({ rawScript }) => {
+const getReactScript = script => {
   const createCracoCliCommand = getCracoCliCommandCreator();
-  switch (rawScript) {
-    // Notice `SCRIPTS.BUILD` is defined
+  switch (script) {
+    // notice `SCRIPTS.BUILD` is defined
     // for explicit-sake only, as it can
     // be handled by the default case.
     case SCRIPTS.BUILD:
-    case SCRIPTS.BUILD_PRODUCTION:
+    case SCRIPTS.BUILD_DEVELOPMENT:
     case SCRIPTS.BUILD_PACKAGE:
     case SCRIPTS.BUILD_PACKAGE_PRODUCTION:
-      return createCracoCliCommand("build");
+      return createCracoCliCommand(SCRIPTS.BUILD);
     case SCRIPTS.BUILD_STATS:
       return [
         "./node_modules/source-map-explorer/dist/cli.js",
-        "out/static/js/*.js"
+        `${BUILD_DIRNAME}/static/js/*.js`
       ];
     case SCRIPTS.TEST:
     case SCRIPTS.TEST_WATCH:
-      return createCracoCliCommand("test");
+      return createCracoCliCommand(SCRIPTS.TEST);
     case SCRIPTS.TEST_UPDATE:
-      return createCracoCliCommand(["test", "--updateSnapshot"]);
+      return createCracoCliCommand([SCRIPTS.TEST, "--updateSnapshot"]);
     case SCRIPTS.TEST_PRODUCTION:
-      return createCracoCliCommand(["test", "--ci", "--collectCoverage"]);
+      return createCracoCliCommand([SCRIPTS.TEST, "--ci", "--collectCoverage"]);
     case SCRIPTS.EJECT:
-      return ["eject"];
+      return [SCRIPTS.EJECT];
     default:
-      return createCracoCliCommand(rawScript);
+      return createCracoCliCommand(script);
   }
 };
 
-module.exports = { normalizeScript };
+module.exports = { getReactScript };

@@ -1,28 +1,29 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,400i,700,700i&display=swap');
+
 :root {
-  /* generic colors */
   $color-yellow: gold;
   $color-purple: rebeccapurple;
   $color-white: white;
   $color-gray: #999999;
   $color-gray-dark: #040404;
   $color-gray-light: #cccccc;
-  /* CSS variables */
+
   --color-white: #{$color-white};
   --color-yellow: #{$color-yellow};
   --color-purple: #{$color-purple};
   --color-gray: #{$color-gray};
   --color-gray-dark: #{$color-gray-dark};
   --color-gray-light: #{$color-gray-light};
-  /* behavioral:text */
+
   --color-link: #{$color-purple};
   --color-link-hover: #{$color-white};
-  /* behavioral:backgrounds */
+
   --color-foreground: #{$color-gray};
   --color-background: #{$color-yellow};
   --color-background-hero: #{$color-gray-dark};
   --color-background-footer: #{$color-gray-dark};
   --color-background-nav-sticky: #{$color-purple};
-  /* other */
+
   --common-transition-time: 0.5s;
   --font-family: 'Roboto', 'Montserrat', -apple-system, BlinkMacSystemFont,
     'Segoe UI', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',

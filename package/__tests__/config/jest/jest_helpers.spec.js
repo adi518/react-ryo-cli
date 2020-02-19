@@ -16,21 +16,15 @@ const commonMockArgs = {
 
 describe("extendJestConfig", () => {
   test("with build (development) script", () => {
-    const mockArgs = {
-      ...cloneDeep(commonMockArgs),
-      script: SCRIPTS.BUILD
-    };
-    const result = extendJestConfig(mockArgs);
+    const mockArgs = [...cloneDeep(commonMockArgs), { script: SCRIPTS.BUILD }];
+    const result = extendJestConfig(...mockArgs);
 
     expect(result).toMatchSnapshot();
   });
 
-  test("with build:production script", () => {
-    const mockArgs = {
-      ...cloneDeep(commonMockArgs),
-      script: SCRIPTS.BUILD_PRODUCTION
-    };
-    const result = extendJestConfig(mockArgs);
+  test("with build script", () => {
+    const mockArgs = [...cloneDeep(commonMockArgs), { script: SCRIPTS.BUILD }];
+    const result = extendJestConfig(...mockArgs);
 
     expect(result).toMatchSnapshot();
   });

@@ -1,13 +1,15 @@
 import React from 'react';
 import Root from 'routes/Root';
-
-// import "./App.css";
+import GlobalStyle from 'components/GlobalStyle/GlobalStyle';
 
 function App() {
   return (
-    <div className="App">
-      <Root />
-    </div>
+    <React.Fragment>
+      <GlobalStyle />
+      <div className="App">
+        <Root />
+      </div>
+    </React.Fragment>
   );
 }
 

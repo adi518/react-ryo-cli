@@ -4,14 +4,14 @@
   "main": "dist/index.js",
   "license": "MIT",
   "scripts": {
-    "postinstall": "yalc add react-build && yarn --ignore-scripts",
-    "build": "react-build build:package --name=%npm_package_name%",
-    "build:production": "react-build build:package:production",
-    "test": "react-build test",
-    "test:update": "react-build test -u"
+    "postinstall": "yalc add react-scripts-custom && yarn --ignore-scripts",
+    "build": "react-scripts-custom build:package --name=%npm_package_name%",
+    "build:development": "react-scripts-custom build:package:development",
+    "test": "react-scripts-custom test",
+    "test:update": "react-scripts-custom test -u"
   },
   "dependencies": {
-    "react-build": "file:.yalc/react-build"
+    "react-scripts-custom": "file:.yalc/react-scripts-custom"
   },
   "peerDependencies": {
     "react": "^16.8.6",

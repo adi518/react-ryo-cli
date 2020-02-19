@@ -4,23 +4,23 @@
   "private": true,
   "dependencies": {
     "react": "^16.8.6",
-    "react-build": "file:.yalc/react-build",
+    "react-scripts-custom": "file:.yalc/react-scripts-custom",
     "react-dom": "^16.8.6"
   },
   "scripts": {
-    "postinstall": "yalc add react-build && yarn --ignore-scripts",
-    "start": "react-build start",
-    "build": "react-build build",
-    "build:production": "react-build build:production",
-    "build:stats": "react-build build:stats",
-    "test": "react-build test",
-    "test:watch": "react-build test:watch",
-    "test:update": "react-build test:update",
-    "test:production": "react-build test:production",
-    "eject": "react-build eject",
-    "inspect": "react-build build --inspect",
-    "inspect:output": "react-build build --inspect > output.json",
-    "unknown-script": "react-build unknown-script"
+    "postinstall": "yalc add react-scripts-custom && yarn --ignore-scripts",
+    "start": "react-scripts-custom start",
+    "build": "react-scripts-custom build",
+    "build:development": "react-scripts-custom build:development",
+    "build:stats": "react-scripts-custom build:stats",
+    "test": "react-scripts-custom test",
+    "test:watch": "react-scripts-custom test:watch",
+    "test:update": "react-scripts-custom test:update",
+    "test:production": "react-scripts-custom test:production",
+    "eject": "react-scripts-custom eject",
+    "inspect": "react-scripts-custom build --inspect",
+    "inspect:output": "react-scripts-custom build --inspect > output.json",
+    "unknown-script": "react-scripts-custom unknown-script"
   },
   "eslintConfig": {
     "extends": "react-app"

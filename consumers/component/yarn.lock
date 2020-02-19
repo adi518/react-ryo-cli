@@ -8505,29 +8505,6 @@ react-app-polyfill@^1.0.1:
     regenerator-runtime "0.13.2"
     whatwg-fetch "3.0.0"
 
-"react-build@file:.yalc/react-build":
-  version "1.0.0-4782ee17"
-  dependencies:
-    "@craco/craco" "^5.2.1"
-    babel-plugin-lodash "^3.3.4"
-    chalk "^2.4.2"
-    core-js "^3.1.4"
-    enzyme "^3.10.0"
-    enzyme-adapter-react-16 "^1.14.0"
-    enzyme-to-json "^3.3.5"
-    figlet "^1.2.3"
-    gradient-string "^1.2.0"
-    identity-obj-proxy "^3.0.0"
-    jest-styled-components "^6.3.3"
-    lodash "^4.17.11"
-    minimist "^1.2.0"
-    node-sass "^4.12.0"
-    pascal-case "^2.0.1"
-    react-scripts "^3.0.0"
-    react-test-renderer "^16.8.6"
-    regenerator-runtime "^0.13.2"
-    source-map-explorer "^2.0.1"
-
 react-dev-utils@^9.0.1:
   version "9.0.1"
   resolved "https://registry.yarnpkg.com/react-dev-utils/-/react-dev-utils-9.0.1.tgz#5c03d85a0b2537d0c46af7165c24a7dfb274bef2"

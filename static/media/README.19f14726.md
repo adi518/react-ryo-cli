@@ -2,7 +2,7 @@
 
 # React Ryo CLI (WIP)
 
-React Ryo CLI is a roll-your-own version of the famous [CRA](https://github.com/facebook/create-react-app) ("create-react-app") `react-scripts` CLI, where you can reconfigure internal configurations, such as [Webpack](https://webpack.js.org/), [Babel](https://babeljs.io/), and [Jest](https://jestjs.io/). This package is based on [Craco](https://github.com/sharegate/craco). Using the aforementioned third-party, we are able to abstract away the intricacies of cross-industry build tools and their configurations, yet keep a "roll-your-own" approach to apply fine-grain changes to suit our specific needs. While [Vue.js](https://cli.vuejs.org/) already incorporated customizability in its CLI, Facebook does not think it should, hence solutions like Craco have emerged, followed by this package.
+React Ryo CLI is a roll-your-own version of the famous [CRA](https://github.com/facebook/create-react-app) ("create-react-app") `react-scripts` CLI, where you can reconfigure internal configurations, such as [Webpack](https://webpack.js.org/), [Babel](https://babeljs.io/), and [Jest](https://jestjs.io/). This package is based on [Craco](https://github.com/sharegate/craco). Using the aforementioned third-party, we are able to abstract away the intricacies of cross-industry build tools and their configurations, yet keep a "roll-your-own" approach to apply fine-grain changes to suit our specific needs. While [Vue.js](https://cli.vuejs.org/) already incorporated customizability in its CLI, CRA does not think it should, hence solutions like Craco have emerged, followed by this package.
 
 ## Usage
 
@@ -30,6 +30,7 @@ While an internal package seems beneficial, it's a rather risky approach, becaus
 
 Combined with [Craco](https://github.com/sharegate/craco), this is what you get.
 
+- CRA 3.\* support
 - One stop shop CLI for your React applications.
 - Scalable and more future-proof than other solutions.
 - Adherence to industry standards without the lock penalty.
@@ -39,23 +40,23 @@ Combined with [Craco](https://github.com/sharegate/craco), this is what you get.
 
 ## Global Imports
 
-When testing, the following modules are imported automatically, so you don't have to manually import them on every `.spec` file, just write your tests.
+When testing, the following modules are imported automatically, hence you don't have to manually import them on every `.spec` file, so you can focus on writing your tests. 🎯
 
 ```js
-// The following modules are imported on every `*.spec` file.
-/* global
-React,
-Enzyme.shallow,
-Enzyme.mount,
-Enzyme.render
-*/
+/* React, Enzyme.shallow, Enzyme.mount, Enzyme.render */
 ```
 
 ## Allowed Files
 
-Circumvent CRA restriction when importing files out of `src`, by defining a `allowed-files.json` file. See [this](https://stackoverflow.com/questions/44114436/the-create-react-app-imports-restriction-outside-of-src-directory) Stack Overflow page for details.
+Circumvent CRA restriction when importing files out of `src`, by defining an `allowed-files.json` file at the root of your project. JSON should be an array of _relative_ paths. See [this](https://stackoverflow.com/questions/44114436/the-create-react-app-imports-restriction-outside-of-src-directory) Stack Overflow page and [this](https://github.com/facebook/create-react-app/issues/834) CRA issue for more details. JSON Example 👉:
+
+```json
+["../../../../README.md"]
+```
 
 ## API
+
+If provided CLI arguments are not enough, you can use the API to further customize your CLI package.
 
 ### _spawnCli_ \[Function\]
 
@@ -66,23 +67,17 @@ require("react-ryo-cli").spawnCli([, options]);
 
 ### _spawnCli Options_ \[Object\]
 
-#### `withEnzyme` \[Boolean\]
+> `withEnzyme[Bool]` - Toggle Enzyme support.
 
-Toggle Enzyme support.
+> `withSignature[Bool]` - Toggle CLI signature.
 
-#### `withStyledComponents` \[Boolean\]
+> `withStyledComponents[Bool]` - Toggle Styled-Components support for Jest.
 
-Toggle Styled-Components support.
+> `signatureTheme[String]` - Select a predefined theme from the list of values below.
 
-#### `withSignature` \[Boolean\]
+> ![](https://camo.githubusercontent.com/18c1d596702848aa1d67e95efd41268b1298f7ae/687474703a2f2f6269742e6c792f3275467967724c)
 
-Toggle CLI signature.
-
-#### `signatureTheme` \[String\]
-
-See [`gradient-string`](https://github.com/bokub/gradient-string#available-built-in-gradients) docs for a list of possible values or quick check the snapshot below.
-
-![](https://camo.githubusercontent.com/18c1d596702848aa1d67e95efd41268b1298f7ae/687474703a2f2f6269742e6c792f3275467967724c)
+> `signatureGradient[Array]` - Set your own gradient. See [`gradient-string`](https://github.com/bokub/gradient-string#available-built-in-gradients) API. This option takes precedence over `signatureTheme`.
 
 ## License
 

@@ -107,7 +107,7 @@ If provided CLI arguments are not enough, you can use the API to further customi
 ```js
 #!/usr/bin/env node
 
-require("react-ryo-cli").spawnCli([, options]);
+require("react-ryo-cli").spawnCli();
 ```
 
 ### _spawnCli Options_

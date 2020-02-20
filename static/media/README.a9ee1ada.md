@@ -82,6 +82,10 @@ Update the existing calls to `react-scripts` in the `scripts` section of your `p
 }
 ```
 
+### Available scripts
+
+Out of the box, every `react-scripts` script will work except for `eject`, as ejecting beats the purpose of having a custom CLI.
+
 ### Configuration files placement in file structure with default CRA boilerplate
 
 ```json

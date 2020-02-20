@@ -88,7 +88,7 @@ Out of the box, every `react-scripts` script will work except for `eject`, as ej
 
 ### Extra Scripts
 
-`React-Ryo-Cli` provides a few scripts for your convenience:
+`react-ryo-cli` provides a few extra scripts for your convenience:
 
 ```diff
 /* package.json */

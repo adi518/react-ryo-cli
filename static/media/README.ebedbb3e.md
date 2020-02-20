@@ -22,6 +22,10 @@ npm/yarn install react-ryo-cli
 
 Create a `craco.config.js` file at the root of your package and `react-ryo-cli` will pick it up. See Craco docs for its [configuration API](https://github.com/gsoft-inc/craco/blob/master/packages/craco/README.md#configuration-overview). Your configuration will be merged with `react-ryo-cli` default configuration. However, you can choose to opt-out by calling `spawnApi` with `{ noExtend: true }` or by calling your CLI with the `--noExtend` argument.
 
+## Who Is It For
+
+This package is mainly targeted at infrastructure teams, UI architects/leads and anyone who maintains several React applications across their organization.
+
 ## Why
 
 TL;DR: Create your own one stop shop CLI for building and testing your [React.js](https://reactjs.org/) applications.

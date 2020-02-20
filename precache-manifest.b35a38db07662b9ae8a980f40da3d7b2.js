@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "53c6a7c799d34a4f0b070083fcdfbb32",
+    "revision": "b62f441b2f9ac24889b137d677852d57",
     "url": "/react-ryo-cli/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/react-ryo-cli/static/css/2.60550d00.chunk.css"
   },
   {
-    "revision": "dadb200077cb885dd4f5",
+    "revision": "5d0a0aeaa47a5c1b5946",
     "url": "/react-ryo-cli/static/css/main.920c1953.chunk.css"
   },
   {
@@ -20,15 +20,15 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/react-ryo-cli/static/js/2.b747e859.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "dadb200077cb885dd4f5",
-    "url": "/react-ryo-cli/static/js/main.cf6e3d09.chunk.js"
+    "revision": "5d0a0aeaa47a5c1b5946",
+    "url": "/react-ryo-cli/static/js/main.7db32a6a.chunk.js"
   },
   {
     "revision": "e5426c7a1dc29256e5d9",
     "url": "/react-ryo-cli/static/js/runtime-main.921ff541.js"
   },
   {
-    "revision": "2ffeb170f4614e5113815dce2b4c79b5",
-    "url": "/react-ryo-cli/static/media/README.2ffeb170.md"
+    "revision": "ebedbb3e929985bf9c6d02f11dbfccde",
+    "url": "/react-ryo-cli/static/media/README.ebedbb3e.md"
   }
 ]);

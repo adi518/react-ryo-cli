@@ -96,11 +96,11 @@ Out of the box, every `react-scripts` script will work except for `eject`, as ej
 "scripts": {
 +   "build": "<your-cli-package> build:development"
 +   "build:stats": "<your-cli-package> build:stats",
-+   "test:watch": "react-scripts-custom test:watch",
-+   "test:update": "react-scripts-custom test:update",
-+   "test:production": "react-scripts-custom test:production",
-+   "inspect": "react-scripts-custom build --inspect",
-+   "inspect:output": "react-scripts-custom build --inspect > output.json",
++   "test:watch": "<your-cli-package> test:watch",
++   "test:update": "<your-cli-package> test:update",
++   "test:production": "<your-cli-package> test:production",
++   "inspect": "<your-cli-package> build --inspect",
++   "inspect:output": "<your-cli-package> build --inspect > output.json",
 }
 ```
 

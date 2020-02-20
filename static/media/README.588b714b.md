@@ -100,9 +100,9 @@ Update the existing calls to `react-scripts` in the `scripts` section of your `p
 
 If provided CLI arguments are not enough, you can use the API to further customize your CLI package.
 
-### _spawnCli_ \[Function\]
+### `spawnCli([, options])`
 
-Notice the shebang, without it, your CLI entry-point will _not_ be executable.
+⛔️ Notice the [shebang](<https://en.wikipedia.org/wiki/Shebang_(Unix)>), without it, your CLI entry-point will _not_ be executable.
 
 ```js
 #!/usr/bin/env node
@@ -110,7 +110,7 @@ Notice the shebang, without it, your CLI entry-point will _not_ be executable.
 require("react-ryo-cli").spawnCli([, options]);
 ```
 
-### _spawnCli Options_ \[Object\]
+### _spawnCli Options_
 
 > `outputPath[String]` - Change Webpack output path (Default: `'build'`).
 
@@ -122,7 +122,7 @@ require("react-ryo-cli").spawnCli([, options]);
 
 > `signatureTheme[String]` - Select a predefined theme from the list of values below.
 
-> ![](https://camo.githubusercontent.com/18c1d596702848aa1d67e95efd41268b1298f7ae/687474703a2f2f6269742e6c792f3275467967724c)
+> ![Gradient Themes](https://camo.githubusercontent.com/18c1d596702848aa1d67e95efd41268b1298f7ae/687474703a2f2f6269742e6c792f3275467967724c)
 
 > `signatureGradient[Array]` - Set your own gradient. See [`gradient-string`](https://github.com/bokub/gradient-string#available-built-in-gradients) API. This option takes precedence over `signatureTheme`.
 > Default:

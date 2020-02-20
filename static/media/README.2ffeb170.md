@@ -2,14 +2,14 @@
 
 # React Ryo CLI (WIP)
 
-React Ryo CLI is a roll-your-own version of the famous [CRA](https://github.com/facebook/create-react-app) ("create-react-app") `react-scripts` CLI, where you can reconfigure internal configurations, such as [Webpack](https://webpack.js.org/), [Babel](https://babeljs.io/), and [Jest](https://jestjs.io/). This package is based on [Craco](https://github.com/sharegate/craco). Using the aforementioned third-party, we are able to abstract away the intricacies of cross-industry build tools and their configurations, yet keep a "roll-your-own" approach to apply fine-grain changes to suit our specific needs. While [Vue.js](https://cli.vuejs.org/) already incorporated customizability in its CLI, CRA does not think it should, hence solutions like Craco have emerged, followed by this package.
+React Ryo CLI is a roll-your-own version of the famous [CRA](https://github.com/facebook/create-react-app) ("create-react-app") `react-scripts` CLI, where you can reconfigure internal configurations, such as [Webpack](https://webpack.js.org/), [Babel](https://babeljs.io/), and [Jest](https://jestjs.io/). This package is based on [Craco](https://github.com/sharegate/craco). Using the aforementioned third-party, we are able to abstract away the intricacies of cross-industry build tools and their configurations, yet keep a "roll-your-own" approach to apply fine-grain changes to suit our specific needs. While [Vue.js](https://cli.vuejs.org/) already incorporated customizability in its CLI, CRA does not follow the same path, hence solutions like Craco have emerged, followed by this package.
 
 ## Usage
 
 Execute the following command to create a boilerplate for your own CLI package.
 
 ```console
-npx react-ryo-cli --init
+npx react-ryo-cli init
 ```
 
 Or add to an existing package:
@@ -98,8 +98,11 @@ If provided CLI arguments are not enough, you can use the API to further customi
 
 ### _spawnCli_ \[Function\]
 
+Notice the shebang, without it, your CLI entry-point will _not_ be executable.
+
 ```js
 #!/usr/bin/env node
+
 require("react-ryo-cli").spawnCli([, options]);
 ```
 

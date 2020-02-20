@@ -1,6 +1,6 @@
 ![React Ryo CLI](https://raw.githubusercontent.com/adi518/react-ryo-cli/master/react-ryo-cli.png)
 
-# React Ryo CLI (WIP)
+# What is React Ryo CLI? (WIP)
 
 React Ryo CLI is a roll-your-own version of the famous [CRA](https://github.com/facebook/create-react-app) ("create-react-app") `react-scripts` CLI, where you can reconfigure internal configurations, such as [Webpack](https://webpack.js.org/), [Babel](https://babeljs.io/), and [Jest](https://jestjs.io/). This package is based on [Craco](https://github.com/sharegate/craco). Using the aforementioned third-party, we are able to abstract away the intricacies of cross-industry build tools and their configurations, yet keep a "roll-your-own" approach to apply fine-grain changes to suit our specific needs. While [Vue.js](https://cli.vuejs.org/) already incorporated customizability in its CLI, CRA does not follow the same path, hence solutions like Craco have emerged, followed by this package.
 
@@ -65,20 +65,6 @@ Circumvent CRA restriction when importing files out of `src`, by defining an `al
 ["../../../../README.md"]
 ```
 
-## Configuration files placement in file structure with default CRA boilerplate
-
-```json
-📦 project
- ┣ 📁 src
- ┣ 📁 public
- ┣ 📜 README.md
- ┣ 📜 yarn.lock
- ┣ 📜 .gitignore
- ┣ 📜 package.json
- ┣ 📜 craco.config.js <-
- ┗ 📜 allowed-files.json <-
-```
-
 ## Consumer Apps
 
 Update the existing calls to `react-scripts` in the `scripts` section of your `package.json` file to use your CLI:
@@ -94,6 +80,20 @@ Update the existing calls to `react-scripts` in the `scripts` section of your `p
 -   "test": "react-scripts test",
 +   "test": "<your-cli-package> test"
 }
+```
+
+### Configuration files placement in file structure with default CRA boilerplate
+
+```json
+📦 project
+ ┣ 📁 src
+ ┣ 📁 public
+ ┣ 📜 README.md
+ ┣ 📜 yarn.lock
+ ┣ 📜 .gitignore
+ ┣ 📜 package.json
+ ┣ 📜 craco.config.js <-
+ ┗ 📜 allowed-files.json <-
 ```
 
 ## API
@@ -133,12 +133,12 @@ require("react-ryo-cli").spawnCli([, options]);
 
 ## Contributing
 
-Feel free to submit issues and pull requests, but please search existing issues before starting a new one. 🙌
+Feel free to submit issues and pull requests. Search existing issues before starting a new one. 🙌
 
 ## Versioning
 
-[SemVer](http://semver.org) is used for versioning. See [versions available](https://github.com/adi518/react-ryo-cli/releases).
+[SemVer](http://semver.org). See [versions available](https://github.com/adi518/react-ryo-cli/releases).
 
 ## License
 
-Project is licensed under [MIT](https://github.com/adi518/react-ryo-cli/blob/master/LICENSE).
+[MIT](https://github.com/adi518/react-ryo-cli/blob/master/LICENSE)

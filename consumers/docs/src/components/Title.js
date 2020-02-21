@@ -1,7 +1,8 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 
-import pkg from '../../package.json';
+import docsPkg from '../../package.json';
+import pkg from '../../../../package/package.json';
 
 const StyledTitle = styled.div`
   visibility: visible;
@@ -19,7 +20,7 @@ const StyledTitle = styled.div`
 
 const Title = props => (
   <StyledTitle {...props}>
-    {pkg.name} {pkg.version}
+    {pkg.version} - {docsPkg.name} {docsPkg.version}
   </StyledTitle>
 );
 

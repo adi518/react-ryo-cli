@@ -10,6 +10,13 @@
   "repository": {
     "url": "https://github.com/adi518/react-ryo-cli"
   },
+  "watch": {
+    "reinstall": {
+      "patterns": "./**/*",
+      "extensions": ".lock",
+      "ignore": "yarn.lock"
+    }
+  },
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
@@ -29,7 +36,7 @@
     "styled-components": "^5.0.1"
   },
   "scripts": {
-    "postinstall": "yalc add react-scripts-custom && yarn --ignore-scripts",
+    "reinstall": "yarn --force",
     "start": "react-scripts-custom start",
     "build": "react-scripts-custom build",
     "build:stats": "react-scripts-custom build:stats",
@@ -37,7 +44,8 @@
     "test": "react-scripts-custom test",
     "eject": "react-scripts-custom eject",
     "predeploy": "yarn build",
-    "deploy": "node ./gh-pages"
+    "deploy": "node ./gh-pages",
+    "watch": "npm-watch"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -56,6 +64,7 @@
   },
   "devDependencies": {
     "babel-plugin-prismjs": "^2.0.1",
-    "gh-pages": "^2.2.0"
+    "gh-pages": "^2.2.0",
+    "npm-watch": "^0.6.0"
   }
 }

@@ -10,3 +10,7 @@ CVS/
 *.kate-swp
 node_modules/
 npm-debug.log
+TODO.md
+__tests__
+.prettierrc
+.eslintrc.js

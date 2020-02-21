@@ -4,14 +4,26 @@
   "main": "index.js",
   "bin": "index.js",
   "license": "MIT",
+  "watch": {
+    "push": {
+      "patterns": [
+        "./**/*"
+      ],
+      "extensions": "*",
+      "ignore": [
+        "node_modules"
+      ]
+    }
+  },
   "scripts": {
-    "push": "yalc publish --push",
-    "watch": "watch \"yarn run push\" -s ./ --ignoreDirectoryPattern /node_modules/"
+    "push": "yalc push",
+    "watch": "npm-watch"
   },
   "dependencies": {
     "react-ryo-cli": "file:.yalc/react-ryo-cli"
   },
   "devDependencies": {
-    "eslint": "^6.8.0"
+    "eslint": "^6.8.0",
+    "npm-watch": "^0.6.0"
   }
 }

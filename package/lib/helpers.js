@@ -26,12 +26,7 @@ const getArgv = (argv = process.argv) => minimist(argv.slice(2));
 const getParentArgv = () =>
   minimist(JSON.parse(process.env.PARENT_ARGV).slice(2));
 
-const getScriptArg = argv => {
-  const {
-    _: [script]
-  } = argv;
-  return script;
-};
+const getScriptArg = argv => argv._[0].script;
 
 const getLibraryName = ({ name }) => pascalCase(name);
 
@@ -119,7 +114,6 @@ module.exports = {
   isBuildScript,
   getParentArgv,
   getLibraryName,
-  CRACO_CONFIG_FILENAME,
   resolveConfigFilePath,
   resolveAllowedFilesPath,
   getCracoCliCommandCreator,

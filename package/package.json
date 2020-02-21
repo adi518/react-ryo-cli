@@ -8,10 +8,21 @@
     "type": "git",
     "url": "https://github.com/adi518/react-ryo-cli"
   },
+  "watch": {
+    "push": {
+      "patterns": [
+        "./**/*"
+      ],
+      "extensions": "*",
+      "ignore": [
+        "node_modules"
+      ]
+    }
+  },
   "scripts": {
-    "push": "yalc publish --push",
+    "push": "yalc push",
+    "watch": "npm-watch",
     "unpublish": "yalc installations clean %npm_package_name%",
-    "watch": "watch \"yarn run push\" -s ./ --ignoreDirectoryPattern /node_modules/",
     "inspect": "node ./index.js build --inspect",
     "lint": "eslint ./",
     "eslint": "./node_modules/.bin/eslint --init",
@@ -42,7 +53,7 @@
   },
   "devDependencies": {
     "eslint": "^6.8.0",
-    "slash": "^3.0.0",
-    "watch": "^1.0.2"
+    "npm-watch": "^0.6.0",
+    "slash": "^3.0.0"
   }
 }

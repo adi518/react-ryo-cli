@@ -12,7 +12,7 @@ const { spawn } = require("child_process");
 const { resolve } = require("../lib/helpers");
 
 const { selectPackageManager } = require("../cli/inquirer");
-const { CRACO_CONFIG_FILENAME } = require("../lib/helpers");
+const { CRACO_CONFIG_FILENAME } = require("../lib/constants");
 const {
   copyFile,
   resolveCwd,

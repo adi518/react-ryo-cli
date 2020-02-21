@@ -2,7 +2,7 @@
 
 # What is React Ryo CLI? (WIP)
 
-React Ryo CLI is a roll-your-own version of the famous [CRA](https://github.com/facebook/create-react-app) ("create-react-app") `react-scripts` CLI, where you can reconfigure internal configurations, such as [Webpack](https://webpack.js.org/), [Babel](https://babeljs.io/), and [Jest](https://jestjs.io/). This package is based on [Craco](https://github.com/sharegate/craco). Using the aforementioned third-party, we are able to abstract away the intricacies of cross-industry build tools and their configurations, yet keep a "roll-your-own" approach to apply fine-grain changes to suit our specific needs. While [Vue.js](https://cli.vuejs.org/) already incorporated customizability in its CLI, CRA does not follow the same path, hence solutions like Craco have emerged, followed by this package.
+React Ryo CLI is a roll-your-own version of [CRA](https://github.com/facebook/create-react-app) ("create-react-app") `react-scripts` CLI, where you can reconfigure internal configurations, such as [Webpack](https://webpack.js.org/), [Babel](https://babeljs.io/), and [Jest](https://jestjs.io/). This package is based on [Craco](https://github.com/sharegate/craco). Using the aforementioned third-party, we are able to abstract away the intricacies of cross-industry build tools and their configurations, yet keep a "roll-your-own" approach to apply fine-grain changes to suit our specific needs. While [Vue.js](https://cli.vuejs.org/) already incorporated customizability in its CLI, CRA does not follow the same path, hence solutions like Craco have emerged, followed by this package.
 
 ## Usage
 
@@ -14,8 +14,16 @@ npx react-ryo-cli init
 
 Or add to an existing package:
 
+### Using NPM:
+
 ```console
-npm/yarn install react-ryo-cli
+npm install react-ryo-cli
+```
+
+### Using Yarn:
+
+```console
+yarn add react-ryo-cli
 ```
 
 ## Configuration
@@ -67,7 +75,7 @@ Circumvent CRA restriction when importing files out of `src`, by defining an `al
 
 ## Consumer Apps
 
-Update the existing calls to `react-scripts` in the `scripts` section of your `package.json` file to use your CLI:
+Swap existing calls to `react-scripts` in the `scripts` section of your `package.json` file to use your CLI. You can also swap them [automatically](#swapping-scripts-automatically).
 
 ```diff
 /* package.json */
@@ -76,9 +84,9 @@ Update the existing calls to `react-scripts` in the `scripts` section of your `p
 -   "start": "react-scripts start",
 +   "start": "<your-cli-package> start",
 -   "build": "react-scripts build",
-+   "build": "<your-cli-package> build"
++   "build": "<your-cli-package> build",
 -   "test": "react-scripts test",
-+   "test": "<your-cli-package> test"
++   "test": "<your-cli-package> test",
 }
 ```
 
@@ -94,7 +102,7 @@ Out of the box, every `react-scripts` script will work except for `eject`, as ej
 /* package.json */
 
 "scripts": {
-+   "build": "<your-cli-package> build:development"
++   "build:development": "<your-cli-package> build:development"
 +   "build:stats": "<your-cli-package> build:stats",
 +   "test:watch": "<your-cli-package> test:watch",
 +   "test:update": "<your-cli-package> test:update",
@@ -104,6 +112,8 @@ Out of the box, every `react-scripts` script will work except for `eject`, as ej
 }
 ```
 
+### [Swapping Scripts Automatically](#swapping-scripts-automatically)
+
 You can automate this by calling the CLI 🔨:
 
 ```console
@@ -112,16 +122,16 @@ npx react-ryo-cli update-scripts
 
 ### Configuration files placement in file structure with default CRA boilerplate
 
-```json
+```diff
 📦 project
- ┣ 📁 src
- ┣ 📁 public
- ┣ 📜 README.md
- ┣ 📜 yarn.lock
- ┣ 📜 .gitignore
- ┣ 📜 package.json
- ┣ 📜 craco.config.js <-
- ┗ 📜 allowed-files.json <-
+  ┣ 📁 src
+  ┣ 📁 public
+  ┣ 📜 README.md
+  ┣ 📜 yarn.lock
+  ┣ 📜 .gitignore
+  ┣ 📜 package.json
++ ┣ 📜 craco.config.js
++ ┗ 📜 allowed-files.json
 ```
 
 ## API
@@ -130,7 +140,7 @@ If provided CLI arguments are not enough, you can use the API to further customi
 
 ### `spawnCli([, options])`
 
-⛔️ Notice the [shebang](<https://en.wikipedia.org/wiki/Shebang_(Unix)>), without it, your CLI entry-point will _not_ be executable.
+⛔️ Notice the [shebang](<https://en.wikipedia.org/wiki/Shebang_(Unix)>), without it, your CLI entry-point will **_not_** be executable.
 
 ```js
 #!/usr/bin/env node
@@ -148,7 +158,7 @@ require("react-ryo-cli").spawnCli();
 
 > `withStyledComponents[Bool]` - Toggle Styled-Components support for Jest (Default: `false`).
 
-> `signatureTheme[String]` - Select a predefined theme from the list of values below.
+> `signatureTheme[String]` - Select a predefined theme from the list below.
 
 > ![Gradient Themes](https://camo.githubusercontent.com/18c1d596702848aa1d67e95efd41268b1298f7ae/687474703a2f2f6269742e6c792f3275467967724c)
 

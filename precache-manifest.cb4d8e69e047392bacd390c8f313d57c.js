@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "ad6c6adc38ed170a15de62a0aa1523d7",
+    "revision": "ae1c3baa9d6579616b217b2c3727847c",
     "url": "/react-ryo-cli/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/react-ryo-cli/static/css/2.60550d00.chunk.css"
   },
   {
-    "revision": "01eaa1e84dbb5369d4e3",
+    "revision": "d94ae3bdb7f0abeb8f05",
     "url": "/react-ryo-cli/static/css/main.b4e3d095.chunk.css"
   },
   {
@@ -20,8 +20,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/react-ryo-cli/static/js/2.ca4f6733.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "01eaa1e84dbb5369d4e3",
-    "url": "/react-ryo-cli/static/js/main.17f49bdb.chunk.js"
+    "revision": "d94ae3bdb7f0abeb8f05",
+    "url": "/react-ryo-cli/static/js/main.2fcef10b.chunk.js"
   },
   {
     "revision": "e5426c7a1dc29256e5d9",

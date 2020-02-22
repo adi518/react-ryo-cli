@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/react-ryo-cli/precache-manifest.3d48169593843973fe349d6d79f56510.js"
+  "/react-ryo-cli/precache-manifest.fb6debbaaa66dd2aca77c3ab877e4ea3.js"
 );
 
 self.addEventListener('message', (event) => {

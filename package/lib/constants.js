@@ -1,5 +1,8 @@
 const path = require("path");
 
+const BUILD_DIRNAME = "build";
+const PACKAGE_JSON = "package.json";
+
 const REACT_SCRIPTS_PRODUCTION_BUILD_MESSAGE =
   "Creating an optimized production build...";
 const DEVELOPMENT_BUILD_MESSAGE =
@@ -15,9 +18,8 @@ const DEFAULT_CRACO_CONFIG_PATH = path.join(
   DEFAULT_CRACO_CONFIG_FILENAME
 );
 
-const BUILD_DIRNAME = "build";
-
 module.exports = {
+  PACKAGE_JSON,
   BUILD_DIRNAME,
   CRACO_BIN_PATH,
   CRACO_CONFIG_FILENAME,

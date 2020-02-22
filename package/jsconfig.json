@@ -1,0 +1,6 @@
+{
+  "compilerOptions": {
+    "baseUrl": "lib"
+  },
+  "include": ["lib"]
+}

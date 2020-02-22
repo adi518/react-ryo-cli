@@ -11,9 +11,11 @@ const StyledTitle = styled.div`
   ${({ isSticky }) =>
     isSticky
       ? css`
+          opacity: 1;
           color: var(--color-gray-light);
         `
       : css`
+          opacity: 0.5;
           color: var(--color-gray);
         `}
 `;

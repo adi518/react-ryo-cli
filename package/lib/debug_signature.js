@@ -1,5 +1,5 @@
 const { getArgv } = require("./helpers");
-const logSignature = require("./signature");
+const logSignature = require("./log_signature");
 
 const { theme, font, full } = getArgv();
 

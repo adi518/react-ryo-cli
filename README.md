@@ -104,7 +104,7 @@ Out of the box, every `react-scripts` script will work except for `eject`, as ej
 /* package.json */
 
 "scripts": {
-+   "build:development": "<your-cli-package> build:development"
++   "build:development": "<your-cli-package> build:development",
 +   "build:stats": "<your-cli-package> build:stats",
 +   "test:watch": "<your-cli-package> test:watch",
 +   "test:update": "<your-cli-package> test:update",
@@ -119,8 +119,10 @@ Out of the box, every `react-scripts` script will work except for `eject`, as ej
 You can automate this by calling the CLI 🔨:
 
 ```console
-npx react-ryo-cli update-scripts
+npx react-ryo-cli update-scripts --cli=<your-cli-package>
 ```
+
+> Use argument `--extend` to include extra scripts.
 
 ### Configuration files placement in file structure with default CRA boilerplate
 
@@ -151,6 +153,8 @@ require("react-ryo-cli").spawnCli();
 ```
 
 ### _spawnCli Options_
+
+> `noExtend[Bool]` - Opt-out of default Craco configuration.
 
 > `outputPath[String]` - Change Webpack output path (Default: `'build'`).
 

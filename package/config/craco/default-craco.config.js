@@ -1,10 +1,12 @@
 const path = require("path");
 const { merge } = require("lodash");
+const ModuleScopePlugin = require("react-dev-utils/ModuleScopePlugin");
+
 const { inspectPlugin } = require("./inspect-plugin");
 const { extendJestConfig } = require("../jest/jest_helpers");
 const { extendWebpackConfig } = require("../webpack/webpack_helpers");
-const ModuleScopePlugin = require("react-dev-utils/ModuleScopePlugin");
 const {
+  mergeDeep,
   safeRequire,
   getScriptArg,
   getParentArgv,
@@ -67,8 +69,4 @@ const defaultConfig = {
   ]
 };
 
-const mergedConfig = merge({}, defaultConfig, config);
-// console.log(JSON.stringify(mergedConfig, null, 2));
-// process.exit();
-
-module.exports = mergedConfig;
+module.exports = mergeDeep(defaultConfig, config);

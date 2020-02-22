@@ -1,22 +1,20 @@
 const fs = require("fs");
 const path = require("path");
 const chalk = require("chalk");
-const { merge } = require("lodash");
 const minimist = require("minimist");
+const { merge } = require("lodash/fp");
 const { pascalCase } = require("pascal-case");
 
-const preflight = require("./preflight");
 const { SCRIPTS, BUILD_SCRIPTS } = require("./scripts");
 const {
   CRACO_BIN_PATH,
-  CRACO_CONFIG_FILENAME,
-  ALLOWED_FILES_FILENAME,
   DEFAULT_CRACO_CONFIG_PATH,
-  DEFAULT_CRACO_CONFIG_FILENAME,
   REACT_SCRIPTS_PRODUCTION_BUILD_MESSAGE
 } = require("./constants");
 
 const resolve = filePath => path.join(__dirname, filePath);
+
+const resolveCwd = filePath => path.join(process.cwd(), filePath);
 
 const safeRequire = (modulePath, fallback) =>
   modulePath ? require(modulePath) : fallback;
@@ -26,7 +24,7 @@ const getArgv = (argv = process.argv) => minimist(argv.slice(2));
 const getParentArgv = () =>
   minimist(JSON.parse(process.env.PARENT_ARGV).slice(2));
 
-const getScriptArg = argv => argv._[0].script;
+const getScriptArg = (argv = getArgv()) => argv._[0];
 
 const getLibraryName = ({ name }) => pascalCase(name);
 
@@ -42,7 +40,7 @@ const getCracoCliCommandCreator = configPath => args =>
     suffixArgs: ["--config", configPath || DEFAULT_CRACO_CONFIG_PATH]
   });
 
-const getFilePath = (
+const resolveFilePath = (
   dirname,
   filename,
   { onExist = () => {}, onMiss = () => {} } = {}
@@ -50,72 +48,57 @@ const getFilePath = (
   const filePath = path.join(dirname, filename);
   try {
     if (fs.existsSync(filePath)) {
-      onExist();
+      onExist(filename);
       return filePath;
     }
   } catch (err) {
-    onMiss();
-    if (err) console.error(err);
+    onMiss(filename);
+    if (err) logger.error(err);
     return null;
   }
-};
-
-const resolveConfigFilePath = dirname => {
-  let filePath = getFilePath(process.cwd(), CRACO_CONFIG_FILENAME, {
-    onExist: () =>
-      console.log(chalk.green(`✅, Found ${CRACO_CONFIG_FILENAME}.`))
-  });
-  if (filePath) return filePath;
-  filePath = getFilePath(dirname, CRACO_CONFIG_FILENAME, {
-    onExist: () =>
-      console.log(chalk.green(`✅, Found ${CRACO_CONFIG_FILENAME}.`))
-  });
-  if (filePath) return filePath;
-  filePath = getFilePath(process.cwd(), DEFAULT_CRACO_CONFIG_FILENAME, {
-    onExist: () =>
-      console.log(
-        chalk.green(`⚠️, Falling back to ${DEFAULT_CRACO_CONFIG_FILENAME}.`)
-      )
-  });
-  if (filePath) return filePath;
-  return null;
-};
-
-const resolveAllowedFilesPath = dirname => {
-  const onExist = () =>
-    console.log(chalk.green(`✅, Found ${ALLOWED_FILES_FILENAME}.`));
-  let filePath = getFilePath(dirname, ALLOWED_FILES_FILENAME, { onExist });
-  if (filePath) return filePath;
-  filePath = getFilePath(process.cwd(), ALLOWED_FILES_FILENAME, { onExist });
-  if (filePath) return filePath;
-  return null;
-};
-
-const mergeDeep = (...sources) => {
-  const clone = {};
-  merge(clone, ...sources);
-  return clone;
 };
 
 const shouldReplaceProductionBuildMessage = (script, message) =>
   script === SCRIPTS.BUILD_DEVELOPMENT &&
   message.includes(REACT_SCRIPTS_PRODUCTION_BUILD_MESSAGE);
 
+const getDeferredPromise = () => {
+  const deferred = {};
+  const promise = new Promise((resolve, reject) => {
+    deferred.resolve = resolve;
+    deferred.reject = reject;
+  });
+  return { ...deferred, promise };
+};
+
+const mergeDeep = () =>
+  merge({}, arguments, (objValue, srcValue) =>
+    Array.isArray(objValue) ? objValue.concat(srcValue) : undefined
+  );
+
+const logger = {
+  log: (...args) => console.error(chalk.white(args)),
+  success: (...args) => console.error(chalk.green(args)),
+  warn: (...args) => console.error(chalk.yellow(args)),
+  error: (...args) => console.error(chalk.red(args))
+};
+
 const silentLogger = { log: () => {}, error: () => {} };
 
 module.exports = {
+  logger,
   resolve,
   getArgv,
-  preflight,
   mergeDeep,
+  resolveCwd,
   safeRequire,
   getScriptArg,
   silentLogger,
   isBuildScript,
   getParentArgv,
   getLibraryName,
-  resolveConfigFilePath,
-  resolveAllowedFilesPath,
+  resolveFilePath,
+  getDeferredPromise,
   getCracoCliCommandCreator,
   shouldReplaceProductionBuildMessage
 };

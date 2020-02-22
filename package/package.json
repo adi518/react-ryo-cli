@@ -1,12 +1,17 @@
 {
   "name": "react-ryo-cli",
   "version": "1.0.0",
+  "description": "Generate a one stop shop CLI for building and testing your React applications",
+  "author": {
+    "name": "Adi Sahar",
+    "url": "https://github.com/adi518"
+  },
   "license": "MIT",
   "main": "index.js",
   "bin": "./bin/cli.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/adi518/react-ryo-cli"
+    "url": "https://github.com/adi518/react-ryo-cli/"
   },
   "watch": {
     "push": {
@@ -22,6 +27,7 @@
   "scripts": {
     "push": "yalc push",
     "watch": "npm-watch",
+    "signature": "node ./lib/debug_signature.js",
     "unpublish": "yalc installations clean %npm_package_name%",
     "inspect": "node ./index.js build --inspect",
     "lint": "eslint ./",
@@ -33,10 +39,13 @@
     "babel-plugin-lodash": "^3.3.4",
     "chalk": "^3.0.0",
     "core-js": "^3.6.4",
+    "cross-spawn": "^7.0.1",
+    "detect-indent": "^6.0.0",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.2",
-    "enzyme-to-json": "^3.4.3",
+    "enzyme-to-json": "^3.4.4",
     "figlet": "^1.2.4",
+    "fs-extra": "^8.1.0",
     "gradient-string": "^1.2.0",
     "identity-obj-proxy": "^3.0.0",
     "inquirer": "^7.0.4",
@@ -46,10 +55,11 @@
     "node-sass": "^4.13.1",
     "pascal-case": "^3.1.1",
     "react-dev-utils": "^10.2.0",
-    "react-scripts": "^3.3.0",
+    "react-scripts": "^3.4.0",
     "react-test-renderer": "^16.12.0",
     "regenerator-runtime": "^0.13.3",
-    "source-map-explorer": "^2.2.2"
+    "source-map-explorer": "^2.3.1",
+    "v8-compile-cache": "^2.1.0"
   },
   "devDependencies": {
     "eslint": "^6.8.0",

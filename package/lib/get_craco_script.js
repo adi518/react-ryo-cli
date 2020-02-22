@@ -2,7 +2,7 @@ const { SCRIPTS } = require("./scripts");
 const { BUILD_DIRNAME } = require("./constants");
 const { getCracoCliCommandCreator } = require("./helpers");
 
-const getReactScript = script => {
+const getCracoScript = script => {
   const createCracoCliCommand = getCracoCliCommandCreator();
   switch (script) {
     // notice `SCRIPTS.BUILD` is defined
@@ -32,4 +32,4 @@ const getReactScript = script => {
   }
 };
 
-module.exports = { getReactScript };
+module.exports = { getCracoScript };

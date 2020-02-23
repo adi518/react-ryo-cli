@@ -154,6 +154,8 @@ require("react-ryo-cli").spawnCli();
 
 ### _spawnCli Options_
 
+> `noExtend[Bool]` - Opt-out of default Craco configuration.
+
 > `outputPath[String]` - Change Webpack output path (Default: `'build'`).
 
 > `withEnzyme[Bool]` - Toggle Enzyme support (Default: `false`).

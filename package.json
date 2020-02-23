@@ -1,0 +1,7 @@
+{
+  "name": "react-ryo-cli-root",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ]
+}

@@ -1,0 +1,79 @@
+{
+  "name": "docs",
+  "private": true,
+  "version": "0.1.0",
+  "description": "React Ryo CLI documentation",
+  "author": {
+    "name": "Adi Sahar",
+    "url": "https://github.com/adi518"
+  },
+  "homepage": "https://adi518.github.io/react-ryo-cli/",
+  "repository": {
+    "url": "https://github.com/adi518/react-ryo-cli"
+  },
+  "watch": {
+    "reinstall": {
+      "patterns": "./**/*",
+      "extensions": ".lock",
+      "ignore": "yarn.lock"
+    }
+  },
+  "dependencies": {
+    "react-scripts-custom": "^1.0.0",
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.3.2",
+    "@testing-library/user-event": "^7.1.2",
+    "animate.css": "^3.7.2",
+    "capitalize": "^2.0.2",
+    "classnames": "^2.2.6",
+    "dotenv": "^8.2.0",
+    "dotenv-expand": "^5.1.0",
+    "lodash": "^4.17.15",
+    "node-sass": "^4.13.1",
+    "prism-themes": "^1.3.0",
+    "prismjs": "^1.19.0",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "react-github-btn": "^1.1.1",
+    "react-helmet": "^5.2.1",
+    "react-markdown": "^4.3.1",
+    "react-scroll": "^1.7.16",
+    "react-use": "^13.26.0",
+    "styled-components": "^5.0.1"
+  },
+  "scripts": {
+    "reinstall": "yarn --force",
+    "start": "react-scripts-custom start",
+    "build": "react-scripts-custom build",
+    "build:stats": "react-scripts-custom build:stats",
+    "build:inspect": "react-scripts-custom build --inspect",
+    "build:development": "react-scripts-custom build:development",
+    "build:inspect:output": "react-scripts-custom build --inspect > output.json",
+    "test": "react-scripts-custom test",
+    "eject": "react-scripts-custom eject",
+    "predeploy": "yarn build",
+    "deploy": "node ./gh-pages",
+    "watch": "npm-watch",
+    "unknown": "react-scripts-custom unknown"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "babel-plugin-prismjs": "^2.0.1",
+    "gh-pages": "^2.2.0",
+    "npm-watch": "^0.6.0"
+  }
+}

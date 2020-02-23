@@ -119,8 +119,10 @@ Out of the box, every `react-scripts` script will work except for `eject`, as ej
 You can automate this by calling the CLI 🔨:
 
 ```console
-npx react-ryo-cli update-scripts
+npx react-ryo-cli update-scripts --cli=<your-cli-package>
 ```
+
+> Use argument `--extend` to include extra scripts.
 
 ### Configuration files placement in file structure with default CRA boilerplate
 

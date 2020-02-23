@@ -104,7 +104,7 @@ Out of the box, every `react-scripts` script will work except for `eject`, as ej
 /* package.json */
 
 "scripts": {
-+   "build:development": "<your-cli-package> build:development"
++   "build:development": "<your-cli-package> build:development",
 +   "build:stats": "<your-cli-package> build:stats",
 +   "test:watch": "<your-cli-package> test:watch",
 +   "test:update": "<your-cli-package> test:update",

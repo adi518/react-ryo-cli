@@ -19,9 +19,7 @@
     "push": "yalc push",
     "watch": "npm-watch"
   },
-  "dependencies": {
-    "react-ryo-cli": "file:.yalc/react-ryo-cli"
-  },
+  "dependencies": {},
   "devDependencies": {
     "eslint": "^6.8.0",
     "npm-watch": "^0.6.0"

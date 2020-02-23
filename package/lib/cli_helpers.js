@@ -30,7 +30,6 @@ const getConfirmDirectoryNotEmptyChoice = async () => {
 
 module.exports = {
   copyFile,
-  resolveCwd,
   JSONStringifyPretty,
   getPackageManagerChoice,
   getPackageManagerCommand,

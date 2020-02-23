@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "76b76da2c663877901e0aa04d92a761c",
+    "revision": "d96d5b28453b2025e3f6f9433a1942c7",
     "url": "/react-ryo-cli/index.html"
   },
   {

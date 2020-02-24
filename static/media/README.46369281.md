@@ -214,16 +214,16 @@ require('react-ryo-cli').spawnCli()
 
 > `signature[String]` - Set CLI name (e.g.: "<your-organization>-react-cli").
 
-> `signatureTheme[String]` - Select a predefined theme from the list below.
-
-> ![Gradient Themes](https://camo.githubusercontent.com/18c1d596702848aa1d67e95efd41268b1298f7ae/687474703a2f2f6269742e6c792f3275467967724c)
-
 > `signatureGradient[Array]` - Set your own gradient. See [`gradient-string`](https://github.com/bokub/gradient-string#available-built-in-gradients) API. This option takes precedence over `signatureTheme`.
 > Default:
 >
 > ```js
 > ;['rgb(102, 51, 153)', 'rgb(102, 51, 153)']
 > ```
+
+> `signatureTheme[String]` - Select a predefined theme from the list below.
+
+> ![Gradient Themes](https://camo.githubusercontent.com/18c1d596702848aa1d67e95efd41268b1298f7ae/687474703a2f2f6269742e6c792f3275467967724c)
 
 ## Contributing
 

@@ -1,6 +1,6 @@
 ![React Ryo CLI](https://raw.githubusercontent.com/adi518/react-ryo-cli/master/logo.png)
 
-# What is React Ryo CLI?
+# React Ryo CLI
 
 > Generate a one stop shop CLI for building and testing your React applications.
 
@@ -215,11 +215,6 @@ require('react-ryo-cli').spawnCli()
 > `signature[String]` - Set CLI name (e.g.: "<your-organization>-react-cli").
 
 > `signatureGradient[Array]` - Set your own gradient. See [`gradient-string`](https://github.com/bokub/gradient-string#available-built-in-gradients) API. This option takes precedence over `signatureTheme`.
-> Default:
->
-> ```js
-> ;['rgb(102, 51, 153)', 'rgb(102, 51, 153)']
-> ```
 
 > `signatureTheme[String]` - Select a predefined theme from the list below.
 

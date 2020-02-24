@@ -1,6 +1,6 @@
 ![React Ryo CLI](https://raw.githubusercontent.com/adi518/react-ryo-cli/master/logo.png)
 
-# What is React Ryo CLI? (WIP)
+# What is React Ryo CLI?
 
 > Generate a one stop shop CLI for building and testing your React applications.
 

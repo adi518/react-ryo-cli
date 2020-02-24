@@ -176,7 +176,7 @@ require('react-ryo-cli').spawnCli()
 
 > `withSignature[Bool]` - Toggle CLI signature (Default: `true`).
 
-> `withStyledComponents[Bool]` - Toggle Styled-Components support for Jest (Default: `false`).
+> `withStyledComponents[Bool]` - Toggle [`styled-Components`](https://styled-components.com/) support for Jest (Default: `false`).
 
 > `signatureTheme[String]` - Select a predefined theme from the list below.
 

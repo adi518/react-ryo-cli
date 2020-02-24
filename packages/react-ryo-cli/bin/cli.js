@@ -12,7 +12,8 @@
 require("v8-compile-cache");
 
 const init = require("../cli/init");
-const logSignature = require("../lib/log_signature");
+const { logger } = require("../lib/logger");
+const { logSignature } = require("../lib/signature");
 const updateScripts = require("../cli/update_scripts");
 const { getArgv, getScriptArg } = require("../lib/helpers");
 
@@ -22,8 +23,12 @@ const script = getScriptArg();
 const is = option => option === script;
 
 const main = () => {
-  if (is("init")) init(argv);
-  if (is("update-scripts")) updateScripts(argv);
+  try {
+    if (is("init")) init(argv);
+    if (is("update-scripts")) updateScripts(argv);
+  } catch (err) {
+    logger.error(err);
+  }
   logSignature();
 };
 

@@ -1,6 +1,6 @@
 ![React Ryo CLI](https://raw.githubusercontent.com/adi518/react-ryo-cli/master/logo.png)
 
-# What is React Ryo CLI? (WIP)
+# React Ryo CLI
 
 > Generate a one stop shop CLI for building and testing your React applications.
 
@@ -30,7 +30,7 @@ $ yarn add react-ryo-cli
 
 ## Configuration
 
-Create a `craco.config.js` file at the root of your package and `react-ryo-cli` will pick it up. See Craco docs for its [configuration API](https://github.com/gsoft-inc/craco/blob/master/packages/craco/README.md#configuration-overview). Your configuration will be merged with `react-ryo-cli` default configuration. However, you can choose to opt-out by calling `spawnApi` with `{ noExtend: true }` or by calling your CLI with the `--noExtend` argument.
+Create a `craco.config.js` file at the root of your package and `react-ryo-cli` will pick it up. See Craco docs for its [configuration API](https://github.com/gsoft-inc/craco/blob/master/packages/craco/README.md#configuration-overview). Your configuration will be merged with `react-ryo-cli` default configuration. However, you can choose to opt-out by calling [`spawnApi`](#api) with `{ noExtend: true }` or by calling your CLI with the `--noExtend` argument. See all [arguments](#api).
 
 ## Who Is It For
 
@@ -59,20 +59,18 @@ Combined with [Craco](https://github.com/sharegate/craco), this is what you get.
 - Styled-Components configuration for Jest.
 - Automatic [Lodash](https://www.azavea.com/blog/2019/03/07/lessons-on-tree-shaking-lodash/) tree shaking.
 
-## 3-Way Craco Configuration
+## 3-Way Merge Craco Configuration
 
-You can configure up to three layers of Craco configurations by placing a `craco.config.js` at the root of each project and the package will merge them on top of each other. A CLI built on top of `react-ryo-cli` can choose to opt-put from the default Craco configuration by passing a `noExtend` option to `spawnCli` API. However, the topmost configuration will still merge onto the default configuration provided by the custom CLI. See illustration:
+You can configure up to three layers of Craco configurations by placing a `craco.config.js` at the root of your project and/or CLI package and `react-ryo-cli` will merge them on top of each other. A CLI built with `react-ryo-cli` can choose to opt-put from the default Craco configuration by passing a `noExtend` option to `spawnCli` API. However, the topmost configuration will still merge onto the default configuration provided by the custom CLI. See illustration:
 
 ```diff
-📦 project
-  ┣ 📁 src
-  ┣ 📁 public
-  ┣ 📜 README.md
-  ┣ 📜 yarn.lock
-  ┣ 📜 .gitignore
-  ┣ 📜 package.json
-+ ┣ 📜 craco.config.js
-+ ┗ 📜 allowed-files.json
+ 📦 project
+  ┣ 📂 node_modules
+  ┃ ┣ 📂 react-ryo-cli
++ ┃ ┃ ┗ 📜 craco.config.js
+  ┃ ┗ 📂 <your-cli-package>
++ ┃ ┃ ┗ 📜 craco.config.js
++ ┗ 📜 craco.config.js
 ```
 
 ## Global Imports
@@ -83,17 +81,49 @@ When testing, the following modules are imported automatically, hence you don't 
 /* React, Enzyme.shallow, Enzyme.mount, Enzyme.render */
 ```
 
-## Allowed Files
+## [Allowed Files](#allowed-files)
 
-Circumvent CRA restriction when importing files out of `src`, by defining an `allowed-files.json` file at the root of your project. JSON should be an array of _relative_ paths. See [this](https://stackoverflow.com/questions/44114436/the-create-react-app-imports-restriction-outside-of-src-directory) Stack Overflow page and [this](https://github.com/facebook/create-react-app/issues/834) CRA issue for more details. JSON Example 👉:
+Circumvent CRA restriction when importing files out of `src`, by defining an `allowed-files.json` file at the root of your project. JSON should be an array of _relative_ paths. See [this](https://stackoverflow.com/questions/44114436/the-create-react-app-imports-restriction-outside-of-src-directory) Stack Overflow page and [this](https://github.com/facebook/create-react-app/issues/834) CRA issue for more details. Mind, this is an escape hatch and mostly discouraged, so use with caution.
+
+### How to use
+
+> Assume the following file Structure:
+
+```diff
+ 📦 project
+  ┣ 📂 sub_project
+  ┃ ┗ 📂 src
+  ┃ ┃ ┗ 📂 components
++ ┃ ┃ ┃ ┗ 📜 Foo.js
+  ┣ 📜 allowed-files.json
++ ┗ 📜 README.md
+```
+
+> Setup `allowed-files.json` 👉:
+
+Notice our relative path needs to go back **once** to reach `README.md`:
+
+> JSON Path: `<rootDir>/README.md`
 
 ```json
-["../../../../README.md"]
+["../README.md"]
 ```
+
+> In your app:
+
+Notice we have to go back **three** times to reach `README.md`.
+
+> Module path: `<rootDir>/sub_project/src/components/Foo.js`
+
+```js
+import readme from '../../../README.md'
+```
+
+If all done correctly, you should be able to import `README.md` successfully.
 
 ## Consumer Apps
 
-Swap existing calls to `react-scripts` in the `scripts` section of your `package.json` file to use your CLI. You can also swap them [automatically](#swapping-scripts-automatically).
+Update existing calls to `react-scripts` in the `scripts` section of your `package.json` file to use your CLI. You can also swap them [automatically](#update-scripts-automatically).
 
 ```diff
 /* package.json */
@@ -130,7 +160,7 @@ Out of the box, every `react-scripts` script will work except for `eject`, as ej
 }
 ```
 
-### [Swapping Scripts Automatically](#swapping-scripts-automatically)
+### [Update Scripts Automatically](#update-scripts-automatically)
 
 You can automate this by calling the CLI 🔨:
 
@@ -140,10 +170,10 @@ $ npx react-ryo-cli update-scripts --cli=<your-cli-package>
 
 > Use argument `--extend` to include extra scripts.
 
-### Configuration files placement in file structure with default CRA boilerplate
+### Configuration files placement in file structure (e.g. with default CRA boilerplate)
 
 ```diff
-📦 project
+ 📦 project
   ┣ 📁 src
   ┣ 📁 public
   ┣ 📜 README.md
@@ -154,7 +184,7 @@ $ npx react-ryo-cli update-scripts --cli=<your-cli-package>
 + ┗ 📜 allowed-files.json
 ```
 
-## API
+## [API](#api)
 
 If provided CLI arguments are not enough, you can use the API to further customize your CLI package.
 
@@ -174,22 +204,27 @@ require('react-ryo-cli').spawnCli()
 
 > `outputPath[String]` - Change Webpack output path (Default: `'build'`).
 
+> `withBabelPolyfill[Bool]` - Toggle Babel Polyfill support (Default: `false`). See [`babel-polyfill`](https://babeljs.io/docs/en/babel-polyfill) for details.
+
 > `withEnzyme[Bool]` - Toggle Enzyme support (Default: `false`).
 
 > `withSignature[Bool]` - Toggle CLI signature (Default: `true`).
 
-> `withStyledComponents[Bool]` - Toggle Styled-Components support for Jest (Default: `false`).
+> `withStyledComponents[Bool]` - Toggle [`styled-Components`](https://styled-components.com/) support for Jest (Default: `false`).
+
+> `signature[String]` - Set CLI name (e.g.: "<your-organization>-react-cli").
+
+> `signatureGradient[Array]` - Set your own gradient. See [`gradient-string`](https://github.com/bokub/gradient-string#available-built-in-gradients) API. This option takes precedence over `signatureTheme`.
 
 > `signatureTheme[String]` - Select a predefined theme from the list below.
 
 > ![Gradient Themes](https://camo.githubusercontent.com/18c1d596702848aa1d67e95efd41268b1298f7ae/687474703a2f2f6269742e6c792f3275467967724c)
 
-> `signatureGradient[Array]` - Set your own gradient. See [`gradient-string`](https://github.com/bokub/gradient-string#available-built-in-gradients) API. This option takes precedence over `signatureTheme`.
-> Default:
->
-> ```js
-> ;['rgb(102, 51, 153)', 'rgb(102, 51, 153)']
-> ```
+## Preview
+
+Just a quick preview of what to expect. Excuse my PowerShell. 😄
+
+![Preview](https://raw.githubusercontent.com/adi518/react-ryo-cli/master/preview.gif)
 
 ## Contributing
 

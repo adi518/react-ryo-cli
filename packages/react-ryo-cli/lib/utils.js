@@ -6,7 +6,7 @@ const resolve = filePath => {
     pkg.name === process.env.npm_package_name
       ? "./"
       : `./node_modules/${pkg.name}`;
-  return path.join(basePath, filePath);
+  return path.resolve(basePath, filePath);
 };
 
 module.exports = { resolve };

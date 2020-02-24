@@ -3,7 +3,7 @@ import styled from 'styled-components';
 const Link = styled.a.attrs(() => ({
   rel: 'noopener noreferrer'
 }))`
-  &:not(.button) {
+  &:not(.global-button) {
     color: var(--color-gray);
   }
 `;

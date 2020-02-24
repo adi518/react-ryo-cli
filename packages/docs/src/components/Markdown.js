@@ -80,17 +80,25 @@ export const StyledMarkdown = styled.div`
 
     img {
       width: 100%;
+      display: block;
       max-width: 767.98px;
+      border-radius: 0.5rem;
+      box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.25);
+    }
+
+    img[src$='.gif'] {
+      max-width: 1024px;
     }
   }
 
   code {
+    color: var(--color-gray);
+    word-break: break-all;
     padding-left: 0.5rem;
     padding-right: 0.5rem;
     padding-top: 0.125rem;
-    padding-bottom: 0.125rem;
     border-radius: 0.5rem;
-    color: var(--color-gray);
+    padding-bottom: 0.125rem;
     background-color: var(--color-gray-dark);
   }
 
@@ -103,6 +111,7 @@ export const StyledMarkdown = styled.div`
 
   a {
     code {
+      padding: 0;
       color: unset;
       background-color: unset;
     }
@@ -137,6 +146,7 @@ export const StyledMarkdown = styled.div`
     color: #666666;
     margin-top: 1rem;
     font-size: 0.6rem;
+    font-weight: bold;
     margin-right: 1rem;
     letter-spacing: 0.05rem;
     text-transform: uppercase;
@@ -161,8 +171,17 @@ export const StyledMarkdown = styled.div`
       font-size: 0.6rem;
       color: var(--color-gray);
       letter-spacing: 0.05rem;
+      border-radius: 0.325rem;
       text-transform: uppercase;
       background-color: transparent;
+      transition: background-color var(--common-transition-time),
+        padding var(--common-transition-time);
+
+      &:hover {
+        color: #1d1f21;
+        padding: 0.05rem 1rem;
+        background-color: var(--color-gray);
+      }
     }
   }
 

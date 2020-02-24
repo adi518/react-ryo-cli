@@ -5,12 +5,12 @@ const {
   APP_BUILD_SCRIPTS,
   PACKAGE_BUILD_SCRIPTS,
   DEVELOPMENT_BUILD_SCRIPTS
-} = require("react-ryo-cli");
-const { getLibraryName } = require("react-ryo-cli");
+} = require("../../lib/scripts");
+const { BUILD_DIR } = require("../../lib/constants");
+const { resolveCwd, getLibraryName } = require("../../lib/helpers");
 
 /* eslint-disable no-underscore-dangle */
-const getDefaultOutputPath = ({ cwd = process.cwd(), dir = "build" } = {}) =>
-  path.join(cwd, dir);
+const getDefaultOutputPath = (dir = BUILD_DIR) => resolveCwd(dir);
 
 const BABEL_POLYFILL_PATH = path.join(
   __dirname,
@@ -19,8 +19,9 @@ const BABEL_POLYFILL_PATH = path.join(
 );
 
 const extendWebpackConfig = ({
+  argv,
   script,
-  argv = {},
+  cliOptions,
   pathsSource,
   webpackConfigSource,
   getOutputPath = getDefaultOutputPath
@@ -38,10 +39,12 @@ const extendWebpackConfig = ({
   }
 
   if (APP_BUILD_SCRIPTS.includes(script)) {
-    const outputPath = getOutputPath();
+    const outputPath = getOutputPath(cliOptions.outputPath);
     paths.appBuild = outputPath;
     webpackConfig.output.path = outputPath;
-    webpackConfig.entry.unshift(BABEL_POLYFILL_PATH);
+    if (cliOptions.withBabelPolyfill) {
+      webpackConfig.entry.unshift(BABEL_POLYFILL_PATH);
+    }
   }
 
   // probably not needed anymore as we can delegate

@@ -1,10 +1,7 @@
 const { getArgv } = require("./helpers");
-const logSignature = require("./log_signature");
+const { logSignature, getSignature } = require("./signature");
 
 const { theme, font, full } = getArgv();
+const signature = getSignature(undefined, { font, fullName: full });
 
-logSignature(undefined, {
-  theme,
-  font,
-  fullName: full
-});
+logSignature(signature, { theme });

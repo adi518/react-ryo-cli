@@ -5,7 +5,7 @@ import pkg from '../../package.json';
 
 const GitHubAnchor = props => (
   <SocialIcon {...props}>
-    <a href={pkg.repository.url} className="button">
+    <a href={pkg.repository.url} className="global-button">
       <svg
         focusable="false"
         aria-hidden="true"

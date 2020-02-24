@@ -28,7 +28,7 @@ const GetStartedButton = () => (
   <Scroll.Link
     smooth
     to="Page-Markdown"
-    className="button"
+    className="global-button"
     offset={NAV_STICKY_HEIGHT_NEGATIVE}
   >
     <Button>Get started</Button>

@@ -1,6 +1,6 @@
 {
   "name": "react-ryo-cli",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Generate a one stop shop CLI for building and testing your React applications",
   "author": {
     "name": "Adi Sahar",
@@ -64,7 +64,21 @@
   },
   "devDependencies": {
     "eslint": "^6.8.0",
+    "husky": "3.1.0",
     "npm-watch": "^0.6.0",
+    "prettier": "^1.19.1",
     "slash": "^3.0.0"
+  },
+  "lint-staged": {
+    "*.js": [
+      "prettier --write",
+      "eslint --fix",
+      "git add"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   }
 }

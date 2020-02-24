@@ -2,7 +2,6 @@ const fs = require("fs");
 const { merge } = require("lodash");
 const detectIndent = require("detect-indent");
 
-const { logger } = require("../lib/logger");
 const { SCRIPTS } = require("../lib/scripts");
 const { resolveCwd } = require("../lib/helpers");
 const { PACKAGE_JSON } = require("../lib/constants");
@@ -32,7 +31,7 @@ const MISSING_CLI_ARGUMENT = `You must provide a Cli argument, e.g.: --cli="myCl
 const DEFAULT_JSON_INDENT = 2;
 
 const updateScripts = ({ cli: cliName, extend }) => {
-  if (!cliName) logger.error(MISSING_CLI_ARGUMENT);
+  if (!cliName) throw new Error(MISSING_CLI_ARGUMENT);
   const packageJSONPath = resolveCwd(PACKAGE_JSON);
   const packageJSONString = fs.readFileSync(packageJSONPath, "utf-8");
   const packageJSONIndent =

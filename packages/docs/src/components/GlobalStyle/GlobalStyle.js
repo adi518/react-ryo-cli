@@ -5,6 +5,7 @@ import './GlobalStyle.scss';
 const GlobalStyle = styled.createGlobalStyle`
   html {
     box-sizing: border-box;
+    scroll-behavior: smooth;
   }
 
   *,
@@ -30,11 +31,12 @@ const GlobalStyle = styled.createGlobalStyle`
       monospace;
   }
 
-  a:not(.button) {
+  a:not(.global-button) {
     text-decoration: none;
     color: var(--color-link);
     transition: color var(--common-transition-time),
-      padding var(--common-transition-time);
+      padding var(--common-transition-time),
+      opacity var(--common-transition-time);
 
     &:hover {
       padding-left: 0.2rem;

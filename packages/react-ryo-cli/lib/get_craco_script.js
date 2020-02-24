@@ -1,8 +1,7 @@
 const { SCRIPTS } = require("./scripts");
-const { BUILD_DIRNAME } = require("./constants");
 const { getCracoCliCommandCreator } = require("./helpers");
 
-const getCracoScript = script => {
+const getCracoScript = (script, { outputPath } = {}) => {
   const createCracoCliCommand = getCracoCliCommandCreator();
   switch (script) {
     // notice `SCRIPTS.BUILD` is defined
@@ -16,7 +15,7 @@ const getCracoScript = script => {
     case SCRIPTS.BUILD_STATS:
       return [
         "./node_modules/source-map-explorer/dist/cli.js",
-        `${BUILD_DIRNAME}/static/js/*.js`
+        `${outputPath}/static/js/*.js`
       ];
     case SCRIPTS.TEST:
     case SCRIPTS.TEST_WATCH:

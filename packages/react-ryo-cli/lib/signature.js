@@ -3,30 +3,36 @@ const pkg = require("../package.json");
 const gradient = require("gradient-string");
 
 // https://www.rapidtables.com/code/text/ascii/ascii-space.html
-const logSignature = (
+const getSignature = (
   signature = pkg.name,
-  { theme = "instagram", color, font = "Small Slant", fullName } = {}
+  { font = "Small Slant", fullName } = {}
 ) => {
   if (signature === pkg.name)
     signature = fullName ? signature : signature.replace("react-", "");
+  return figlet.textSync(`\x20${signature}`, {
+    font,
+    horizontalLayout: "default",
+    verticalLayout: "default"
+  });
+};
+
+const logSignature = (
+  signature,
+  { theme = "instagram", gradient: ownGradient } = {}
+) => {
   /* eslint-disable no-console */
   if (theme && !gradient[theme])
     return console.error(
       `No such theme as "${theme}". See https://www.npmjs.com/package/gradient-string#available-built-in-gradients for a list of available themes.`
     );
-  const ascii = figlet.textSync(`\x20${signature}`, {
-    font,
-    horizontalLayout: "default",
-    verticalLayout: "default"
-  });
-  if (theme) {
-    console.log(gradient[theme](ascii));
-  } else if (color) {
-    console.log(gradient(color)(ascii));
+  if (ownGradient) {
+    console.log(gradient(ownGradient)(signature));
+  } else if (theme) {
+    console.log(gradient[theme](signature));
   } else {
-    console.log(ascii);
+    console.log(signature);
   }
   console.log("\n");
 };
 
-module.exports = logSignature;
+module.exports = { logSignature, getSignature };

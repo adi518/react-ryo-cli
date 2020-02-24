@@ -11,7 +11,7 @@ const StyledGitHubButton = styled(Button)`
 `;
 
 const GitHubButton = () => (
-  <a href={pkg.repository.url} className="button">
+  <a href={pkg.repository.url} className="global-button">
     <StyledGitHubButton>GitHub</StyledGitHubButton>
   </a>
 );

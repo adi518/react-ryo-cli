@@ -2,12 +2,13 @@ const { logger } = require("./logger");
 const { resolve, resolveCwd, resolveExists } = require("./helpers");
 
 const {
+  CRACO_CONFIG_PATH,
   CRACO_CONFIG_FILENAME,
-  ALLOWED_FILES_FILENAME,
-  DEFAULT_CRACO_CONFIG_PATH
+  ALLOWED_FILES_FILENAME
 } = require("./constants");
 
-const onExist = filename => logger.success(`✅, Found ${filename}.`);
+const onExist = (filePath, filename, dirname) =>
+  logger.success(`📦 Found ${filename} in ${dirname}.`);
 
 const resolvePaths = (paths = []) =>
   paths.map(([filePath, options]) => resolveExists(filePath, options));
@@ -21,7 +22,7 @@ const resolveConfigFilePath = dirname => {
   const [cracoConfigCwd, cracoConfigDir, defaultCracoConfig] = resolvePaths([
     [resolveCwd(CRACO_CONFIG_FILENAME), { onExist }],
     [resolve(CRACO_CONFIG_FILENAME, dirname), { onExist }],
-    [DEFAULT_CRACO_CONFIG_PATH]
+    [CRACO_CONFIG_PATH]
   ]);
   if (cracoConfigCwd) return cracoConfigCwd;
   if (cracoConfigDir) return cracoConfigDir;

@@ -1,6 +1,8 @@
 import React from 'react';
+
 import Root from 'routes/Root';
 import Head from 'components/Head';
+import ScrollToTop from 'components/ScrollToTop';
 
 import GlobalStyle from 'components/GlobalStyle/GlobalStyle';
 
@@ -12,6 +14,7 @@ function App() {
       <div className="App">
         <Root />
       </div>
+      <ScrollToTop />
     </React.Fragment>
   );
 }

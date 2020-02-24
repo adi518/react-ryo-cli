@@ -8,7 +8,7 @@ const { logger } = require("./logger");
 const { SCRIPTS, BUILD_SCRIPTS } = require("./scripts");
 const {
   CRACO_BIN_PATH,
-  DEFAULT_CRACO_CONFIG_PATH,
+  CRACO_CONFIG_PATH,
   REACT_SCRIPTS_PRODUCTION_BUILD_MESSAGE
 } = require("./constants");
 
@@ -21,20 +21,24 @@ const resolveExists = (
   filePath,
   { onExist = () => {}, onMiss = () => {} } = {}
 ) => {
+  const filename = path.basename(filePath);
+  const dirname = path.dirname(filePath);
   try {
     if (fs.existsSync(filePath)) {
-      onExist(filePath);
+      onExist(filePath, filename, dirname);
       return filePath;
     }
   } catch (err) {
-    onMiss(filePath);
+    onMiss(filePath, filename, dirname);
     if (err) logger.error(err);
     return null;
   }
 };
 
-const safeRequire = (modulePath, fallback) =>
+const safeRequireOr = (modulePath, fallback) =>
   modulePath ? require(modulePath) : fallback;
+
+const getEnv = () => process.env;
 
 const getArgv = (argv = process.argv) => minimist(argv.slice(2));
 
@@ -54,7 +58,7 @@ const getCracoCliCommandCreator = configPath => args =>
   createCliCommand({
     args,
     prefixArgs: CRACO_BIN_PATH,
-    suffixArgs: ["--config", configPath || DEFAULT_CRACO_CONFIG_PATH]
+    suffixArgs: ["--config", configPath || CRACO_CONFIG_PATH]
   });
 
 const shouldReplaceProductionBuildMessage = (script, message) =>
@@ -79,10 +83,11 @@ const mergeDeep = sources =>
 
 module.exports = {
   resolve,
+  getEnv,
   getArgv,
   mergeDeep,
   resolveCwd,
-  safeRequire,
+  safeRequireOr,
   getScriptArg,
   resolveExists,
   isBuildScript,

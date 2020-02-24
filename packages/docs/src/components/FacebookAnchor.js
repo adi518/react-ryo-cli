@@ -10,7 +10,7 @@ const FacebookLogo = () => (
 
 const FacebookAnchor = props => (
   <SocialIcon {...props}>
-    <a href="https://www.facebook.com/snippetsJS" className="button">
+    <a href="https://www.facebook.com/snippetsJS" className="global-button">
       <FacebookLogo />
     </a>
   </SocialIcon>

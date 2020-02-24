@@ -30,7 +30,7 @@ $ yarn add react-ryo-cli
 
 ## Configuration
 
-Create a `craco.config.js` file at the root of your package and `react-ryo-cli` will pick it up. See Craco docs for its [configuration API](https://github.com/gsoft-inc/craco/blob/master/packages/craco/README.md#configuration-overview). Your configuration will be merged with `react-ryo-cli` default configuration. However, you can choose to opt-out by calling `spawnApi` with `{ noExtend: true }` or by calling your CLI with the `--noExtend` argument.
+Create a `craco.config.js` file at the root of your package and `react-ryo-cli` will pick it up. See Craco docs for its [configuration API](https://github.com/gsoft-inc/craco/blob/master/packages/craco/README.md#configuration-overview). Your configuration will be merged with `react-ryo-cli` default configuration. However, you can choose to opt-out by calling [`spawnApi`](#api) with `{ noExtend: true }` or by calling your CLI with the `--noExtend` argument. See all [arguments](#api).
 
 ## Who Is It For
 
@@ -99,12 +99,13 @@ Circumvent CRA restriction when importing files out of `src`, by defining an `al
 + ┗ 📜 README.md
 ```
 
-> Setup `allowed-files.json` example 👉:
+> Setup `allowed-files.json` 👉:
 
 Notice our relative path needs to go back **once** to reach `README.md`:
 
+> JSON Path: `<rootDir>/README.md`
+
 ```json
-// <rootDir>/README.md
 ["../README.md"]
 ```
 
@@ -112,9 +113,9 @@ Notice our relative path needs to go back **once** to reach `README.md`:
 
 Notice we have to go back **three** times to reach `README.md`.
 
-```js
-// <rootDir>/sub_project/src/components/Foo.js
+> Module path: `<rootDir>/sub_project/src/components/Foo.js`
 
+```js
 import readme from '../../../README.md'
 ```
 
@@ -210,6 +211,8 @@ require('react-ryo-cli').spawnCli()
 > `withSignature[Bool]` - Toggle CLI signature (Default: `true`).
 
 > `withStyledComponents[Bool]` - Toggle [`styled-Components`](https://styled-components.com/) support for Jest (Default: `false`).
+
+> `signature[String]` - Set CLI name (e.g.: "<your-organization>-react-cli").
 
 > `signatureTheme[String]` - Select a predefined theme from the list below.
 

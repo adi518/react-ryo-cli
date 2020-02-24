@@ -11,7 +11,7 @@ React Ryo CLI is a roll-your-own version of [CRA](https://github.com/facebook/cr
 Execute the following command to create a boilerplate for your own CLI package.
 
 ```console
-npx react-ryo-cli init
+$ npx react-ryo-cli init
 ```
 
 Or add to an existing package:
@@ -19,13 +19,13 @@ Or add to an existing package:
 ### Using NPM:
 
 ```console
-npm install react-ryo-cli
+$ npm install react-ryo-cli
 ```
 
 ### Using Yarn:
 
 ```console
-yarn add react-ryo-cli
+$ yarn add react-ryo-cli
 ```
 
 ## Configuration
@@ -34,7 +34,7 @@ Create a `craco.config.js` file at the root of your package and `react-ryo-cli` 
 
 ## Who Is It For
 
-This package is mainly targeted at infrastructure teams, UI architects/leads and anyone who maintains several React applications across their organization.
+This package is mainly targeted at UI infrastructure teams, architects, leads and anyone who maintains several React applications across their organization.
 
 ## Why
 
@@ -58,6 +58,20 @@ Combined with [Craco](https://github.com/sharegate/craco), this is what you get.
 - Setups Jest and Enzyme with real-world configurations, so you can focus on writing tests only.
 - Styled-Components configuration for Jest.
 - Automatic [Lodash](https://www.azavea.com/blog/2019/03/07/lessons-on-tree-shaking-lodash/) tree shaking.
+
+## 3-Way Merge Craco Configuration
+
+You can configure up to three layers of Craco configurations by placing a `craco.config.js` at the root of each project and the package will merge them on top of each other. A CLI built on top of `react-ryo-cli` can choose to opt-put from the default Craco configuration by passing a `noExtend` option to `spawnCli` API. However, the topmost configuration will still merge onto the default configuration provided by the custom CLI. See illustration:
+
+```diff
+📦 project
+  ┣ 📂 node_modules
+  ┃ ┣ 📂 react-ryo-cli
++ ┃ ┃ ┗ 📜 craco.config.js
+  ┃ ┗ 📂 <your-cli-package>
++ ┃ ┃ ┗ 📜 craco.config.js
++ ┗ 📜 craco.config.js
+```
 
 ## Global Imports
 
@@ -119,7 +133,7 @@ Out of the box, every `react-scripts` script will work except for `eject`, as ej
 You can automate this by calling the CLI 🔨:
 
 ```console
-npx react-ryo-cli update-scripts --cli=<your-cli-package>
+$ npx react-ryo-cli update-scripts --cli=<your-cli-package>
 ```
 
 > Use argument `--extend` to include extra scripts.
@@ -149,7 +163,7 @@ If provided CLI arguments are not enough, you can use the API to further customi
 ```js
 #!/usr/bin/env node
 
-require("react-ryo-cli").spawnCli();
+require('react-ryo-cli').spawnCli()
 ```
 
 ### _spawnCli Options_
@@ -172,7 +186,7 @@ require("react-ryo-cli").spawnCli();
 > Default:
 >
 > ```js
-> ["rgb(102, 51, 153)", "rgb(102, 51, 153)"];
+> ;['rgb(102, 51, 153)', 'rgb(102, 51, 153)']
 > ```
 
 ## Contributing

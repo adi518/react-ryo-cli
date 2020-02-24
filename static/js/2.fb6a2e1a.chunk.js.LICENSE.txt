@@ -18,6 +18,13 @@ object-assign
  */
 
 /*!
+ * clipboard.js v2.0.4
+ * https://zenorocha.github.io/clipboard.js
+ * 
+ * Licensed MIT © Zeno Rocha
+ */
+
+/*!
  * github-buttons v2.7.0
  * (c) 2020 なつき
  * @license BSD-2-Clause

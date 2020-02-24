@@ -61,7 +61,7 @@ Combined with [Craco](https://github.com/sharegate/craco), this is what you get.
 
 ## 3-Way Merge Craco Configuration
 
-You can configure up to three layers of Craco configurations by placing a `craco.config.js` at the root of each project and `react-ryo-cli` will merge them on top of each other. A CLI built with `react-ryo-cli` can choose to opt-put from the default Craco configuration by passing a `noExtend` option to `spawnCli` API. However, the topmost configuration will still merge onto the default configuration provided by the custom CLI. See illustration:
+You can configure up to three layers of Craco configurations by placing a `craco.config.js` at the root of your project and/or CLI package and `react-ryo-cli` will merge them on top of each other. A CLI built with `react-ryo-cli` can choose to opt-put from the default Craco configuration by passing a `noExtend` option to `spawnCli` API. However, the topmost configuration will still merge onto the default configuration provided by the custom CLI. See illustration:
 
 ```diff
 📦 project
@@ -138,7 +138,7 @@ $ npx react-ryo-cli update-scripts --cli=<your-cli-package>
 
 > Use argument `--extend` to include extra scripts.
 
-### Configuration files placement in file structure with default CRA boilerplate
+### Configuration files placement in file structure (e.g. with default CRA boilerplate)
 
 ```diff
 📦 project

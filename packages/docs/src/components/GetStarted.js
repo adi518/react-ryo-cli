@@ -19,7 +19,7 @@ const Buttons = styled.div`
   grid-gap: 1rem;
   grid-auto-flow: column;
 
-  @media (max-width: 425px) {
+  @media (max-width: 575.98px) {
     grid-gap: 0;
   }
 `;

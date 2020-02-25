@@ -38,6 +38,11 @@ export const StyledMarkdown = styled.div`
     margin-top: 1.5rem;
     border-radius: 0.5rem;
     box-shadow: 0 0 1rem rgba(0, 0, 0, 0.25);
+
+    @media (max-width: 575.98px) {
+      padding-top: 2em;
+      padding-bottom: 2em;
+    }
   }
 
   code[class*='language-'],
@@ -93,7 +98,7 @@ export const StyledMarkdown = styled.div`
 
   code {
     color: var(--color-gray);
-    word-break: break-all;
+    word-break: break-word;
     padding-left: 0.5rem;
     padding-right: 0.5rem;
     padding-top: 0.125rem;

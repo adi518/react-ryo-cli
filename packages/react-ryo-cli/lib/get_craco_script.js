@@ -14,7 +14,7 @@ const getCracoScript = (script, { outputPath } = {}) => {
       return createCracoCliCommand(SCRIPTS.BUILD);
     case SCRIPTS.BUILD_STATS:
       return [
-        "./node_modules/source-map-explorer/dist/cli.js",
+        require.resolve("source-map-explorer/dist/cli.js"),
         `${outputPath}/static/js/*.js`
       ];
     case SCRIPTS.TEST:

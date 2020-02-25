@@ -9,15 +9,7 @@ const { PUBLIC_URL } = process.env;
 const PACKAGE_NAME = pkg.name.split('-').join(' ');
 const TITLE = capitalize.words(`${PACKAGE_NAME} ${docsPkg.name}`);
 
-// https://create-react-app.dev/docs/using-the-public-folder/#changing-the-html
-const Head = ({
-  title = TITLE,
-  ogType = 'website',
-  themeColor = '#040404',
-  ogImage = 'og-image.png',
-  ogImageWidth = '1200',
-  ogImageHeight = '630'
-}) => (
+const Head = ({ title = TITLE, themeColor = '#040404' }) => (
   <Helmet>
     <title>{title}</title>
     <meta name="theme-color" content={themeColor} />

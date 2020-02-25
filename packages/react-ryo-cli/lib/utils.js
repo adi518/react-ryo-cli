@@ -9,4 +9,8 @@ const resolve = filePath => {
   return path.resolve(basePath, filePath);
 };
 
-module.exports = { resolve };
+const throwError = err => {
+  throw new Error(err);
+};
+
+module.exports = { resolve, throwError };

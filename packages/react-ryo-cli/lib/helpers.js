@@ -74,7 +74,7 @@ const getDeferredPromise = () => {
   return { ...deferred, promise };
 };
 
-const mergeDeep = sources =>
+const mergeDeep = (...sources) =>
   mergeWith(...sources, (objValue, srcValue) => {
     if (Array.isArray(objValue)) {
       return objValue.concat(srcValue);

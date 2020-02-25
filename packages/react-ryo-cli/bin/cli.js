@@ -23,12 +23,8 @@ const script = getScriptArg();
 const is = option => option === script;
 
 const main = () => {
-  try {
-    if (is("init")) init(argv);
-    if (is("update-scripts")) updateScripts(argv);
-  } catch (err) {
-    logger.error(err);
-  }
+  if (is("init")) init(argv).catch(logger.error);
+  if (is("update-scripts")) updateScripts(argv).catch(logger.error);
   logSignature();
 };
 

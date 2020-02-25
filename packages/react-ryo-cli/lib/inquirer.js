@@ -19,4 +19,17 @@ const confirmDirectoryNotEmptyChoice = () =>
     }
   ]);
 
-module.exports = { choosePackageManager, confirmDirectoryNotEmptyChoice };
+const confirmUpdateScripts = () =>
+  inquirer.prompt([
+    {
+      type: "confirm",
+      name: "confirm",
+      message: "Update scripts in package.json?"
+    }
+  ]);
+
+module.exports = {
+  confirmUpdateScripts,
+  choosePackageManager,
+  confirmDirectoryNotEmptyChoice
+};

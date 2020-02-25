@@ -5,14 +5,13 @@
   "license": "MIT",
   "bin": "index.js",
   "scripts": {
-    "foo": "foo",
-    "build": "myCli build",
     "start": "myCli start",
+    "build": "myCli build",
+    "test": "myCli test",
     "build:development": "myCli build:development",
     "build:stats": "myCli build:stats",
     "inspect": "myCli build --inspect",
     "inspect:output": "myCli build --inspect > output.json",
-    "test": "myCli test",
     "test:production": "myCli test:production",
     "test:update": "myCli test:update",
     "test:watch": "myCli test:watch"

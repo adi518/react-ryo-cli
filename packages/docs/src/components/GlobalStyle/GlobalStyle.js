@@ -5,7 +5,6 @@ import './GlobalStyle.scss';
 const GlobalStyle = styled.createGlobalStyle`
   html {
     box-sizing: border-box;
-    scroll-behavior: smooth;
   }
 
   *,

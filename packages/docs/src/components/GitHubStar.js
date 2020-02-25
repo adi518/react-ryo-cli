@@ -16,7 +16,7 @@ const StyledGitHubStar = styled.div`
     opacity: 1;
   }
 
-  // @media (max-width: 425px) {
+  // @media (max-width: 575.98px) {
   //   position: absolute;
   //   margin-top: 0;
   //   left: 1rem;

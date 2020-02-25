@@ -2,10 +2,11 @@ const fs = require("fs");
 
 const {
   choosePackageManager,
+  confirmUpdateScripts,
   confirmDirectoryNotEmptyChoice
 } = require("./inquirer");
 
-const { logger } = require("./helpers");
+const { throwError } = require("./utils");
 
 const JSONStringifyPretty = (json, indent = 2) =>
   JSON.stringify(json, null, indent);
@@ -17,21 +18,25 @@ const copyFile = (sourcePath, targetPath) =>
   fs.createReadStream(sourcePath).pipe(fs.createWriteStream(targetPath));
 
 const getPackageManagerChoice = async () => {
-  const { packageManager } = await choosePackageManager().catch(logger.error);
+  const { packageManager } = await choosePackageManager().catch(throwError);
   return packageManager;
 };
 
 const getConfirmDirectoryNotEmptyChoice = async () => {
-  const { confirm } = await confirmDirectoryNotEmptyChoice().catch(
-    logger.error
-  );
+  const { confirm } = await confirmDirectoryNotEmptyChoice().catch(throwError);
+  return confirm;
+};
+
+const getConfirmUpdateScripts = async () => {
+  const { confirm } = await confirmUpdateScripts().catch(throwError);
   return confirm;
 };
 
 module.exports = {
   copyFile,
   JSONStringifyPretty,
-  getPackageManagerChoice,
   getPackageManagerCommand,
+  getPackageManagerChoice,
+  getConfirmUpdateScripts,
   getConfirmDirectoryNotEmptyChoice
 };

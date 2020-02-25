@@ -5,7 +5,7 @@ import Button from 'components/Button';
 import pkg from '../../package.json';
 
 const StyledGitHubButton = styled(Button)`
-  @media (max-width: 425px) {
+  @media (max-width: 575.98px) {
     display: none;
   }
 `;

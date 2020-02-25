@@ -220,6 +220,12 @@ require('react-ryo-cli').spawnCli()
 
 > ![Gradient Themes](https://camo.githubusercontent.com/18c1d596702848aa1d67e95efd41268b1298f7ae/687474703a2f2f6269742e6c792f3275467967724c)
 
+## Preview
+
+Just a quick preview of what to expect.
+
+![Preview](https://raw.githubusercontent.com/adi518/react-ryo-cli/master/preview.gif)
+
 ## Contributing
 
 Feel free to submit issues and pull requests. Search existing issues before starting a new one. 🙌

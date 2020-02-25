@@ -222,7 +222,7 @@ require('react-ryo-cli').spawnCli()
 
 ## Preview
 
-Just a quick preview of what to expect. Excuse my Powershell. 😄
+Just a quick preview of what to expect. Excuse my PowerShell. 😄
 
 ![Preview](https://raw.githubusercontent.com/adi518/react-ryo-cli/master/preview.gif)
 

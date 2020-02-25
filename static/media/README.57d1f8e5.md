@@ -230,10 +230,6 @@ Just a quick preview of what to expect. Excuse my PowerShell. 😄
 
 Feel free to submit issues and pull requests. Search existing issues before starting a new one. 🙌
 
-## Versioning
-
-[SemVer](http://semver.org). See [versions available](https://github.com/adi518/react-ryo-cli/releases).
-
 ## License
 
 [MIT](https://github.com/adi518/react-ryo-cli/blob/master/LICENSE)

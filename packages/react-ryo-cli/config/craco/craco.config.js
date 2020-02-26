@@ -6,19 +6,26 @@
 const path = require("path");
 
 const { getArgv, getScriptArg, safeRequireOr } = require("../../lib/helpers");
+const {
+  resolveAllowedFilesPath,
+  resolveCracoConfigFilePath
+} = require("../../lib/resolve");
 
-const configPath = process.env.REACT_RYO_CLI_CONFIG_PATH;
-const allowedFilesPath = process.env.REACT_RYO_CLI_ALLOWED_FILES_PATH;
+const cliOptionsJSON = process.env.REACT_RYO_CLI_OPTIONS;
+const consumerPath = process.env.REACT_RYO_CLI_CONSUMER_PATH;
+const endConsumerPath = process.env.REACT_RYO_CLI_END_CONSUMER_PATH; // eslint-disable-line
+
+const cliOptions = JSON.parse(cliOptionsJSON);
+const allowedFilesPath = resolveAllowedFilesPath(consumerPath);
+const consumerConfigPath = resolveCracoConfigFilePath(consumerPath);
 
 const argv = getArgv();
 const script = getScriptArg(argv);
-const cwdConfig = safeRequireOr(configPath, {});
+const cwdConfig = safeRequireOr(consumerConfigPath, {});
 const allowedFiles = safeRequireOr(allowedFilesPath, []);
 const allowedFilesDirname = allowedFilesPath && path.dirname(allowedFilesPath);
 
 const { getDefaultCracoConfig } = require("./craco.default.config");
-
-const cliOptions = JSON.parse(process.env.REACT_RYO_CLI_OPTIONS);
 
 const getCracoConfig = () => {
   if (cliOptions.noExtend) return cwdConfig;

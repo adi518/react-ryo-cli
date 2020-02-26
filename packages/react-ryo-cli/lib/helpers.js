@@ -43,7 +43,7 @@ const getEnv = () => process.env;
 const getArgv = (argv = process.argv) => minimist(argv.slice(2));
 
 const getParentArgv = () =>
-  minimist(JSON.parse(process.env.PARENT_ARGV).slice(2));
+  minimist(JSON.parse(process.env.REACT_RYO_CLI_PARENT_ARGV).slice(2));
 
 const getScriptArg = (argv = getArgv()) => argv._[0];
 

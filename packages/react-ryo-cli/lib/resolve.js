@@ -18,10 +18,10 @@ const resolvePaths = (paths = []) =>
 // Cli - Custom Cli configuration file, e.g.: `react-scripts-custom`.
 // Default - Default configuration file, e.g.: `react-ryo-cli`.
 
-const resolveConfigFilePath = dirname => {
+const resolveCracoConfigFilePath = cliConsumerPath => {
   const [cracoConfigCwd, cracoConfigDir, defaultCracoConfig] = resolvePaths([
     [resolveCwd(CRACO_CONFIG_FILENAME), { onExist }],
-    [resolve(CRACO_CONFIG_FILENAME, dirname), { onExist }],
+    [resolve(CRACO_CONFIG_FILENAME, cliConsumerPath), { onExist }],
     [CRACO_CONFIG_PATH]
   ]);
   if (cracoConfigCwd) return cracoConfigCwd;
@@ -38,4 +38,4 @@ const resolveAllowedFilesPath = () => {
   return null;
 };
 
-module.exports = { resolveConfigFilePath, resolveAllowedFilesPath };
+module.exports = { resolveCracoConfigFilePath, resolveAllowedFilesPath };

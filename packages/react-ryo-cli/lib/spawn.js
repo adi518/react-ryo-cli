@@ -3,7 +3,6 @@ const minimist = require("minimist");
 
 const { logger } = require("./logger");
 const { shouldReplaceProductionBuildMessage } = require("./helpers");
-const { resolveConfigFilePath, resolveAllowedFilesPath } = require("./resolve");
 
 const pkg = require("../package.json");
 const preflight = require("./preflight");
@@ -16,7 +15,6 @@ const {
 } = require("./constants");
 
 const spawnCli = ({
-  signature = pkg.name,
   signatureTheme,
   signatureGradient,
   noExtend = false,
@@ -24,7 +22,8 @@ const spawnCli = ({
   withSignature = true,
   withBabelPolyfill = false,
   withStyledComponents = true,
-  outputPath = DEFAULT_BUILD_DIRNAME
+  outputPath = DEFAULT_BUILD_DIRNAME,
+  signature: signatureOption = pkg.name
 } = {}) => {
   const [, bin, ...argv] = process.argv;
   const [script, ...restArgs] = minimist(argv)._;
@@ -43,35 +42,26 @@ const spawnCli = ({
   const cracoScript = getCracoScript(script, { outputPath });
   const spawnArgs = [...cracoScript, ...restArgs];
 
-  // cwd is custom cli consumer (docs), which initiates
-  // custom cli dependency binary (react-scripts-custom)
-  // which uses the base cli (react-ryo-cli) API.
-
-  console.log(process.cwd());
-  process.exit();
-  const endConsumerDirname = process.cwd();
-  const cliConsumerDirname = path.dirname(bin);
-  const configPath = resolveConfigFilePath(cliConsumerDirname);
-  const allowedFilesPath = resolveAllowedFilesPath(cliConsumerDirname);
+  // quick paths reference, consumer to product:
+  // `process.cwd()` = end consumer (`docs`)
+  // `path.dirname(bin)` = consumer (`react-scripts-custom`)
+  // `__dirname` = cli (`react-ryo-cli`)
 
   // https://stackoverflow.com/a/14231570/4106263
   const child = spawnChild("node", spawnArgs, {
     env: {
       ...process.env,
-      // we need a reference to parent `argv`
-      // to be able to access trailing arguments.
-      // https://stackoverflow.com/questions/50454341/why-json-stringifyproduction
-      PARENT_ARGV: JSON.stringify(process.argv),
       // use `FORCE_COLOR` to retain child output colors.
       // https://stackoverflow.com/a/42839682/4106263
       FORCE_COLOR: true,
-      REACT_RYO_CLI_CONFIG_PATH: configPath,
-      REACT_RYO_CLI_CONSUMER_DIRNAME: cliConsumerDirname,
-      REACT_RYO_CLI_END_CONSUMER_DIRNAME: endConsumerDirname,
-      REACT_RYO_CLI_ALLOWED_FILES_PATH: allowedFilesPath,
+      // we need a reference to parent `argv`
+      // to be able to access trailing arguments.
+      // https://stackoverflow.com/questions/50454341/why-json-stringifyproduction
+      REACT_RYO_CLI_PARENT_ARGV: JSON.stringify(process.argv),
+      REACT_RYO_CLI_CONSUMER_PATH: path.dirname(bin),
+      REACT_RYO_CLI_END_CONSUMER_PATH: process.cwd(),
       REACT_RYO_CLI_OPTIONS: JSON.stringify({
         noExtend,
-        signature,
         outputPath,
         withEnzyme,
         withBabelPolyfill,
@@ -88,7 +78,8 @@ const spawnCli = ({
     onClose: code => {
       if (code !== 0) logger.log(code);
       if (withSignature && !restArgs.inspect) {
-        logSignature(getSignature(signature), {
+        const signature = signatureOption;
+        logSignature(signature, {
           theme: signatureTheme,
           gradient: signatureGradient
         });

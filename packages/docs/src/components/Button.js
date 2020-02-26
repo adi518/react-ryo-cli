@@ -6,19 +6,19 @@ const Button = styled.button`
   font-size: 1.25rem;
   border-radius: 2rem;
   padding: 0.5rem 1.5rem;
-  color: var(--color-gray);
   background-color: transparent;
   font-family: var(--font-family);
-  border: 0.125rem solid var(--color-gray);
+  color: ${({ theme }) => theme.button.color};
   transition: background-color var(--common-transition-time);
+  border: 0.125rem solid ${({ theme }) => theme.button.borderColor};
 
   &:focus {
     box-shadow: 0 0 0.25rem;
   }
 
   &:hover {
-    color: var(--color-gray-dark);
-    background-color: var(--color-gray);
+    color: ${({ theme }) => theme.button.hoverColor};
+    background-color: ${({ theme }) => theme.button.hoverBackgroundColor};
   }
 `;
 

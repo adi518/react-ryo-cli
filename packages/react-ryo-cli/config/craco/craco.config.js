@@ -7,15 +7,16 @@ const path = require("path");
 
 const { getArgv, getScriptArg, safeRequireOr } = require("../../lib/helpers");
 
+const configPath = process.env.REACT_RYO_CLI_CONFIG_PATH;
+const allowedFilesPath = process.env.REACT_RYO_CLI_ALLOWED_FILES_PATH;
+
 const argv = getArgv();
 const script = getScriptArg(argv);
-const cwdConfig = safeRequireOr(process.env.CONFIG_PATH, {});
-const allowedFiles = safeRequireOr(process.env.ALLOWED_FILES_PATH, []);
-const allowedFilesDirname =
-  process.env.ALLOWED_FILES_PATH &&
-  path.dirname(process.env.ALLOWED_FILES_PATH);
+const cwdConfig = safeRequireOr(configPath, {});
+const allowedFiles = safeRequireOr(allowedFilesPath, []);
+const allowedFilesDirname = allowedFilesPath && path.dirname(allowedFilesPath);
 
-const { getDefaultCracoConfig } = require("./default-craco.config");
+const { getDefaultCracoConfig } = require("./craco.default.config");
 
 const cliOptions = JSON.parse(process.env.REACT_RYO_CLI_OPTIONS);
 

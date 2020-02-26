@@ -2,18 +2,18 @@ const fs = require("fs");
 const detectIndent = require("detect-indent");
 const { flow, entries, filter, sortBy, merge } = require("lodash/fp");
 
-const { SCRIPTS } = require("../lib/scripts");
-const { throwError } = require("../lib/utils");
-const { resolveCwd } = require("../lib/helpers");
-const { PACKAGE_JSON } = require("../lib/constants");
+const { SCRIPTS } = require("../../lib/scripts");
+const { throwError } = require("../../lib/utils");
+const { resolveCwd } = require("../../lib/helpers");
+const { PACKAGE_JSON } = require("../../lib/constants");
 
 const {
   JSONStringifyPretty,
   getConfirmUpdateScripts
-} = require("../lib/cli_helpers");
+} = require("../cli_helpers");
 
-const template = require("../templates/scripts.template");
-const extendedTemplate = require("../templates/scripts.extended.template");
+const template = require("../../templates/scripts.template");
+const extendedTemplate = require("../../templates/scripts.extended.template");
 
 const getScripts = (prefix, extend) => {
   // object order is not guaranteed, so

@@ -16,8 +16,8 @@ const StyledHeroPage = styled.div.attrs({ className: 'animated fadeIn' })`
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  color: var(--color-foreground);
-  background-color: var(--color-background-hero);
+  color: var(--color-gray);
+  background-color: ${({ theme }) => theme.hero.backgroundColor};
 `;
 
 const HeroPage = () => (

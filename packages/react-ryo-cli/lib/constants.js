@@ -1,5 +1,7 @@
 const path = require("path");
 
+const PACKAGE_MANAGERS = { NPM: "npm", YARN: "yarn" };
+
 const DEFAULT_BUILD_DIRNAME = "build";
 const PACKAGE_JSON = "package.json";
 const ALLOWED_FILES_FILENAME = "allowed-files.json";
@@ -19,6 +21,7 @@ const CRACO_CONFIG_PATH = path.resolve(
 
 module.exports = {
   PACKAGE_JSON,
+  PACKAGE_MANAGERS,
   DEFAULT_BUILD_DIRNAME,
   CRACO_BIN_PATH,
   CRACO_CONFIG_PATH,

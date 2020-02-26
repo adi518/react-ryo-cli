@@ -22,7 +22,7 @@ const StyledLogoSvg = styled.svg.attrs({
   circle,
   rect,
   polygon {
-    stroke: var(--color-purple);
+    stroke: ${({ theme }) => theme.logo.color};
     stroke-width: 2;
     stroke-opacity: 1;
     fill-opacity: 1;
@@ -31,7 +31,7 @@ const StyledLogoSvg = styled.svg.attrs({
   }
 
   text {
-    fill: var(--color-purple);
+    fill: ${({ theme }) => theme.logo.color};
   }
 
   .broken {

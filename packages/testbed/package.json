@@ -15,5 +15,11 @@
     "test:production": "myCli test:production",
     "test:update": "myCli test:update",
     "test:watch": "myCli test:watch"
+  },
+  "dependencies": {
+    "@craco/craco": "^5.6.3"
+  },
+  "peerDependencies": {
+    "react-scripts": "*"
   }
 }

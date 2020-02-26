@@ -5,7 +5,7 @@
   "dependencies": {
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "react-scripts-custom": "file:.yalc/react-scripts-custom"
+    "react-scripts-custom": "^0.1.0"
   },
   "scripts": {
     "postinstall": "yalc add react-scripts-custom && yarn --ignore-scripts",

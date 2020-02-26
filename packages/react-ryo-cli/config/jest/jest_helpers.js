@@ -10,7 +10,7 @@ const JEST_SETUP_PATH = require.resolve(
   `${pkg.name}/config/jest/jest_setup.js`
 );
 
-const extendJestConfig = (source, { script }) => {
+const overrideJestConfig = (source, { script }) => {
   const jestConfig = cloneDeep(source);
   jestConfig.collectCoverage = script === SCRIPTS.BUILD;
   jestConfig.setupFiles = concat(jestConfig.setupFiles, ENZYME_SETUP_PATH);
@@ -22,6 +22,4 @@ const extendJestConfig = (source, { script }) => {
   return jestConfig;
 };
 
-module.exports = {
-  extendJestConfig
-};
+module.exports = { overrideJestConfig };

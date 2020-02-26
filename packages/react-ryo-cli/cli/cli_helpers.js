@@ -3,10 +3,11 @@ const fs = require("fs");
 const {
   choosePackageManager,
   confirmUpdateScripts,
+  confirmInstallCracoPeerDep,
   confirmDirectoryNotEmptyChoice
 } = require("./inquirer");
 
-const { throwError } = require("./utils");
+const { throwError } = require("../lib/utils");
 
 const JSONStringifyPretty = (json, indent = 2) =>
   JSON.stringify(json, null, indent);
@@ -16,6 +17,8 @@ const getPackageManagerCommand = packageManager =>
 
 const copyFile = (sourcePath, targetPath) =>
   fs.createReadStream(sourcePath).pipe(fs.createWriteStream(targetPath));
+
+const saveFile = (targetPath, content) => fs.writeFileSync(targetPath, content);
 
 const getPackageManagerChoice = async () => {
   const { packageManager } = await choosePackageManager().catch(throwError);
@@ -32,11 +35,18 @@ const getConfirmUpdateScripts = async () => {
   return confirm;
 };
 
+const getConfirmInstallCracoPeerDepChoice = async () => {
+  const { confirm } = await confirmInstallCracoPeerDep().catch(throwError);
+  return confirm;
+};
+
 module.exports = {
   copyFile,
+  saveFile,
   JSONStringifyPretty,
   getPackageManagerCommand,
   getPackageManagerChoice,
   getConfirmUpdateScripts,
-  getConfirmDirectoryNotEmptyChoice
+  getConfirmDirectoryNotEmptyChoice,
+  getConfirmInstallCracoPeerDepChoice
 };

@@ -11,10 +11,11 @@
 // https://github.com/eslint/eslint/blob/d89390b75e3e9993f347387a49b0ac5550f45c7f/bin/eslint.js
 require("v8-compile-cache");
 
-const init = require("../cli/init");
+const init = require("../cli/scripts/init");
+const updateScripts = require("../cli/scripts/update_scripts");
+
 const { logger } = require("../lib/logger");
 const { logSignature } = require("../lib/signature");
-const updateScripts = require("../cli/update_scripts");
 const { getArgv, getScriptArg } = require("../lib/helpers");
 
 const argv = getArgv();

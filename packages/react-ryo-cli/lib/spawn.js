@@ -43,9 +43,16 @@ const spawnCli = ({
   const cracoScript = getCracoScript(script, { outputPath });
   const spawnArgs = [...cracoScript, ...restArgs];
 
-  const dirname = path.dirname(bin);
-  const configPath = resolveConfigFilePath(dirname);
-  const allowedFilesPath = resolveAllowedFilesPath(dirname);
+  // cwd is custom cli consumer (docs), which initiates
+  // custom cli dependency binary (react-scripts-custom)
+  // which uses the base cli (react-ryo-cli) API.
+
+  console.log(process.cwd());
+  process.exit();
+  const endConsumerDirname = process.cwd();
+  const cliConsumerDirname = path.dirname(bin);
+  const configPath = resolveConfigFilePath(cliConsumerDirname);
+  const allowedFilesPath = resolveAllowedFilesPath(cliConsumerDirname);
 
   // https://stackoverflow.com/a/14231570/4106263
   const child = spawnChild("node", spawnArgs, {
@@ -58,11 +65,9 @@ const spawnCli = ({
       // use `FORCE_COLOR` to retain child output colors.
       // https://stackoverflow.com/a/42839682/4106263
       FORCE_COLOR: true,
-      CLI_DIRNAME: dirname,
-      CONFIG_PATH: configPath,
-      ALLOWED_FILES_PATH: allowedFilesPath,
       REACT_RYO_CLI_CONFIG_PATH: configPath,
-      REACT_RYO_CLI_CONSUMER_DIRNAME: dirname,
+      REACT_RYO_CLI_CONSUMER_DIRNAME: cliConsumerDirname,
+      REACT_RYO_CLI_END_CONSUMER_DIRNAME: endConsumerDirname,
       REACT_RYO_CLI_ALLOWED_FILES_PATH: allowedFilesPath,
       REACT_RYO_CLI_OPTIONS: JSON.stringify({
         noExtend,

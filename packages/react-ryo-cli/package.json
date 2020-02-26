@@ -25,17 +25,15 @@
     }
   },
   "scripts": {
-    "push": "yalc push",
-    "watch": "npm-watch",
-    "signature": "node ./lib/debug_signature.js",
-    "unpublish": "yalc installations clean %npm_package_name%",
-    "inspect": "node ./index.js build --inspect",
+    "test": "jest",
     "lint": "eslint ./",
     "eslint": "./node_modules/.bin/eslint --init",
-    "test": "jest"
+    "signature": "node ./lib/debug_signature.js"
+  },
+  "peerDependencies": {
+    "@craco/craco": "*"
   },
   "dependencies": {
-    "@craco/craco": "^5.6.3",
     "babel-merge": "^3.0.0",
     "babel-plugin-lodash": "^3.3.4",
     "chalk": "^3.0.0",

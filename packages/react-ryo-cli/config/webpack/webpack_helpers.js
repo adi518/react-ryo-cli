@@ -1,5 +1,6 @@
 const path = require("path");
 const { merge, cloneDeep } = require("lodash");
+const ModuleScopePlugin = require("react-dev-utils/ModuleScopePlugin");
 
 const {
   APP_BUILD_SCRIPTS,
@@ -18,12 +19,14 @@ const BABEL_POLYFILL_PATH = path.join(
   "babel/babel_polyfill.js"
 );
 
-const extendWebpackConfig = ({
+const overrideWebpackConfig = ({
   argv,
   script,
   cliOptions,
   pathsSource,
+  allowedFiles,
   webpackConfigSource,
+  allowedFilesDirname,
   getOutputPath = getDefaultOutputPath
 }) => {
   const paths = cloneDeep(pathsSource);
@@ -57,10 +60,21 @@ const extendWebpackConfig = ({
     webpackConfig.externals["react-dom"] = "react-dom";
     webpackConfig.externals["styled-components"] = "styled-components";
   }
+
+  // https://stackoverflow.com/q/44114436/4106263
+  // https://stackoverflow.com/a/58321458/4106263
+  webpackConfig.resolve.plugins.forEach(plugin => {
+    if (plugin instanceof ModuleScopePlugin) {
+      allowedFiles.forEach(filePath =>
+        plugin.allowedFiles.add(path.join(allowedFilesDirname, filePath))
+      );
+    }
+  });
+
   return { webpackConfig, paths };
 };
 
 module.exports = {
-  extendWebpackConfig,
+  overrideWebpackConfig,
   getOutputPath: getDefaultOutputPath
 };

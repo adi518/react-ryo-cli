@@ -25,6 +25,7 @@ const Line = styled.div`
   font-size: 1.5rem;
   text-align: center;
   letter-spacing: 0.5rem;
+  color: ${({ theme }) => theme.motto.color};
   transition: font-size var(--common-transition-time);
 
   &::before {
@@ -64,7 +65,7 @@ const Line = styled.div`
 
 const resetAnimation = element => {
   element.style.animation = 'none';
-  element.offsetHeight; /* eslint-disable-line no-unused-expressions */
+  void element.offsetHeight;
   element.style.animation = null;
 };
 

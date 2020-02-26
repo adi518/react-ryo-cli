@@ -1,4 +1,5 @@
 const inquirer = require("inquirer");
+const { PACKAGE_MANAGERS } = require("../lib/constants");
 
 const choosePackageManager = () =>
   inquirer.prompt([
@@ -6,7 +7,7 @@ const choosePackageManager = () =>
       type: "list",
       name: "packageManager",
       message: "Which package manager?",
-      choices: ["yarn", "npm"]
+      choices: [PACKAGE_MANAGERS.YARN, PACKAGE_MANAGERS.NPM]
     }
   ]);
 
@@ -28,8 +29,18 @@ const confirmUpdateScripts = () =>
     }
   ]);
 
+const confirmInstallCracoPeerDep = () =>
+  inquirer.prompt([
+    {
+      type: "confirm",
+      name: "confirm",
+      message: "@craco/craco is a peer dependency, install?"
+    }
+  ]);
+
 module.exports = {
   confirmUpdateScripts,
   choosePackageManager,
+  confirmInstallCracoPeerDep,
   confirmDirectoryNotEmptyChoice
 };

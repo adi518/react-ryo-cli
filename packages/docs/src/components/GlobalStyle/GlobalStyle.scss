@@ -20,10 +20,20 @@
 
   --color-foreground: #{$color-gray};
   --color-background: #{$color-yellow};
+
+  --color-logo: #{$color-purple};
+  --color-logo-alternate: #{$color-yellow};
+
   --color-background-hero: #{$color-gray-dark};
+  --color-background-hero-alternate: #{$color-purple};
   --color-background-footer: #{$color-gray-dark};
   --color-background-nav-sticky: #{$color-purple};
 
+  --scrollbar-scale: 1;
+  --scrollbar-color: #{$color-gray-dark};
+  --scrollbar-thumb-color: #{$color-purple};
+  --scrollbar-thumb-width: calc(0.625rem * var(--scrollbar-scale));
+  --scrollbar-thumb-margin: calc(0.208333rem * var(--scrollbar-scale));
   --common-transition-time: 0.5s;
   --font-family: 'Roboto', 'Montserrat', -apple-system, BlinkMacSystemFont,
     'Segoe UI', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',

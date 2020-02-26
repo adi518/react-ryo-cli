@@ -11,7 +11,7 @@
     "test:update": "react-scripts-custom test -u"
   },
   "dependencies": {
-    "react-scripts-custom": "file:.yalc/react-scripts-custom"
+    "react-scripts-custom": "^0.1.0"
   },
   "peerDependencies": {
     "react": "^16.8.6",

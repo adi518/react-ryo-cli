@@ -1,6 +1,6 @@
 {
   "name": "react-scripts-custom",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "main": "index.js",
   "bin": "index.js",
   "license": "MIT",
@@ -20,6 +20,7 @@
     "watch": "npm-watch"
   },
   "dependencies": {
+    "@craco/craco": "^5.6.3",
     "abbreviate": "^0.0.3",
     "react-ryo-cli": "^0.1.0"
   },

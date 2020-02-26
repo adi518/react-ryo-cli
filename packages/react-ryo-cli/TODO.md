@@ -8,6 +8,7 @@
   - Add `craco.config.js`.
   - Add `bin` key to `package.json`.
   - Generate `index.js` with starter template.
-- [ ] Impl `update-scripts` argument.
+- [x] Impl `update-scripts` argument.
+- [x] Set `@craco/craco` as peer dependency.
 
 \* Public path example: `https://grid.kenshoo.com/incrementality-frontend/latest/<STATIC_ASSET_FILENAME>`.

@@ -266,7 +266,7 @@ module.exports = {
 }
 ```
 
-Conditional destructuring is quite useful in this case. Read more about it [here](https://www.sanity.io/blog/how-to-conditionally-build-an-object-in-es6).
+Babel `Lodash` plugin is used to optimize a production build, which makes it irrelevant for testing. Therefore, it can be excluded safely when testing. Tip: conditional destructuring is quite useful in this case. Read more about it [here](https://www.sanity.io/blog/how-to-conditionally-build-an-object-in-es6).
 
 ## Preview
 

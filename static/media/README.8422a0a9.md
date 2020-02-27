@@ -246,7 +246,7 @@ import { isStart, isBuild /* etc' */ } from 'react-ryo-cli'
 
 > `getEnvironmentVariables` - Get all environment variables defined by `react-ryo-cli`. Alias: `getEnvVars`.
 
-## Known Limitations
+## ⚠️ Known Limitations
 
 Craco allows you to define a [custom location](https://github.com/gsoft-inc/craco/blob/master/packages/craco/README.md#custom-location-for-cracoconfigjs) for its `craco.config.js` however, it looks for the file under current working directory only, which means it can only be placed under the end consumer project, which is less than ideal. Without custom location support (outside the end consumer project), it is not possible to support `Babel` with `Jest`.
 
@@ -268,7 +268,11 @@ module.exports = {
 
 Babel `Lodash` plugin is used to optimize a production build, which makes it irrelevant for testing. Therefore, it can be excluded safely when testing. Tip: conditional destructuring is quite useful in this case. Read more about it [here](https://www.sanity.io/blog/how-to-conditionally-build-an-object-in-es6).
 
-## Preview
+## 🚀 Publish Custom CLI to Organization
+
+Once ready, you should publish your custom CLI to your organization and then apply a style-guide that dictates using the CLI for every React application. When all consumers use the same tool, it makes things a lot easier to manage and control.
+
+## 📹 Preview
 
 Just a quick preview of what to expect. Excuse my PowerShell. 😄
 

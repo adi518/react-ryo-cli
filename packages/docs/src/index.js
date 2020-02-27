@@ -1,13 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { MetadataContext } from 'react-components';
 
 import App from './App';
 import ThemeProvider from 'components/ThemeProvider/ThemeProvider';
 import * as serviceWorker from './serviceWorker';
 
+import docsPkg from '../package.json';
+import pkg from 'react-ryo-cli/package.json';
+
 ReactDOM.render(
   <ThemeProvider>
-    <App />
+    <MetadataContext.Provider value={{ pkg, docsPkg }}>
+      <App />
+    </MetadataContext.Provider>
   </ThemeProvider>,
   document.getElementById('root')
 );

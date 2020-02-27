@@ -6,6 +6,10 @@
 
 React Ryo CLI is a roll-your-own version of [CRA](https://github.com/facebook/create-react-app) ("create-react-app") `react-scripts` CLI, where you can reconfigure internal configurations, such as [Webpack](https://webpack.js.org/), [Babel](https://babeljs.io/), and [Jest](https://jestjs.io/). This package is based on [Craco](https://github.com/sharegate/craco). Using the aforementioned third-party, we are able to abstract away the intricacies of cross-industry build tools and their configurations, yet keep a "roll-your-own" approach to enable fine-grain changes. While [Vue.js](https://cli.vuejs.org/) already incorporated customizability in its CLI, CRA does not follow the same path, hence solutions like Craco have emerged, followed by this package.
 
+## ⚠️ Work In Progress Notice
+
+This package is a _work in progress_. You can expect API changes from what is currently described in this documentation. Feel free to review, offer suggestions, improvements etc'.
+
 ## Usage
 
 Execute the following command to create a boilerplate for your own CLI package.
@@ -200,6 +204,8 @@ require('react-ryo-cli').spawnCli()
 
 ### _spawnCli Options_
 
+> `noOverride[Bool]` - Lock Craco configuration from end-consumers.
+
 > `noExtend[Bool]` - Opt-out of default Craco configuration.
 
 > `outputPath[String]` - Change Webpack output path (Default: `'build'`).
@@ -220,7 +226,53 @@ require('react-ryo-cli').spawnCli()
 
 > ![Gradient Themes](https://camo.githubusercontent.com/18c1d596702848aa1d67e95efd41268b1298f7ae/687474703a2f2f6269742e6c792f3275467967724c)
 
-## Preview
+## [API Helper Methods](#api-helper-methods)
+
+A few helper methods are provided to ease with the configuration of Craco. Import like so:
+
+```js
+import { isStart, isBuild /* etc' */ } from 'react-ryo-cli'
+```
+
+> `isStart` - Test whether current script is a `start` script.
+
+> `isBuild` - Test whether current script is a `build` script.
+
+> `isTest` - Test whether current script is a `test` script.
+
+> `getParentArgv` - Get parent process `argv`.
+
+> `getCliOptions` - Get CLI options passed to `spawnCli`.
+
+> `getEnvironmentVariables` - Get all environment variables defined by `react-ryo-cli`. Alias: `getEnvVars`.
+
+## ⚠️ Known Limitations
+
+Craco allows you to define a [custom location](https://github.com/gsoft-inc/craco/blob/master/packages/craco/README.md#custom-location-for-cracoconfigjs) for its `craco.config.js` however, it looks for the file under current working directory only, which means it can only be placed under the end consumer project, which is less than ideal. Without custom location support (outside the end consumer project), it is not possible to support `Babel` with `Jest`.
+
+### Possible Workarounds
+
+In attempt to circumvent this issue, you can setup your `craco.config.js` with a condition to exclude `Babel` configuration when testing. See example:
+
+```js
+import { isBuild } from 'react-ryo-cli'
+
+module.exports = {
+  ...(isBuild() && {
+    babel: {
+      plugins: ['lodash']
+    }
+  })
+}
+```
+
+Babel `Lodash` plugin is used to optimize a production build, which makes it irrelevant for testing. Therefore, it can be excluded safely when testing. Tip: conditional destructuring is quite useful in this case. Read more about it [here](https://www.sanity.io/blog/how-to-conditionally-build-an-object-in-es6).
+
+## 🚀 Publish Custom CLI to Organization
+
+Once ready, you should publish your custom CLI to your organization and then apply a style-guide that dictates using the CLI for every React application. When all consumers use the same tool, it makes things a lot easier to manage and control.
+
+## 📹 Preview
 
 Just a quick preview of what to expect. Excuse my PowerShell. 😄
 

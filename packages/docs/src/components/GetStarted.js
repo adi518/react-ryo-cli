@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import * as Scroll from 'react-scroll';
 
+// import { Button } from 'react-components';
 import Button from 'components/Button';
 import GitHubButton from 'components/GitHubButton';
 import { NAV_STICKY_HEIGHT_NEGATIVE } from 'components/Nav';

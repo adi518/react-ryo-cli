@@ -7,7 +7,7 @@ const {
   ALLOWED_FILES_FILENAME
 } = require("./constants");
 
-const onExist = (filePath, filename, dirname) =>
+const onExist = (_filePath, filename, dirname) =>
   logger.success(`📦 Found ${filename} in ${dirname}.`);
 
 const resolvePaths = (paths = []) =>
@@ -17,7 +17,6 @@ const resolvePaths = (paths = []) =>
 // Cwd - Consumer configuration file, e.g.: `docs`.
 // Cli - Custom Cli configuration file, e.g.: `react-scripts-custom`.
 // Default - Default configuration file, e.g.: `react-ryo-cli`.
-
 const resolveCracoConfigFilePath = cliConsumerPath => {
   const [cracoConfigCwd, cracoConfigDir, defaultCracoConfig] = resolvePaths([
     [resolveCwd(CRACO_CONFIG_FILENAME), { onExist }],
@@ -30,6 +29,23 @@ const resolveCracoConfigFilePath = cliConsumerPath => {
   return null;
 };
 
+const resolveAllCracoConfigFilePaths = consumerPath => {
+  const [
+    endConsumerCracoConfigPath,
+    consumerCracoConfigPath,
+    defaultCracoConfigPath
+  ] = resolvePaths([
+    [resolveCwd(CRACO_CONFIG_FILENAME), { onExist }],
+    [resolve(CRACO_CONFIG_FILENAME, consumerPath), { onExist }],
+    [CRACO_CONFIG_PATH]
+  ]);
+  return {
+    endConsumerCracoConfigPath,
+    consumerCracoConfigPath,
+    defaultCracoConfigPath
+  };
+};
+
 const resolveAllowedFilesPath = () => {
   const [allowedFilesCwd] = resolvePaths([
     [resolveCwd(ALLOWED_FILES_FILENAME), { onExist }]
@@ -38,4 +54,8 @@ const resolveAllowedFilesPath = () => {
   return null;
 };
 
-module.exports = { resolveCracoConfigFilePath, resolveAllowedFilesPath };
+module.exports = {
+  resolveAllowedFilesPath,
+  resolveCracoConfigFilePath,
+  resolveAllCracoConfigFilePaths
+};

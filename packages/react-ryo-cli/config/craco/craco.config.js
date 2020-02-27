@@ -5,37 +5,45 @@
 
 const path = require("path");
 
-const { getArgv, getScriptArg, safeRequireOr } = require("../../lib/helpers");
 const {
   resolveAllowedFilesPath,
-  resolveCracoConfigFilePath
+  resolveAllCracoConfigFilePaths
 } = require("../../lib/resolve");
 
+const mergeCracoConfig = require("./helpers/merge_craco_config");
+const { getDefaultCracoConfig } = require("./craco.default.config");
+const { getParentArgv, safeRequireOr } = require("../../lib/helpers");
+
+const script = process.env.REACT_RYO_CLI_SCRIPT;
 const cliOptionsJSON = process.env.REACT_RYO_CLI_OPTIONS;
 const consumerPath = process.env.REACT_RYO_CLI_CONSUMER_PATH;
-const endConsumerPath = process.env.REACT_RYO_CLI_END_CONSUMER_PATH; // eslint-disable-line
 
+const argv = getParentArgv();
 const cliOptions = JSON.parse(cliOptionsJSON);
 const allowedFilesPath = resolveAllowedFilesPath(consumerPath);
-const consumerConfigPath = resolveCracoConfigFilePath(consumerPath);
-
-const argv = getArgv();
-const script = getScriptArg(argv);
-const cwdConfig = safeRequireOr(consumerConfigPath, {});
 const allowedFiles = safeRequireOr(allowedFilesPath, []);
 const allowedFilesDirname = allowedFilesPath && path.dirname(allowedFilesPath);
 
-const { getDefaultCracoConfig } = require("./craco.default.config");
+const {
+  consumerCracoConfigPath,
+  endConsumerCracoConfigPath
+} = resolveAllCracoConfigFilePaths(consumerPath);
+
+const endConsumerConfig = safeRequireOr(endConsumerCracoConfigPath, {});
+const consumerConfig = safeRequireOr(consumerCracoConfigPath, {});
 
 const getCracoConfig = () => {
-  if (cliOptions.noExtend) return cwdConfig;
-  const cracoConfig = getDefaultCracoConfig(script, {
+  const defaultCracoConfig = getDefaultCracoConfig(script, {
     argv,
-    cwdConfig,
     cliOptions,
     allowedFiles,
     allowedFilesDirname
   });
+  const cracoConfig = mergeCracoConfig(
+    cliOptions.noExtend ? undefined : defaultCracoConfig,
+    consumerConfig,
+    cliOptions.noOverride ? undefined : endConsumerConfig
+  );
   return cracoConfig;
 };
 

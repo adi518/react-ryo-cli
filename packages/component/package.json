@@ -4,7 +4,6 @@
   "main": "dist/index.js",
   "license": "MIT",
   "scripts": {
-    "postinstall": "yalc add react-scripts-custom && yarn --ignore-scripts",
     "build": "react-scripts-custom build:package --name=%npm_package_name%",
     "build:development": "react-scripts-custom build:package:development",
     "test": "react-scripts-custom test",
@@ -24,8 +23,8 @@
     "umd"
   ],
   "devDependencies": {
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
-    "styled-components": "^4.3.2"
+    "react": "^16.13.0",
+    "react-dom": "^16.13.0",
+    "styled-components": "^5.0.1"
   }
 }

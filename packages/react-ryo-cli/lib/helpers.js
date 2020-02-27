@@ -74,8 +74,8 @@ const getDeferredPromise = () => {
   return { ...deferred, promise };
 };
 
-const mergeDeep = (...sources) =>
-  mergeWith(...sources, (objValue, srcValue) => {
+const deepMerge = (...sources) =>
+  mergeWith({}, sources, (objValue, srcValue) => {
     if (Array.isArray(objValue)) {
       return objValue.concat(srcValue);
     }
@@ -85,7 +85,7 @@ module.exports = {
   resolve,
   getEnv,
   getArgv,
-  mergeDeep,
+  deepMerge,
   resolveCwd,
   safeRequireOr,
   getScriptArg,

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { useWindowScroll } from 'react-use';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import { useUpdateEffect, useWindowScroll } from 'react-use';
 
 const StyledScrollToTop = styled.div`
   right: 0;
@@ -30,11 +30,11 @@ const StyledScrollToTop = styled.div`
 const SCROLL_HEIGHT_SCALE = 0.667;
 
 const ScrollToTop = () => {
-  const [scrollEnd, setScrollEnd] = useState(false);
   const { y: scrollYPosition } = useWindowScroll();
+  const [scrollEnd, setScrollEnd] = useState(false);
   const handleClick = () => window.scrollTo({ top: 0, behavior: 'smooth' });
 
-  useEffect(() => {
+  useUpdateEffect(() => {
     window.requestAnimationFrame(() => {
       setScrollEnd(
         scrollYPosition >= document.body.scrollHeight * SCROLL_HEIGHT_SCALE

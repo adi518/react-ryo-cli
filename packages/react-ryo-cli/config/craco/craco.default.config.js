@@ -1,5 +1,4 @@
 const { merge } = require("lodash");
-const mergeBabel = require("babel-merge");
 
 const { isBuildScript } = require("../../lib/helpers");
 const { overrideJestConfig } = require("../jest/jest_helpers");
@@ -9,12 +8,9 @@ const inspectCracoConfigPlugin = require("./plugins/inspect_craco_config_plugin"
 
 const getDefaultCracoConfig = (
   script,
-  { argv, cliOptions, cwdConfig, allowedFiles, allowedFilesDirname }
+  { argv, cliOptions, allowedFiles, allowedFilesDirname }
 ) => ({
-  babel: mergeBabel(
-    isBuildScript(script) && getDefaultBabelConfig(),
-    cwdConfig.babel
-  ),
+  babel: isBuildScript(script) ? getDefaultBabelConfig() : undefined,
   webpack: {
     configure: (webpackConfigSource, { paths: pathsSource }) => {
       const { webpackConfig, paths } = overrideWebpackConfig({

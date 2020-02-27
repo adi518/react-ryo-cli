@@ -17,13 +17,15 @@ const {
 const spawnCli = ({
   signatureTheme,
   signatureGradient,
+  signature: signatureOption = pkg.name,
+  verbose = false,
   noExtend = false,
   withEnzyme = true,
+  noOverride = false,
   withSignature = true,
   withBabelPolyfill = false,
   withStyledComponents = true,
-  outputPath = DEFAULT_BUILD_DIRNAME,
-  signature: signatureOption = pkg.name
+  outputPath = DEFAULT_BUILD_DIRNAME
 } = {}) => {
   const [, bin, ...argv] = process.argv;
   const [script, ...restArgs] = minimist(argv)._;
@@ -43,8 +45,8 @@ const spawnCli = ({
   const spawnArgs = [...cracoScript, ...restArgs];
 
   // quick paths reference, consumer to product:
-  // `process.cwd()` = end consumer (`docs`)
-  // `path.dirname(bin)` = consumer (`react-scripts-custom`)
+  // `process.cwd()` = end consumer (`docs`) =>
+  // `path.dirname(bin)` = consumer (`react-scripts-custom`) =>
   // `__dirname` = cli (`react-ryo-cli`)
 
   // https://stackoverflow.com/a/14231570/4106263
@@ -60,8 +62,11 @@ const spawnCli = ({
       REACT_RYO_CLI_PARENT_ARGV: JSON.stringify(process.argv),
       REACT_RYO_CLI_CONSUMER_PATH: path.dirname(bin),
       REACT_RYO_CLI_END_CONSUMER_PATH: process.cwd(),
+      REACT_RYO_CLI_SCRIPT: script,
       REACT_RYO_CLI_OPTIONS: JSON.stringify({
+        verbose,
         noExtend,
+        noOverride,
         outputPath,
         withEnzyme,
         withBabelPolyfill,
@@ -78,7 +83,7 @@ const spawnCli = ({
     onClose: code => {
       if (code !== 0) logger.log(code);
       if (withSignature && !restArgs.inspect) {
-        const signature = signatureOption;
+        const signature = getSignature(signatureOption);
         logSignature(signature, {
           theme: signatureTheme,
           gradient: signatureGradient

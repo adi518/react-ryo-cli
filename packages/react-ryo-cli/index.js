@@ -4,7 +4,7 @@
 
 const { spawnCli } = require("./lib/spawn");
 const {
-  mergeDeep,
+  deepMerge,
   getScript,
   getParentArgv,
   getLibraryName
@@ -20,7 +20,7 @@ const {
 module.exports = {
   getLibraryName,
   getParentArgv,
-  mergeDeep,
+  deepMerge,
   spawnCli,
   SCRIPTS,
   getScript,

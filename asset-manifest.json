@@ -1,26 +1,24 @@
 {
   "files": {
-    "main.css": "/react-ryo-cli/static/css/main.79e751b2.chunk.css",
-    "main.js": "/react-ryo-cli/static/js/main.58a4d8a9.chunk.js",
-    "main.js.map": "/react-ryo-cli/static/js/main.58a4d8a9.chunk.js.map",
+    "main.js": "/react-ryo-cli/static/js/main.98f4d559.chunk.js",
+    "main.js.map": "/react-ryo-cli/static/js/main.98f4d559.chunk.js.map",
     "runtime-main.js": "/react-ryo-cli/static/js/runtime-main.921ff541.js",
     "runtime-main.js.map": "/react-ryo-cli/static/js/runtime-main.921ff541.js.map",
-    "static/css/2.c849f491.chunk.css": "/react-ryo-cli/static/css/2.c849f491.chunk.css",
-    "static/js/2.d7a7392b.chunk.js": "/react-ryo-cli/static/js/2.d7a7392b.chunk.js",
-    "static/js/2.d7a7392b.chunk.js.map": "/react-ryo-cli/static/js/2.d7a7392b.chunk.js.map",
+    "static/css/2.d9ee7e2f.chunk.css": "/react-ryo-cli/static/css/2.d9ee7e2f.chunk.css",
+    "static/js/2.b120018d.chunk.js": "/react-ryo-cli/static/js/2.b120018d.chunk.js",
+    "static/js/2.b120018d.chunk.js.map": "/react-ryo-cli/static/js/2.b120018d.chunk.js.map",
     "index.html": "/react-ryo-cli/index.html",
-    "precache-manifest.f85e07b1ead862d7e460574b860f3dac.js": "/react-ryo-cli/precache-manifest.f85e07b1ead862d7e460574b860f3dac.js",
+    "precache-manifest.60219ade3c5a0b7ab5bf6749fbf7b122.js": "/react-ryo-cli/precache-manifest.60219ade3c5a0b7ab5bf6749fbf7b122.js",
     "service-worker.js": "/react-ryo-cli/service-worker.js",
-    "static/css/2.c849f491.chunk.css.map": "/react-ryo-cli/static/css/2.c849f491.chunk.css.map",
-    "static/css/main.79e751b2.chunk.css.map": "/react-ryo-cli/static/css/main.79e751b2.chunk.css.map",
-    "static/js/2.d7a7392b.chunk.js.LICENSE.txt": "/react-ryo-cli/static/js/2.d7a7392b.chunk.js.LICENSE.txt",
+    "static/css/2.d9ee7e2f.chunk.css.map": "/react-ryo-cli/static/css/2.d9ee7e2f.chunk.css.map",
+    "static/js/2.b120018d.chunk.js.LICENSE.txt": "/react-ryo-cli/static/js/2.b120018d.chunk.js.LICENSE.txt",
+    "static/js/main.98f4d559.chunk.js.LICENSE.txt": "/react-ryo-cli/static/js/main.98f4d559.chunk.js.LICENSE.txt",
     "static/media/README.md": "/react-ryo-cli/static/media/README.8422a0a9.md"
   },
   "entrypoints": [
     "static/js/runtime-main.921ff541.js",
-    "static/css/2.c849f491.chunk.css",
-    "static/js/2.d7a7392b.chunk.js",
-    "static/css/main.79e751b2.chunk.css",
-    "static/js/main.58a4d8a9.chunk.js"
+    "static/css/2.d9ee7e2f.chunk.css",
+    "static/js/2.b120018d.chunk.js",
+    "static/js/main.98f4d559.chunk.js"
   ]
 }

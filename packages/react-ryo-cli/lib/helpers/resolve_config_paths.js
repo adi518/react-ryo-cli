@@ -1,11 +1,11 @@
-const { logger } = require("./logger");
-const { resolve, resolveCwd, resolveExists } = require("./helpers");
+const { logger } = require("../logger");
+const { resolve, resolveCwd, resolveExists } = require("../helpers");
 
 const {
   CRACO_CONFIG_PATH,
   CRACO_CONFIG_FILENAME,
   ALLOWED_FILES_FILENAME
-} = require("./constants");
+} = require("../constants");
 
 const onExist = (_filePath, filename, dirname) =>
   logger.success(`📦 Found ${filename} in ${dirname}.`);

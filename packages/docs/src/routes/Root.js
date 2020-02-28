@@ -1,19 +1,23 @@
 import React from 'react';
 import * as Scroll from 'react-scroll';
-import { Nav, Hero } from 'react-components';
+import { Nav, Hero, Page, Motto, GetStarted, Markdown } from 'react-components';
 
-import Page from 'components/Page';
-import Markdown from 'components/Markdown';
-
+import Kobe from 'components/Kobe';
 import 'animate.css/animate.min.css';
-
+import Logo from 'components/Logo/Logo';
 import readmePath from '../../../../README.md';
 
 function Root() {
   return (
     <React.Fragment>
       <Nav />
-      <Hero />
+      <Hero>
+        <Logo />
+        <Kobe />
+        <Motto />
+        <GetStarted />
+        {/* <Terminal /> */}
+      </Hero>
       <Scroll.Element name="Page-Markdown">
         <Page>
           <Markdown pathToMarkdown={readmePath} />

@@ -9,7 +9,4 @@ const logger = {
 
 const silentLogger = { log: () => {}, error: () => {} };
 
-module.exports = {
-  logger,
-  silentLogger
-};
+module.exports = { logger, silentLogger };

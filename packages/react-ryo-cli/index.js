@@ -1,31 +1,42 @@
-// Yalc provides a better solution than `yarn link` to develop locally:
-// https://github.com/whitecolor/yalc
-// https://www.viget.com/articles/how-to-use-local-unpublished-node-packages-as-project-dependencies/
-
-const { spawnCli } = require("./lib/spawn");
 const {
+  isPackageBuild,
+  isAppBuild,
+  spawnCli,
+  isTest,
+  isStart,
+  isBuild,
   deepMerge,
-  getScript,
+  getEnvVars,
+  getScriptArg,
   getParentArgv,
-  getLibraryName
-} = require("./lib/helpers");
+  getCliOptions,
+  getEnvironmentVariables
+} = require("./lib/api");
+
 const {
   SCRIPTS,
   BUILD_SCRIPTS,
   APP_BUILD_SCRIPTS,
   PACKAGE_BUILD_SCRIPTS,
   DEVELOPMENT_BUILD_SCRIPTS
-} = require("./lib/scripts");
+} = require("./lib/constants");
 
 module.exports = {
-  getLibraryName,
-  getParentArgv,
   deepMerge,
   spawnCli,
-  SCRIPTS,
-  getScript,
-  BUILD_SCRIPTS,
-  APP_BUILD_SCRIPTS,
+  isTest,
+  isStart,
+  isBuild,
+  isAppBuild,
+  isPackageBuild,
+  getEnvironmentVariables,
+  getEnvVars,
+  getScriptArg,
+  getParentArgv,
+  getCliOptions,
+  DEVELOPMENT_BUILD_SCRIPTS,
   PACKAGE_BUILD_SCRIPTS,
-  DEVELOPMENT_BUILD_SCRIPTS
+  APP_BUILD_SCRIPTS,
+  BUILD_SCRIPTS,
+  SCRIPTS
 };

@@ -42,13 +42,21 @@
     "build:development": "react-scripts-custom build:development",
     "build:inspect:output": "react-scripts-custom build --inspect > output.json",
     "test": "react-scripts-custom test",
+    "test:u": "react-scripts-custom test -u",
+    "test:update": "react-scripts-custom test:update",
     "eject": "react-scripts-custom eject",
     "predeploy": "yarn build",
     "deploy": "node ./gh-pages",
     "unknown": "react-scripts-custom unknown"
   },
   "eslintConfig": {
-    "extends": "react-app"
+    "extends": "react-app",
+    "globals": {
+      "React": "readonly",
+      "shallow": "readonly",
+      "render": "readonly",
+      "mount": "readonly"
+    }
   },
   "browserslist": {
     "production": [

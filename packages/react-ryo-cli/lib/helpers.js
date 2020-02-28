@@ -5,12 +5,13 @@ const { mergeWith } = require("lodash/fp");
 const { pascalCase } = require("pascal-case");
 
 const { logger } = require("./logger");
-const { SCRIPTS, BUILD_SCRIPTS } = require("./scripts");
 const {
   CRACO_BIN_PATH,
   CRACO_CONFIG_PATH,
   REACT_SCRIPTS_PRODUCTION_BUILD_MESSAGE
 } = require("./constants");
+
+const { SCRIPTS, BUILD_SCRIPTS } = require("./constants");
 
 const resolve = (filePath, dirname = __dirname) =>
   path.resolve(dirname, filePath);
@@ -45,19 +46,23 @@ const getArgv = (argv = process.argv) => minimist(argv.slice(2));
 const getParentArgv = () =>
   minimist(JSON.parse(process.env.REACT_RYO_CLI_PARENT_ARGV).slice(2));
 
+const getCliOptions = () =>
+  minimist(JSON.parse(process.env.REACT_RYO_CLI_OPTIONS));
+
 const getScriptArg = (argv = getArgv()) => argv._[0];
+// const getScriptArg = () => JSON.parse(process.env.npm_config_argv).original[0];
 
 const getLibraryName = ({ name }) => pascalCase(name);
 
 const isBuildScript = script => BUILD_SCRIPTS.includes(script);
 
-const createCliCommand = ({ args, prefixArgs, suffixArgs }) =>
-  [].concat(prefixArgs).concat(args, suffixArgs);
+const createCliCommand = ({ script, args, suffixArgs }) =>
+  [script].concat(args, suffixArgs);
 
 const getCracoCliCommandCreator = configPath => args =>
   createCliCommand({
+    script: CRACO_BIN_PATH,
     args,
-    prefixArgs: CRACO_BIN_PATH,
     suffixArgs: ["--config", configPath || CRACO_CONFIG_PATH]
   });
 
@@ -87,6 +92,7 @@ module.exports = {
   getArgv,
   deepMerge,
   resolveCwd,
+  getCliOptions,
   safeRequireOr,
   getScriptArg,
   resolveExists,

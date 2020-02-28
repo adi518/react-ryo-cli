@@ -1,5 +1,5 @@
 const spawn = require("cross-spawn");
-const { throwError } = require("./utils");
+const { throwError } = require("../utils");
 
 const spawnChild = (
   command,

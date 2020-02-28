@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Kobe renders 1`] = `
+<img
+  alt="R.I.P. Kobe Bryant"
+  className="sc-AxjAm hYQIsj"
+  src="kobe.png"
+/>
+`;

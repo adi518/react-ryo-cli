@@ -1,7 +1,7 @@
 const pkg = require("../package.json");
 const REPOSITORY_URL = pkg.repository.url;
 const ISSUES_URL = `${REPOSITORY_URL}/issues`;
-const { SCRIPTS, SCRIPT_LIST } = require("./scripts");
+const { SCRIPTS, SCRIPT_LIST } = require("./constants");
 
 const invalidAction = script =>
   `Invalid action - "${script}". Please provide a valid action (e.g. "start", "build" or "test"). See docs: ${REPOSITORY_URL}.`;

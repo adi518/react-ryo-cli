@@ -20,7 +20,7 @@
     "test": "jest",
     "lint": "eslint \"./**/*.js\"",
     "eslint": "./node_modules/.bin/eslint --init",
-    "signature": "node ./lib/debug_signature.js"
+    "signature": "node ./lib/signature_debug.js"
   },
   "peerDependencies": {
     "@craco/craco": "*"

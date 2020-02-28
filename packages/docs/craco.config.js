@@ -6,12 +6,7 @@ module.exports = {
           'prismjs',
           {
             languages: ['javascript', 'css', 'markup', 'diff'],
-            plugins: [
-              'autolinker',
-              'line-numbers',
-              'show-language',
-              'copy-to-clipboard'
-            ]
+            plugins: ['show-language', 'copy-to-clipboard']
           }
         ]
       ]

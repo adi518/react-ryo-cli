@@ -1,11 +1,8 @@
 import React from 'react';
-import { Footer } from 'react-components';
+import { Footer, ScrollToTop, GlobalStyle } from 'react-components';
 
 import Root from 'routes/Root';
 import Head from 'components/Head';
-import ScrollToTop from 'components/ScrollToTop';
-
-import GlobalStyle from 'components/GlobalStyle/GlobalStyle';
 
 function App() {
   return (

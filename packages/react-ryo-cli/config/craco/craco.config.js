@@ -8,7 +8,7 @@ const path = require("path");
 const {
   resolveAllowedFilesPath,
   resolveAllCracoConfigFilePaths
-} = require("../../lib/resolve");
+} = require("../../lib/helpers/resolve_config_paths");
 
 const mergeCracoConfig = require("./helpers/merge_craco_config");
 const { getDefaultCracoConfig } = require("./craco.default.config");

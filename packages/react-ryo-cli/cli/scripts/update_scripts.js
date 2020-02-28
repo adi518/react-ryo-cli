@@ -2,7 +2,7 @@ const fs = require("fs");
 const detectIndent = require("detect-indent");
 const { flow, entries, filter, sortBy, merge } = require("lodash/fp");
 
-const { SCRIPTS } = require("../../lib/scripts");
+const { SCRIPTS } = require("../../lib/constants");
 const { throwError } = require("../../lib/utils");
 const { resolveCwd } = require("../../lib/helpers");
 const { PACKAGE_JSON } = require("../../lib/constants");

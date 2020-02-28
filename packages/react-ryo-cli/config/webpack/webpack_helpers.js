@@ -6,7 +6,7 @@ const {
   APP_BUILD_SCRIPTS,
   PACKAGE_BUILD_SCRIPTS,
   DEVELOPMENT_BUILD_SCRIPTS
-} = require("../../lib/scripts");
+} = require("../../lib/constants");
 const { BUILD_DIR } = require("../../lib/constants");
 const { resolveCwd, getLibraryName } = require("../../lib/helpers");
 

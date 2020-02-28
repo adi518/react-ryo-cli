@@ -1,5 +1,5 @@
-const { SCRIPTS } = require("./scripts");
-const { getCracoCliCommandCreator } = require("./helpers");
+const { SCRIPTS } = require("../constants");
+const { getCracoCliCommandCreator } = require("../helpers");
 
 const getCracoScript = (script, { outputPath } = {}) => {
   const createCracoCliCommand = getCracoCliCommandCreator();

@@ -11,7 +11,7 @@
   "bin": "./bin/cli.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/adi518/react-ryo-cli/"
+    "url": "https://github.com/adi518/react-ryo-cli"
   },
   "bugs": {
     "url": "https://github.com/adi518/react-ryo-cli/issues"
@@ -47,6 +47,7 @@
     "pascal-case": "^3.1.1",
     "react-dev-utils": "^10.2.0",
     "react-test-renderer": "^16.13.0",
+    "read-pkg-up": "^7.0.1",
     "regenerator-runtime": "^0.13.3",
     "source-map-explorer": "^2.3.1",
     "v8-compile-cache": "^2.1.0",

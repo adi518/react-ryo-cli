@@ -1,93 +1,79 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`extendWebpack extendCssLoaderOptions 1`] = `
+exports[`overrideWebpackConfig getOutputPath 1`] = `"D:/app/build"`;
+
+exports[`overrideWebpackConfig with build script 1`] = `
 Object {
-  "modules": Object {
-    "localIdentName": "kn-[name]__[local]___[hash:base64:5]",
+  "entry": Array [
+    "index.js",
+  ],
+  "externals": Object {},
+  "output": Object {
+    "path": "D:/app/build",
+  },
+  "resolve": Object {
+    "plugins": Array [],
   },
 }
 `;
 
-exports[`extendWebpack getOutputPath 1`] = `"/app/out"`;
-
-exports[`extendWebpack with build (development) script 1`] = `
+exports[`overrideWebpackConfig with build:development script 1`] = `
 Object {
-  "extendedPaths": Object {
-    "appBuild": "/app/out",
+  "devtool": "eval-source-map",
+  "entry": Array [
+    "index.js",
+  ],
+  "externals": Object {},
+  "mode": "development",
+  "output": Object {
+    "path": "D:/app/build",
   },
-  "extendedWebpackConfig": Object {
-    "devtool": "eval-source-map",
-    "entry": Array [
-      "./node_modules/react-build/config/babel/babel_polyfill.js",
-      "index.js",
-    ],
-    "externals": Object {},
-    "mode": "development",
-    "output": Object {
-      "path": "/app/out",
-    },
+  "resolve": Object {
+    "plugins": Array [],
   },
 }
 `;
 
-exports[`extendWebpack with build:package script 1`] = `
+exports[`overrideWebpackConfig with build:package script 1`] = `
 Object {
-  "extendedPaths": Object {},
-  "extendedWebpackConfig": Object {
-    "devtool": "eval-source-map",
-    "entry": Array [
-      "index.js",
-    ],
-    "externals": Object {
-      "react": "react",
-      "react-dom": "react-dom",
-      "styled-components": "styled-components",
-    },
-    "mode": "development",
-    "output": Object {
-      "library": "react-core",
-      "libraryTarget": "umd",
-      "path": "/app/out",
-    },
+  "entry": Array [
+    "index.js",
+  ],
+  "externals": Object {
+    "react": "react",
+    "react-dom": "react-dom",
+    "styled-components": "styled-components",
+  },
+  "output": Object {
+    "library": "react-core",
+    "libraryTarget": "umd",
+    "path": "D:/app/build",
+  },
+  "resolve": Object {
+    "plugins": Array [],
   },
 }
 `;
 
-exports[`extendWebpack with build:package:production script 1`] = `
+exports[`overrideWebpackConfig with build:package:development script 1`] = `
 Object {
-  "extendedPaths": Object {},
-  "extendedWebpackConfig": Object {
-    "entry": Array [
-      "index.js",
-    ],
-    "externals": Object {
-      "react": "react",
-      "react-dom": "react-dom",
-      "styled-components": "styled-components",
-    },
-    "output": Object {
-      "library": "react-core",
-      "libraryTarget": "umd",
-      "path": "/app/out",
-    },
+  "devtool": "eval-source-map",
+  "entry": Array [
+    "index.js",
+  ],
+  "externals": Object {
+    "react": "react",
+    "react-dom": "react-dom",
+    "styled-components": "styled-components",
   },
-}
-`;
-
-exports[`extendWebpack with build:production script 1`] = `
-Object {
-  "extendedPaths": Object {
-    "appBuild": "/app/out",
+  "mode": "development",
+  "output": Object {
+    "library": "react-core",
+    "libraryTarget": "umd",
+    "path": "D:/app/build",
   },
-  "extendedWebpackConfig": Object {
-    "entry": Array [
-      "./node_modules/react-build/config/babel/babel_polyfill.js",
-      "index.js",
-    ],
-    "externals": Object {},
-    "output": Object {
-      "path": "/app/out",
-    },
+  "resolve": Object {
+    "plugins": Array [],
   },
 }
 `;

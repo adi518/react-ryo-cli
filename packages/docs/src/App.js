@@ -1,5 +1,5 @@
 import React from 'react';
-import { Footer, ScrollToTop, GlobalStyle } from 'react-components';
+import { GlobalStyle, ScrollToTop, Footer } from 'react-components';
 
 import Root from 'routes/Root';
 import Head from 'components/Head';

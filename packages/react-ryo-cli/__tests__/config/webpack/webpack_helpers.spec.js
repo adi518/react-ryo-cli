@@ -1,70 +1,70 @@
 const slash = require("slash");
 
-const { SCRIPTS } = require("../../../config/scripts");
+const { SCRIPTS } = require("../../../lib/constants");
 
 const {
-  extendWebpack,
   getOutputPath,
-  extendCssLoaderOptions
+  overrideWebpackConfig
 } = require("../../../config/webpack/webpack_helpers.js");
 
+console.log(getOutputPath(undefined, { cwd: "/app" }));
+
 const commonMockArgs = {
-  webpackConfig: {
-    entry: ["index.js"],
-    output: {}
-  },
   paths: {},
-  getOutputPath: () => slash(getOutputPath({ cwd: "/app" }))
+  cliOptions: {},
+  source: {
+    output: {},
+    entry: ["index.js"],
+    resolve: { plugins: [] }
+  },
+  getOutputPath: () => slash(getOutputPath(undefined, { cwd: "/app" }))
 };
 
-const getMockArgs = options => Object.assign({}, commonMockArgs, options);
+const getMockArgs = options => ({ ...commonMockArgs, ...options });
 
-jest.mock("../../../config/helpers", () => ({
-  ...jest.requireActual("../../../config/helpers"),
+jest.mock("../../../lib/helpers", () => ({
+  ...jest.requireActual("../../../lib/helpers"),
   getLibraryName: () => "react-core"
 }));
 
-describe("extendWebpack", () => {
-  test("with build (development) script", () => {
-    const mockArgs = getMockArgs({ script: SCRIPTS.BUILD });
-    const result = extendWebpack(mockArgs);
-
-    expect(result).toMatchSnapshot();
-  });
-
+describe("overrideWebpackConfig", () => {
   test("with build script", () => {
-    const mockArgs = getMockArgs({ script: SCRIPTS.BUILD });
-    const result = extendWebpack(mockArgs);
+    const { source, ...options } = getMockArgs({ script: SCRIPTS.BUILD });
+    const result = overrideWebpackConfig(source, options);
 
     expect(result).toMatchSnapshot();
   });
 
   test("with build:development script", () => {
-    const mockArgs = getMockArgs({ script: SCRIPTS.BUILD_DEVELOPMENT });
-    const result = extendWebpack(mockArgs);
+    const { source, ...options } = getMockArgs({
+      script: SCRIPTS.BUILD_DEVELOPMENT
+    });
+    const result = overrideWebpackConfig(source, options);
 
     expect(result).toMatchSnapshot();
   });
 
   test("with build:package script", () => {
-    const mockArgs = getMockArgs({ script: SCRIPTS.BUILD_PACKAGE });
-    const result = extendWebpack(mockArgs);
+    const { source, ...options } = getMockArgs({
+      script: SCRIPTS.BUILD_PACKAGE,
+      argv: { name: "react-core" }
+    });
+    const result = overrideWebpackConfig(source, options);
 
     expect(result).toMatchSnapshot();
   });
 
   test("with build:package:development script", () => {
-    const mockArgs = getMockArgs({ script: SCRIPTS.BUILD_PACKAGE_DEVELOPMENT });
-    const result = extendWebpack(mockArgs);
+    const { source, ...options } = getMockArgs({
+      script: SCRIPTS.BUILD_PACKAGE_DEVELOPMENT,
+      argv: { name: "react-core" }
+    });
+    const result = overrideWebpackConfig(source, options);
 
     expect(result).toMatchSnapshot();
   });
 
-  test("extendCssLoaderOptions", () => {
-    expect(extendCssLoaderOptions()).toMatchSnapshot();
-  });
-
   test("getOutputPath", () => {
-    expect(slash(getOutputPath({ cwd: "/app" }))).toMatchSnapshot();
+    expect(slash(getOutputPath(undefined, { cwd: "/app" }))).toMatchSnapshot();
   });
 });

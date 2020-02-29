@@ -11,20 +11,20 @@ const JEST_SETUP_PATH = require.resolve(
 );
 
 const overrideJestConfig = (source, { script }) => {
-  const jestConfig = cloneDeep(source);
-  jestConfig.collectCoverage = script === SCRIPTS.BUILD;
-  jestConfig.setupFiles = concat(jestConfig.setupFiles, ENZYME_SETUP_PATH);
-  jestConfig.setupFilesAfterEnv = concat(
-    jestConfig.setupFilesAfterEnv,
+  const config = cloneDeep(source);
+  config.collectCoverage = script === SCRIPTS.BUILD;
+  config.setupFiles = concat(config.setupFiles, ENZYME_SETUP_PATH);
+  config.setupFilesAfterEnv = concat(
+    config.setupFilesAfterEnv,
     JEST_SETUP_PATH
   );
-  jestConfig.moduleNameMapper["\\.(css|less|scss|sss|styl)$"] = require.resolve(
+  config.moduleNameMapper["\\.(css|less|scss|sss|styl)$"] = require.resolve(
     "identity-obj-proxy"
   );
-  jestConfig.snapshotSerializers = []
-    .concat(jestConfig.snapshotSerializers, "enzyme-to-json/serializer")
+  config.snapshotSerializers = []
+    .concat(config.snapshotSerializers, "enzyme-to-json/serializer")
     .filter(snapshotSerializer => snapshotSerializer);
-  return jestConfig;
+  return config;
 };
 
 module.exports = { overrideJestConfig };

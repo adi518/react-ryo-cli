@@ -1,3 +1,5 @@
+// https://www.sitepoint.com/javascript-command-line-interface-cli-node-js/
+
 const inquirer = require("inquirer");
 const { PACKAGE_MANAGERS } = require("../lib/constants");
 

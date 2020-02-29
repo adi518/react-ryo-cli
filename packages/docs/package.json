@@ -37,6 +37,7 @@
   "scripts": {
     "start": "react-scripts-custom start",
     "build": "react-scripts-custom build",
+    "build:noExtend": "react-scripts-custom build --noExtend",
     "build:stats": "react-scripts-custom build:stats",
     "build:inspect": "react-scripts-custom build --inspect",
     "build:development": "react-scripts-custom build:development",

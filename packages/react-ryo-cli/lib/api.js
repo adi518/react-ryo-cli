@@ -1,4 +1,4 @@
-const spawnCli = require("./helpers/spawn_cli");
+const spawnCli = require("./spawn_cli");
 
 const {
   deepMerge,
@@ -27,16 +27,16 @@ const isAppBuild = script => APP_BUILD_SCRIPTS.includes(script);
 const isPackageBuild = script => PACKAGE_BUILD_SCRIPTS.includes(script);
 
 module.exports = {
-  spawnCli,
   isTest,
   isStart,
   isBuild,
   isAppBuild,
   isPackageBuild,
-  getCliOptions,
+  spawnCli,
   deepMerge,
   getEnvVars,
   getScriptArg,
   getParentArgv,
+  getCliOptions,
   getEnvironmentVariables
 };

@@ -1,13 +1,13 @@
 const fs = require("fs");
 const path = require("path");
 const minimist = require("minimist");
-const { mergeWith } = require("lodash/fp");
 const { pascalCase } = require("pascal-case");
+const { get, isString, mergeWith } = require("lodash");
 
 const { logger } = require("./logger");
 const {
   CRACO_BIN_PATH,
-  CRACO_CONFIG_PATH,
+  DEFAULT_CRACO_CONFIG_PATH,
   REACT_SCRIPTS_PRODUCTION_BUILD_MESSAGE
 } = require("./constants");
 
@@ -16,7 +16,8 @@ const { SCRIPTS, BUILD_SCRIPTS } = require("./constants");
 const resolve = (filePath, dirname = __dirname) =>
   path.resolve(dirname, filePath);
 
-const resolveCwd = filePath => path.resolve(process.cwd(), filePath);
+const resolveCwd = (filePath, { cwd = process.cwd() } = {}) =>
+  path.resolve(cwd, filePath);
 
 const resolveExists = (
   filePath,
@@ -57,49 +58,43 @@ const getLibraryName = ({ name }) => pascalCase(name);
 const isBuildScript = script => BUILD_SCRIPTS.includes(script);
 
 const createCliCommand = ({ script, args, suffixArgs }) =>
-  [script].concat(args, suffixArgs);
+  [].concat(script, args, suffixArgs);
 
-const getCracoCliCommandCreator = configPath => args =>
+const getCracoCliCommandCreator = () => args =>
   createCliCommand({
     script: CRACO_BIN_PATH,
     args,
-    suffixArgs: ["--config", configPath || CRACO_CONFIG_PATH]
+    suffixArgs: ["--config", DEFAULT_CRACO_CONFIG_PATH]
   });
 
 const shouldReplaceProductionBuildMessage = (script, message) =>
   script === SCRIPTS.BUILD_DEVELOPMENT &&
   message.includes(REACT_SCRIPTS_PRODUCTION_BUILD_MESSAGE);
 
-const getDeferredPromise = () => {
-  const deferred = {};
-  const promise = new Promise((resolve, reject) => {
-    deferred.resolve = resolve;
-    deferred.reject = reject;
-  });
-  return { ...deferred, promise };
+const deepMerge = (...sources) =>
+  mergeWith({}, ...sources, (objValue, srcValue) =>
+    Array.isArray(objValue) ? objValue.concat(srcValue) : undefined
+  );
+
+const getBugsUrl = pkg => {
+  const bugs = get(pkg, "bugs.url") || get(pkg, "bugs");
+  return isString(bugs) ? bugs : null;
 };
 
-const deepMerge = (...sources) =>
-  mergeWith({}, sources, (objValue, srcValue) => {
-    if (Array.isArray(objValue)) {
-      return objValue.concat(srcValue);
-    }
-  });
-
 module.exports = {
-  resolve,
-  getEnv,
-  getArgv,
-  deepMerge,
-  resolveCwd,
-  getCliOptions,
   safeRequireOr,
-  getScriptArg,
+  deepMerge,
+  resolve,
+  resolveCwd,
   resolveExists,
   isBuildScript,
+  getEnv,
+  getArgv,
+  getBugsUrl,
+  getScriptArg,
+  getCliOptions,
   getParentArgv,
   getLibraryName,
-  getDeferredPromise,
   getCracoCliCommandCreator,
   shouldReplaceProductionBuildMessage
 };

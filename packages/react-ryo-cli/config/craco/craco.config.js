@@ -10,9 +10,9 @@ const {
   resolveAllCracoConfigFilePaths
 } = require("../../lib/helpers/resolve_config_paths");
 
-const mergeCracoConfig = require("./helpers/merge_craco_config");
-const { getDefaultCracoConfig } = require("./craco.default.config");
+const { getDefaultCracoConfig } = require("./craco.config.default");
 const { getParentArgv, safeRequireOr } = require("../../lib/helpers");
+const mergeCracoConfig = require("../../lib/helpers/merge_craco_config");
 
 const script = process.env.REACT_RYO_CLI_SCRIPT;
 const cliOptionsJSON = process.env.REACT_RYO_CLI_OPTIONS;
@@ -24,13 +24,19 @@ const allowedFilesPath = resolveAllowedFilesPath(consumerPath);
 const allowedFiles = safeRequireOr(allowedFilesPath, []);
 const allowedFilesDirname = allowedFilesPath && path.dirname(allowedFilesPath);
 
+const { noExtend } = cliOptions;
+
 const {
   consumerCracoConfigPath,
   endConsumerCracoConfigPath
-} = resolveAllCracoConfigFilePaths(consumerPath);
+} = resolveAllCracoConfigFilePaths(consumerPath, { noExtend });
 
-const endConsumerConfig = safeRequireOr(endConsumerCracoConfigPath, {});
 const consumerConfig = safeRequireOr(consumerCracoConfigPath, {});
+const endConsumerConfig = safeRequireOr(endConsumerCracoConfigPath, {});
+
+// we load consumer config aka `react-scripts-custom/craco.config.js`
+// and then inject our defaults unless `noExtend` is truthy. End consumer
+// config will be injected as well, but only Webpack and Babel are supported.
 
 const getCracoConfig = () => {
   const defaultCracoConfig = getDefaultCracoConfig(script, {

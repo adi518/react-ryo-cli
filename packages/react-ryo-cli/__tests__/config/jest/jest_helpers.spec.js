@@ -1,30 +1,31 @@
 const { cloneDeep } = require("lodash");
 
-const { SCRIPTS } = require("../../../config/scripts");
-const { extendJestConfig } = require("../../../config/jest/jest_helpers");
+const { SCRIPTS } = require("../../../lib/constants");
+const { overrideJestConfig } = require("../../../config/jest/jest_helpers");
 
 const commonMockArgs = {
-  jestConfig: {
-    testMatch: [],
-    setupFiles: [],
-    setupFilesAfterEnv: [],
-    moduleNameMapper: {},
-    snapshotSerializers: [],
-    collectCoverage: null
-  }
+  testMatch: [],
+  setupFiles: [],
+  setupFilesAfterEnv: [],
+  moduleNameMapper: {},
+  snapshotSerializers: [],
+  collectCoverage: null
 };
 
-describe("extendJestConfig", () => {
-  test("with build (development) script", () => {
-    const mockArgs = [...cloneDeep(commonMockArgs), { script: SCRIPTS.BUILD }];
-    const result = extendJestConfig(...mockArgs);
+describe("overrideJestConfig", () => {
+  test("with build script", () => {
+    const mockArgs = [cloneDeep(commonMockArgs), { script: SCRIPTS.BUILD }];
+    const result = overrideJestConfig(...mockArgs);
 
     expect(result).toMatchSnapshot();
   });
 
-  test("with build script", () => {
-    const mockArgs = [...cloneDeep(commonMockArgs), { script: SCRIPTS.BUILD }];
-    const result = extendJestConfig(...mockArgs);
+  test("with build:development script", () => {
+    const mockArgs = [
+      cloneDeep(commonMockArgs),
+      { script: SCRIPTS.BUILD_DEVELOPMENT }
+    ];
+    const result = overrideJestConfig(...mockArgs);
 
     expect(result).toMatchSnapshot();
   });

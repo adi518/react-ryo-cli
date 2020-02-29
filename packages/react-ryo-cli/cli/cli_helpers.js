@@ -12,9 +12,11 @@ const { throwError } = require("../lib/utils");
 const JSONStringifyPretty = (json, indent = 2) =>
   JSON.stringify(json, null, indent);
 
+// https://github.com/mattdesl/spawn-npm-install/blob/master/index.js#L29
 const getPackageManagerCommand = packageManager =>
   process.platform === "win32" ? `${packageManager}.cmd` : packageManager;
 
+// https://stackoverflow.com/questions/11293857/fastest-way-to-copy-file-in-node-js
 const copyFile = (sourcePath, targetPath) =>
   fs.createReadStream(sourcePath).pipe(fs.createWriteStream(targetPath));
 

@@ -31,4 +31,4 @@ const getCracoScript = (script, { outputPath } = {}) => {
   }
 };
 
-module.exports = { getCracoScript };
+module.exports = getCracoScript;

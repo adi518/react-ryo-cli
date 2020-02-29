@@ -55,6 +55,7 @@ While an internal package seems beneficial, it's a rather risky approach, becaus
 Combined with [Craco](https://github.com/sharegate/craco), this is what you get.
 
 - CRA 3.\* support.
+- Node.js 8.16.\* support.
 - One stop shop CLI for your React applications.
 - Scalable and more future-proof than other solutions.
 - Adherence to industry standards without the lock penalty.
@@ -68,7 +69,7 @@ Combined with [Craco](https://github.com/sharegate/craco), this is what you get.
 You can configure up to three layers of Craco configurations by placing a `craco.config.js` at the root of your project and/or CLI package and `react-ryo-cli` will merge them on top of each other. A CLI built with `react-ryo-cli` can choose to opt-put from the default Craco configuration by passing a `noExtend` option to `spawnCli` API. However, the topmost configuration will still merge onto the default configuration provided by the custom CLI. See illustration:
 
 ```diff
- 📦 project
+ 📦 react-app
   ┣ 📂 node_modules
   ┃ ┣ 📂 react-ryo-cli
 + ┃ ┃ ┗ 📜 craco.config.js
@@ -91,11 +92,11 @@ Circumvent CRA restriction when importing files out of `src`, by defining an `al
 
 ### How to use
 
-> Assume the following file Structure:
+> Assume the following file structure (e.g. with [Yarn workspaces](https://classic.yarnpkg.com/en/docs/workspaces/)):
 
 ```diff
- 📦 project
-  ┣ 📂 sub_project
+ 📦 workspace-root
+  ┣ 📂 react-app (workspace)
   ┃ ┗ 📂 src
   ┃ ┃ ┗ 📂 components
 + ┃ ┃ ┃ ┗ 📜 Foo.js
@@ -127,7 +128,7 @@ If all done correctly, you should be able to import `README.md` successfully.
 
 ## Consumer Apps
 
-Update existing calls to `react-scripts` in the `scripts` section of your `package.json` file to use your CLI. You can also swap them [automatically](#update-scripts-automatically).
+Update existing calls to `react-scripts` in the `scripts` section of your `package.json` file to use your CLI. You can also update them [automatically](#update-scripts-automatically).
 
 ```diff
 /* package.json */
@@ -177,7 +178,7 @@ $ npx react-ryo-cli update-scripts --cli=<your-cli-package>
 ### Configuration files placement in file structure (e.g. with default CRA boilerplate)
 
 ```diff
- 📦 project
+ 📦 react-app
   ┣ 📁 src
   ┣ 📁 public
   ┣ 📜 README.md

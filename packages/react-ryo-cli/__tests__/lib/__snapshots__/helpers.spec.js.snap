@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`getCracoCliCommandCreator should add Craco arguments 1`] = `
+Array [
+  "D:\\\\dev\\\\@react-ryo-cli\\\\node_modules\\\\@craco\\\\craco\\\\bin\\\\craco.js",
+  "foo",
+  "--config",
+  "D:\\\\dev\\\\@react-ryo-cli\\\\packages\\\\react-ryo-cli\\\\config\\\\craco\\\\craco.config.js",
+]
+`;
+
+exports[`getLibraryName should return in pascal case 1`] = `"FooBar"`;

@@ -127,7 +127,7 @@ If all done correctly, you should be able to import `README.md` successfully.
 
 ## Consumer Apps
 
-Update existing calls to `react-scripts` in the `scripts` section of your `package.json` file to use your CLI. You can also swap them [automatically](#update-scripts-automatically).
+Update existing calls to `react-scripts` in the `scripts` section of your `package.json` file to use your CLI. You can also update them [automatically](#update-scripts-automatically).
 
 ```diff
 /* package.json */
